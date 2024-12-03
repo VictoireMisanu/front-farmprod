@@ -1,12 +1,16 @@
 //import { useState } from 'react'
 
+import Header from "./components/header/header"
+
 
 function App() {
 
   return (
-      <div className=" h-screen w-full bg-slate-300 flex justify-center items-center">
-        <img src="/logo/logoApp.png" alt="farmProd"  />
-      </div>
+      <>
+      <Header className = "bg-[#C7DDB5] w-full h-10 flex items-center">
+        
+      </Header>
+      </>
   )
 }
 
