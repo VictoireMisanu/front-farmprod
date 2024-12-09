@@ -7,9 +7,9 @@ function App() {
 
   return (
       <>
-      <Header className = "bg-[#C7DDB5] w-full h-10 flex items-center">
+      <Header className = "bg-white w-full h-20 flex flex-row justify-between items-center px-20 fixed"/>
         
-      </Header>
+      
       </>
   )
 }
