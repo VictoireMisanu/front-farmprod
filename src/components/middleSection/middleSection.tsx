@@ -90,6 +90,70 @@ const MiddleSection = ()=>{
                         </div>
                     </div>
                 </div>
+                <div id="product" className="bg-[#F2EEEE] w-full h-[35rem] flex flex-col justify-evenly px-16 py-10 gap-10">
+                    <div id="title" className="">
+                            <p className="font-semibold text-[#5B8C51] text-2xl mb-2">Produits</p>
+                            <div className="flex flex-col gap-1 ">
+                                <div className="w-44 h-1 bg-[#EDDD5E]"></div>
+                                <div className="w-36 h-1 bg-[#EDDD5E]"></div>
+                            </div>
+                    </div>
+                    <div id="content" className="flex flex-row items-center gap-10 py-20 w-auto h-96">
+                        <div id="product1" className="h-[23rem] w-2/4 drop-shadow-md shadow-black bg-white rounded-t-md flex flex-col items-center gap-5">
+                            <div id="part1" className="w-full h-3/5 rounded-sm flex items-center justify-center">
+                                <img src="/images/Poule1.jpg" alt="" className="w-full h-full  rounded-sm flex items-center justify-center "/>
+                            </div>
+                            <div id="part2" className="flex flex-col gap-5 h-1/4">
+                                <p id="productName" className="text-md text-[#404A3D] font-semibold">Volaille</p>
+                                <div id="buy" className=" w-auto">
+                                    <a href="#" className="rounded-xl text-md bg-[#404A3D] text-[#FFC107] text-center font-normal  flex items-center justify-center hover:bg-[#5B8C51] hover:text-white hover:border-none">Commander</a>
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <div id="product1" className="h-[23rem] w-2/4 drop-shadow-md shadow-black bg-white rounded-t-md flex flex-col items-center gap-5">
+                            <div id="part1" className="w-full h-3/5 rounded-sm flex items-center justify-center">
+                                <img src="/images/Poule1.jpg" alt="" className="w-full h-full  rounded-sm flex items-center justify-center "/>
+                            </div>
+                            <div id="part2" className="flex flex-col gap-5 h-1/4">
+                                <p id="productName" className="text-md text-[#404A3D] font-semibold">Volaille</p>
+                                <div id="buy" className=" w-auto">
+                                    <a href="#" className="rounded-xl text-md bg-[#404A3D] text-[#FFC107] text-center font-normal  flex items-center justify-center hover:bg-[#5B8C51] hover:text-white hover:border-none">Commander</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="product1" className="h-[23rem] w-2/4 drop-shadow-md shadow-black bg-white rounded-t-md flex flex-col items-center gap-5">
+                            <div id="part1" className="w-full h-3/5 rounded-sm flex items-center justify-center">
+                                <img src="/images/Poule1.jpg" alt="" className="w-full h-full  rounded-sm flex items-center justify-center "/>
+                            </div>
+                            <div id="part2" className="flex flex-col gap-5 h-1/4">
+                                <p id="productName" className="text-md text-[#404A3D] font-semibold">Volaille</p>
+                                <div id="buy" className=" w-auto">
+                                    <a href="#" className="rounded-xl text-md bg-[#404A3D] text-[#FFC107] text-center font-normal  flex items-center justify-center hover:bg-[#5B8C51] hover:text-white hover:border-none">Commander</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="product1" className="h-[23rem] w-2/4 drop-shadow-md shadow-black bg-white rounded-t-md flex flex-col items-center gap-5">
+                            <div id="part1" className="w-full h-3/5 rounded-sm flex items-center justify-center">
+                                <img src="/images/Poule1.jpg" alt="" className="w-full h-full  rounded-sm flex items-center justify-center "/>
+                            </div>
+                            <div id="part2" className="flex flex-col gap-5 h-1/4">
+                                <p id="productName" className="text-md text-[#404A3D] font-semibold">Volaille</p>
+                                <div id="buy" className=" w-auto">
+                                    <a href="#" className="rounded-xl text-md bg-[#404A3D] text-[#FFC107] text-center font-normal  flex items-center justify-center hover:bg-[#5B8C51] hover:text-white hover:border-none">Commander</a>
+                                </div>
+                            </div>
+                        </div>
+            
+
+                    </div>
+                    <div id="sectionbtn">
+                        <div id="learnMore" className=" w-72 flex gap-2 items-center">
+                            <a href="#" className="rounded-xl bg-[#404A3D] p-3 w-56 text-md text-[#FFC107] text-center font-normal shadow-lg shadow-black/50">En savoir plus</a>
+                            <a href="#" className="rounded-full border-2 border-[#5B8C51] w-10 h-10 text-[#5B8C51] shadow-lg shadow-black/50 flex justify-center items-center"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M14 16.94v-4H5.08l-.03-2.01H14V6.94l5 5Z"/></svg></a>
+                        </div>
+                    </div>
+                </div>
                 
             </div>
     )
