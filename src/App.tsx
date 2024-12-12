@@ -8,7 +8,7 @@ function App() {
 
   return (
       <>
-      <Header className ="bg-white w-full h-20 flex justify-around items-center px-20 fixed"/>
+      <Header className ="bg-white w-full h-20 flex justify-between items-center pl-20 shadow-md shadow-black fixed"/>
        <MiddleSection/> 
       
       </>
