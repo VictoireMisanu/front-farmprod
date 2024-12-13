@@ -51,7 +51,7 @@ const MiddleSection = ()=>{
                     </div>
                     </div>
                 </div>
-                <div id="services" className="bg-white w-full h-[35rem] flex flex-col px-16 py-10">
+                <div id="services" className="bg-white w-full h-[35rem] flex flex-col px-16 my-10">
                     <div id="title" className="mb-16">
                             <p className="font-semibold text-[#5B8C51] text-2xl mb-2">Services</p>
                             <div className="flex flex-col gap-1 ">
@@ -60,12 +60,12 @@ const MiddleSection = ()=>{
                             </div>
                     </div>
                     <div className="text-xl">Bénéficier des services tels que :</div>
-                    <div id="content" className="flex flex-row items-center gap-56 py-20 w-auto h-96">
+                    <div id="content" className="flex flex-row items-center justify-center gap-64 py-20 w-full h-96">
                         <div id="service1" className="h-56">
                             <div id="picture" className="w-20 h-20 rounded-full flex items-center justify-center border-2 border-white shadow-2xl border-none ml-10 shadow-black">
                                 <img src="/images/Poule1.jpg" alt="" className="w-3/4 h-3/4  rounded-full flex items-center justify-center "/>
                             </div>
-                            <div id="text" className="w-72 h-52 shadow-lg shadow-black/30 absolute -mt-10 pt-16 px-10 flex flex-col gap-2">
+                            <div id="text" className="w-72 h-60 shadow-lg shadow-black/30 absolute -mt-10 pt-16 px-10 flex flex-col gap-2">
                                 <p className="text-sm font-semibold">Service de vente et/ou d'achat</p>
                                 <p className="font-light text-md text-justify">Que vous soyez fermier ou acheteur, vendez et/ou acheter le produit de votre choix.</p>
                             </div>
@@ -74,7 +74,7 @@ const MiddleSection = ()=>{
                             <div id="picture" className="w-20 h-20 rounded-full flex items-center justify-center border-2 border-white shadow-2xl border-none ml-10 shadow-black">
                                 <img src="/images/cow.png" alt="" className="w-3/4 h-3/4  rounded-full flex items-center justify-center "/>
                             </div>
-                            <div id="text" className="w-72 h-52 shadow-lg shadow-black/30 absolute -mt-10 pt-16 px-10 flex flex-col gap-2">
+                            <div id="text" className="w-72 h-60 shadow-lg shadow-black/30 absolute -mt-10 pt-16 px-10 flex flex-col gap-2">
                                 <p className="text-sm font-semibold">Canal de contact avec les Fermiers</p>
                                 <p className="font-light text-md text-justify">En tant qu’acheteur, écrivez à votre fournisseur de produits agricoles ou de ferme.</p>
                             </div>
@@ -83,14 +83,14 @@ const MiddleSection = ()=>{
                             <div id="picture" className="w-20 h-20 rounded-full flex items-center justify-center border-2 border-white shadow-2xl border-none ml-10 shadow-black">
                                 <img src="/images/pouletBlanc.jpg" alt="" className="w-3/4 h-3/4  rounded-full flex items-center justify-center "/>
                             </div>
-                            <div id="text" className="w-72 h-52 shadow-lg shadow-black/30 absolute -mt-10 pt-16 px-10 flex flex-col gap-2">
+                            <div id="text" className="w-72 h-60 shadow-lg shadow-black/30 absolute -mt-10 pt-16 px-10 flex flex-col gap-2">
                                 <p className="text-sm font-semibold">Information</p>
                                 <p className="font-light text-md text-justify">Vous permettre de rester informé lorsque vos fourisseurs publient des noveaux produits.</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div id="product" className="bg-[#F2EEEE] w-full h-[35rem] flex flex-col justify-evenly px-16 py-10 gap-10">
+                <div id="product" className="bg-[#F2EEEE] w-full h-[45rem] flex flex-col justify-evenly px-16 my-20 gap-10">
                     <div id="title" className="">
                             <p className="font-semibold text-[#5B8C51] text-2xl mb-2">Produits</p>
                             <div className="flex flex-col gap-1 ">
@@ -98,50 +98,50 @@ const MiddleSection = ()=>{
                                 <div className="w-36 h-1 bg-[#EDDD5E]"></div>
                             </div>
                     </div>
-                    <div id="content" className="flex flex-row items-center gap-10 py-20 w-auto h-96">
-                        <div id="product1" className="h-[23rem] w-2/4 drop-shadow-md shadow-black bg-white rounded-t-md flex flex-col items-center gap-5">
+                    <div id="content" className="flex flex-row items-center justify-around py-20 w-auto h-96">
+                        <div id="product1" className="h-72 w-1/6 drop-shadow-md shadow-black bg-white rounded-t-md flex flex-col gap-5">
                             <div id="part1" className="w-full h-3/5 rounded-sm flex items-center justify-center">
-                                <img src="/images/Poule1.jpg" alt="" className="w-full h-full  rounded-sm flex items-center justify-center "/>
+                                <img src="/images/vache2.jpeg" alt="" className="w-full h-full  rounded-sm flex items-center justify-center "/>
                             </div>
-                            <div id="part2" className="flex flex-col gap-5 h-1/4">
-                                <p id="productName" className="text-md text-[#404A3D] font-semibold">Volaille</p>
-                                <div id="buy" className=" w-auto">
-                                    <a href="#" className="rounded-xl text-md bg-[#404A3D] text-[#FFC107] text-center font-normal  flex items-center justify-center hover:bg-[#5B8C51] hover:text-white hover:border-none">Commander</a>
-                                </div>
+                            <div id="part2" className="flex flex-col px-5 gap-5 h-2/5">
+                                <p id="productName" className="text-md text-[#404A3D] font-semibold">Vache</p>
+                                <a href="#" className="w-32 h-8 rounded-md text-md bg-[#404A3D] text-white text-center font-normal  flex items-center justify-center hover:bg-[#5B8C51] hover:text-white hover:border-none">Commander</a>
                             </div>
                         </div>
-                    
-                        <div id="product1" className="h-[23rem] w-2/4 drop-shadow-md shadow-black bg-white rounded-t-md flex flex-col items-center gap-5">
+                        <div id="product1" className="h-72 w-1/6 drop-shadow-md shadow-black bg-white rounded-t-md flex flex-col gap-5">
                             <div id="part1" className="w-full h-3/5 rounded-sm flex items-center justify-center">
-                                <img src="/images/Poule1.jpg" alt="" className="w-full h-full  rounded-sm flex items-center justify-center "/>
+                                <img src="/images/goat1.jpeg" alt="" className="w-full h-full  rounded-sm flex items-center justify-center "/>
                             </div>
-                            <div id="part2" className="flex flex-col gap-5 h-1/4">
-                                <p id="productName" className="text-md text-[#404A3D] font-semibold">Volaille</p>
-                                <div id="buy" className=" w-auto">
-                                    <a href="#" className="rounded-xl text-md bg-[#404A3D] text-[#FFC107] text-center font-normal  flex items-center justify-center hover:bg-[#5B8C51] hover:text-white hover:border-none">Commander</a>
-                                </div>
+                            <div id="part2" className="flex flex-col px-5 gap-5 h-2/5">
+                                <p id="productName" className="text-md text-[#404A3D] font-semibold">Chèvre</p>
+                                <a href="#" className="w-32 h-8 rounded-md text-md bg-[#404A3D] text-white text-center font-normal  flex items-center justify-center hover:bg-[#5B8C51] hover:text-white hover:border-none">Commander</a>
                             </div>
                         </div>
-                        <div id="product1" className="h-[23rem] w-2/4 drop-shadow-md shadow-black bg-white rounded-t-md flex flex-col items-center gap-5">
+                        <div id="product1" className="h-72 w-1/6 drop-shadow-md shadow-black bg-white rounded-t-md flex flex-col gap-5">
                             <div id="part1" className="w-full h-3/5 rounded-sm flex items-center justify-center">
-                                <img src="/images/Poule1.jpg" alt="" className="w-full h-full  rounded-sm flex items-center justify-center "/>
+                                <img src="/images/twoLapin.jpeg" alt="" className="w-full h-full  rounded-sm flex items-center justify-center "/>
                             </div>
-                            <div id="part2" className="flex flex-col gap-5 h-1/4">
-                                <p id="productName" className="text-md text-[#404A3D] font-semibold">Volaille</p>
-                                <div id="buy" className=" w-auto">
-                                    <a href="#" className="rounded-xl text-md bg-[#404A3D] text-[#FFC107] text-center font-normal  flex items-center justify-center hover:bg-[#5B8C51] hover:text-white hover:border-none">Commander</a>
-                                </div>
+                            <div id="part2" className="flex flex-col px-5 gap-5 h-2/5">
+                                <p id="productName" className="text-md text-[#404A3D] font-semibold">Lapin</p>
+                                <a href="#" className="w-32 h-8 rounded-md text-md bg-[#404A3D] text-white text-center font-normal  flex items-center justify-center hover:bg-[#5B8C51] hover:text-white hover:border-none">Commander</a>
                             </div>
                         </div>
-                        <div id="product1" className="h-[23rem] w-2/4 drop-shadow-md shadow-black bg-white rounded-t-md flex flex-col items-center gap-5">
+                        <div id="product1" className="h-72 w-1/6 drop-shadow-md shadow-black bg-white rounded-t-md flex flex-col gap-5">
                             <div id="part1" className="w-full h-3/5 rounded-sm flex items-center justify-center">
-                                <img src="/images/Poule1.jpg" alt="" className="w-full h-full  rounded-sm flex items-center justify-center "/>
+                                <img src="/images/Canard1.jpeg" alt="" className="w-full h-full  rounded-sm flex items-center justify-center "/>
                             </div>
-                            <div id="part2" className="flex flex-col gap-5 h-1/4">
-                                <p id="productName" className="text-md text-[#404A3D] font-semibold">Volaille</p>
-                                <div id="buy" className=" w-auto">
-                                    <a href="#" className="rounded-xl text-md bg-[#404A3D] text-[#FFC107] text-center font-normal  flex items-center justify-center hover:bg-[#5B8C51] hover:text-white hover:border-none">Commander</a>
-                                </div>
+                            <div id="part2" className="flex flex-col px-5 gap-5 h-2/5">
+                                <p id="productName" className="text-md text-[#404A3D] font-semibold">Canard</p>
+                                <a href="#" className="w-32 h-8 rounded-md text-md bg-[#404A3D] text-white text-center font-normal  flex items-center justify-center hover:bg-[#5B8C51] hover:text-white hover:border-none">Commander</a>
+                            </div>
+                        </div>
+                        <div id="product1" className="h-72 w-1/6 drop-shadow-md shadow-black bg-white rounded-t-md flex flex-col gap-5">
+                            <div id="part1" className="w-full h-3/5 rounded-sm flex items-center justify-center">
+                                <img src="/images/pouletBlanc.jpg" alt="" className="w-full h-full  rounded-sm flex items-center justify-center "/>
+                            </div>
+                            <div id="part2" className="flex flex-col px-5 gap-5 h-2/5">
+                                <p id="productName" className="text-md text-[#404A3D] font-semibold">Poulet</p>
+                                <a href="#" className="w-32 h-8 rounded-md text-md bg-[#404A3D] text-white text-center font-normal  flex items-center justify-center hover:bg-[#5B8C51] hover:text-white hover:border-none">Commander</a>
                             </div>
                         </div>
             
