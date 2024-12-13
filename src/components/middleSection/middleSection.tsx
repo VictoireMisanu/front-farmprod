@@ -154,6 +154,37 @@ const MiddleSection = ()=>{
                         </div>
                     </div>
                 </div>
+                <div id="writeUs" className="w-full h-[35rem] flex flex-col px-16 gap-10">
+                    <div id="title">
+                        <p className="font-semibold text-[#5B8C51] text-2xl mb-2">Laissez-nous un message</p>
+                        <div className="flex flex-col gap-1 ">
+                            <div className="w-44 h-1 bg-[#EDDD5E]"></div>
+                            <div className="w-36 h-1 bg-[#EDDD5E]"></div>
+                        </div>
+                    </div>
+                    <div id="content" className="w-full h-auto bg-[url('/images/goose.png')] bg-no-repeat bg-center bg-cover flex flex-row gap-10">
+                        <form className="w-1/2 h-full"></form>
+                        <div id="contact" className="bg-[#404A3D] ">
+                                <div id="deco" className="w-10 h-10 absolute -ml-5 -mt-5 bg-[#FFC107]"></div>
+                                <div id="deco" className="w-10 h-10 absolute mt-44 ml-60 bg-[#FFC107]"></div>
+                                <div id="contact" className="w-1/5 h-full px-14 py-8 flex flex-col justify-start gap-5">
+                                    <div id="title" className="self-stretch text-[#FFC107] text-xl font-extrabold font-['Roboto Serif'] text-center">Info</div>
+                                    <div id="content" className="flex flex-col gap-3">
+                                            <a id="phone" href="#" className="flex flex-row items-center gap-3">
+                                                <img src="/svg/phone.svg" alt=""/>
+                                                <div className="text-[#EDDD5E] text-sm font-normal font-['Titillium Web'] hover:text-blue-700 inline-flex">+2436 5009 5124</div>
+                                            </a>
+                                            <a  id="mail" href="#">
+                                                <div className="flex flex-row items-center gap-3">
+                                                    <img src="/svg/mail.svg" alt=""/>
+                                                    <div className="text-[#EDDD5E] text-sm font-normal font-['Titillium Web'] hover:text-blue-700 inline-flex">contact@cpmrdc.com</div>
+                                                </div>
+                                            </a>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                </div>
                 
             </div>
     )
