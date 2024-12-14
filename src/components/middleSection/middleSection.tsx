@@ -90,7 +90,7 @@ const MiddleSection = ()=>{
                         </div>
                     </div>
                 </div>
-                <div id="product" className="bg-[#F2EEEE] w-full h-[45rem] flex flex-col justify-evenly px-16 my-20 gap-10">
+                <div id="product" className="bg-[#F2EEEE] w-full h-[45rem] flex flex-col justify-evenly px-16 mt-20">
                     <div id="title" className="">
                             <p className="font-semibold text-[#5B8C51] text-2xl mb-2">Produits</p>
                             <div className="flex flex-col gap-1 ">
@@ -154,7 +154,7 @@ const MiddleSection = ()=>{
                         </div>
                     </div>
                 </div>
-                <div id="writeUs" className="w-full h-[35rem] flex flex-col px-16 gap-10">
+                <div id="writeUs" className="bg-[url('/images/goose.png')] bg-no-repeat bg-center bg-cover w-full h-auto flex flex-col px-16 py-10 gap-10">
                     <div id="title">
                         <p className="font-semibold text-[#5B8C51] text-2xl mb-2">Laissez-nous un message</p>
                         <div className="flex flex-col gap-1 ">
@@ -162,24 +162,30 @@ const MiddleSection = ()=>{
                             <div className="w-36 h-1 bg-[#EDDD5E]"></div>
                         </div>
                     </div>
-                    <div id="content" className="w-full h-auto bg-[url('/images/goose.png')] bg-no-repeat bg-center bg-cover flex flex-row gap-10">
+                    <div id="content" className="w-full h-auto flex flex-row gap-10">
                         <form className="w-1/2 h-full"></form>
                         <div id="contact" className="bg-[#404A3D] ">
                                 <div id="deco" className="w-10 h-10 absolute -ml-5 -mt-5 bg-[#FFC107]"></div>
-                                <div id="deco" className="w-10 h-10 absolute mt-44 ml-60 bg-[#FFC107]"></div>
+                                <div id="deco" className="w-10 h-10 absolute mt-44 ml-[19rem] bg-[#FFC107]"></div>
                                 <div id="contact" className="w-1/5 h-full px-14 py-8 flex flex-col justify-start gap-5">
                                     <div id="title" className="self-stretch text-[#FFC107] text-xl font-extrabold font-['Roboto Serif'] text-center">Info</div>
-                                    <div id="content" className="flex flex-col gap-3">
-                                            <a id="phone" href="#" className="flex flex-row items-center gap-3">
-                                                <img src="/svg/phone.svg" alt=""/>
-                                                <div className="text-[#EDDD5E] text-sm font-normal font-['Titillium Web'] hover:text-blue-700 inline-flex">+2436 5009 5124</div>
-                                            </a>
-                                            <a  id="mail" href="#">
-                                                <div className="flex flex-row items-center gap-3">
-                                                    <img src="/svg/mail.svg" alt=""/>
-                                                    <div className="text-[#EDDD5E] text-sm font-normal font-['Titillium Web'] hover:text-blue-700 inline-flex">contact@cpmrdc.com</div>
-                                                </div>
-                                            </a>
+                                    <div id="content" className="w-full flex flex-col gap-3">
+                                        <a id="phone" href="#">
+                                            <div className="flex flex-row items-center gap-3">
+                                            <span><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="#FEF3B8" d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24c1.12.37 2.33.57 3.57.57c.55 0 1 .45 1 1V20c0 .55-.45 1-1 1c-9.39 0-17-7.61-17-17c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1c0 1.25.2 2.45.57 3.57c.11.35.03.74-.25 1.02z"/></svg></span>
+                                                <div className="text-[#FEF3B8] text-sm font-normal font-['Titillium Web'] hover:text-[#FFC107] text-nowrap">+2438 2505 7845</div>
+                                            </div>
+                                        </a>
+                                        <a id="email" href="#">
+                                            <div className="flex flex-row items-center gap-3">
+                                            <span><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="#FEF3B8" d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2m0 4l-8 5l-8-5V6l8 5l8-5z"/></svg></span>
+                                                <div className="text-[#FEF3B8] text-sm font-normal font-['Titillium Web'] hover:text-[#FFC107] text-nowrap">contact.farmprod@gmail.com</div>
+                                            </div>
+                                        </a>
+                                        <div id="time" className="flex flex-row items-center gap-3">
+                                                <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="#FEF3B8" fill-rule="evenodd" d="M21 12a9 9 0 1 1-18 0a9 9 0 0 1 18 0m-8.5-.207V6.97a.5.5 0 1 0-1 0v5.015a.5.5 0 0 0 .146.369l2.829 2.828a.5.5 0 1 0 .707-.707z" clip-rule="evenodd"/></svg></span>
+                                                <div className="text-[#FEF3B8] text-sm font-normal font-['Titillium Web'] text-nowrap">9h - 18h</div>
+                                            </div>
                                     </div>
                                 </div>
                         </div>
