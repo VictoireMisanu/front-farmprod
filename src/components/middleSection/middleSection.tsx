@@ -94,7 +94,7 @@ const MiddleSection = ()=>{
                     <div id="title" className="">
                             <p className="font-semibold text-[#5B8C51] text-2xl mb-2">Produits</p>
                             <div className="flex flex-col gap-1 ">
-                                <div className="w-44 h-1 bg-[#EDDD5E]"></div>
+                                <div className="w-44 h-1"></div>
                                 <div className="w-36 h-1 bg-[#EDDD5E]"></div>
                             </div>
                     </div>

@@ -1,6 +1,9 @@
-const Logo = () => {
+interface logoProps{
+    className: string
+}
+const Logo = ({className}:logoProps) => {
     return(
-        <a href="#" className="text-4xl text-[#404A3D] font-bold font-['Titan One']">FarmProd</a>
+        <a href="#" className={className}>FarmProd</a>
     )
 }
 export default Logo
