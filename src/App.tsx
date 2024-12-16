@@ -1,17 +1,23 @@
 //import { useState } from 'react'
 
-import Footer from "./components/footer/footer"
-import Header from "./components/header/header"
-import MiddleSection from "./components/middleSection/middleSection"
-
+import { BrowserRouter, Route, Routes } from "react-router-dom"
+import LandingPage from "./components/Pages/landingPage"
+import RegisterForm from "./components/Pages/form1"
 
 function App() {
 
   return (
       <>
-      <Header className ="bg-white w-full h-20 flex justify-between items-center pl-20 shadow-md shadow-black/20 fixed"/>
-      <MiddleSection/> 
-      <Footer/>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/">
+            <Route index element={<LandingPage/>}/>
+          </Route>
+          <Route path="/signUp">
+            <Route index element={<RegisterForm/>}/>
+          </Route>
+        </Routes>
+      </BrowserRouter>
       
       </>
   )

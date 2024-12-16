@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import Logo from "../logo/logo"
 
 interface headerProps{
@@ -19,7 +20,7 @@ const Header = ({className}:headerProps) => {
             </div>
             <div id="btnSection" className="h-full w-[22rem] flex flex-row items-center justify-center px-10 gap-5">
                     <div className="w-1/2 h-1/2 bg-[#EDDD5E] rounded-2xl p-3 flex justify-center items-center hover:bg-[#FFC107] hover:shadow-lg shadow-black">
-                        <a href="#" className="md:text-sm lg:text-md text-black font-normal">Commander</a>
+                        <Link to={`/signUp`} className="md:text-sm lg:text-md text-black font-normal">Commander</Link>
                     </div>
 
             </div>
