@@ -1,12 +1,23 @@
 import {useForm} from 'react-hook-form'
-// import { Resend } from 'resend';
+import { Resend } from 'resend';
 
 const MiddleSection = ()=>{
 
     const form = useForm();
         const {register} = form
 
-        
+        const handleSendEmail = (e) => {
+            e.preventDefault()
+            const resend = new Resend(import.meta.env.VITE_RESEND_API_KEY);
+
+            resend.emails.send({
+            from: 'onboarding@resend.dev',
+            to: 'vicmisanu63@gmail.com',
+            subject: 'From FarmProd users',
+            html: '<p>Congrats on sending your <strong>first email</strong>!</p>'
+            });
+            console.log('rrrrr');
+        }
     return(
             <div>
                 <div id="heroSection" className="w-full h-screen bg-[url('/images/threeCows.png')] bg-no-repeat bg-center bg-cover flex flex-col justify-around px-44 pt-36">
@@ -171,7 +182,7 @@ const MiddleSection = ()=>{
                         </div>
                     </div>
                     <div id="content" className="w-full h-auto flex flex-row gap-20 items-center justify-center">
-                        <form className="w-1/2 h-full p-10 flex flex-col gap-10">
+                        <form className="w-1/2 h-full p-10 flex flex-col gap-10"onSubmit={handleSendEmail}>
                             <p>Sentez-vous libre de nous écrire.
                             Nous vous rassurons que nous vous répondrons dès que possible.</p>
                             <div id="content" className='h-auto flex flex-col gap-5'>
@@ -182,7 +193,7 @@ const MiddleSection = ()=>{
                                     <input className='bg-transparent border-b-[1px] border-black w-full h-12 p-5 outline-none' placeholder='Adress email' type="email" {...register('email')}/>
                                 </div>
                                 <div id='message'>
-                                    <input className='bg-transparent border-b-[1px] border-black w-full h-12 p-5 outline-none' placeholder='Votre message'  type="password" {...register('message')}/>
+                                    <input className='bg-transparent border-b-[1px] border-black w-full h-12 p-5 outline-none' placeholder='Votre message'  type="text" {...register('message')}/>
                                 </div>
                                 <input className='bg-[#404A3D] w-full h-12 text-[#FFC107] font-bold hover:cursor-pointer hover:text-[#404A3D] hover:border-[#404A3D] border-2 hover:bg-transparent hover:shadow-lg hover:rounded-md shadow-black' type="submit" value="Envoyer" />
                             </div>

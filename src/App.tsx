@@ -2,7 +2,7 @@
 
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import LandingPage from "./components/Pages/landingPage"
-import RegisterForm from "./components/Pages/form1"
+import RegisterForm from "./components/Pages/createAccount"
 
 function App() {
 
