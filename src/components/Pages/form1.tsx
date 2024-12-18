@@ -1,4 +1,4 @@
-import React from 'react'
+// import React from 'react'
 import {useForm} from 'react-hook-form'
 // interface formProps{
 //     name : string,
@@ -13,7 +13,7 @@ const RegisterForm = () => {
             <div id="title">
                 <p className="font-extrabold text-[#5B8C51] leading-10 text-2xl mb-2">Create an account</p>
             </div>
-            <div>
+            <div id='profilePic'>
                 <input className='h-44 w-44 rounded-full bg-black' type="file" id="profilePic" {...register('profilePic')}/>
             </div>
             <div id='userName'>
