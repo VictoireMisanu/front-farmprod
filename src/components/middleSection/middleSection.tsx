@@ -1,22 +1,25 @@
-import {useForm} from 'react-hook-form'
-import { Resend } from 'resend';
+// import {useForm} from 'react-hook-form';
+// import { Resend } from 'resend';
+import emailjs from '@emailjs/browser';
 
 const MiddleSection = ()=>{
 
-    const form = useForm();
-        const {register} = form
+    // const form = useForm();
+        // const {register} = form
 
         const handleSendEmail = (e) => {
             e.preventDefault()
-            const resend = new Resend(import.meta.env.VITE_RESEND_API_KEY);
+            emailjs.sendForm('service_ovww2ku', 'template_d58ekw9', e.target, '9X2ljprEAJ-y3kcvy')
 
-            resend.emails.send({
-            from: 'onboarding@resend.dev',
-            to: 'vicmisanu63@gmail.com',
-            subject: 'From FarmProd users',
-            html: '<p>Congrats on sending your <strong>first email</strong>!</p>'
-            });
-            console.log('rrrrr');
+            .then(
+                (result) => {
+                console.log('Message envoyé avec succès', result.text);
+                },
+                (error) => {
+                console.error('Erreur lors de l\'envoi du message', error.text);
+                }
+            );
+            
         }
     return(
             <div>
@@ -182,18 +185,18 @@ const MiddleSection = ()=>{
                         </div>
                     </div>
                     <div id="content" className="w-full h-auto flex flex-row gap-20 items-center justify-center">
-                        <form className="w-1/2 h-full p-10 flex flex-col gap-10"onSubmit={handleSendEmail}>
+                        <form className="w-1/2 h-full p-10 flex flex-col gap-10" onSubmit={handleSendEmail}>
                             <p>Sentez-vous libre de nous écrire.
                             Nous vous rassurons que nous vous répondrons dès que possible.</p>
                             <div id="content" className='h-auto flex flex-col gap-5'>
                                 <div id='userName'>
-                                    <input className='bg-transparent border-b-[1px] border-black w-full h-12 p-5 outline-none' placeholder='Prenom et nom' type="text" {...register('username')}/>
+                                    <input className='bg-transparent border-b-[1px] border-black w-full h-12 p-5 outline-none' placeholder='Prenom et nom' type="text" name='userName'/>
                                 </div>
                                 <div id='emailAddress'>
-                                    <input className='bg-transparent border-b-[1px] border-black w-full h-12 p-5 outline-none' placeholder='Adress email' type="email" {...register('email')}/>
+                                    <input className='bg-transparent border-b-[1px] border-black w-full h-12 p-5 outline-none' placeholder='Adress email' type="email" name='emailAddress'/>
                                 </div>
                                 <div id='message'>
-                                    <input className='bg-transparent border-b-[1px] border-black w-full h-12 p-5 outline-none' placeholder='Votre message'  type="text" {...register('message')}/>
+                                    <input className='bg-transparent border-b-[1px] border-black w-full h-12 p-5 outline-none' placeholder='Votre message'  type="text" name='message'/>
                                 </div>
                                 <input className='bg-[#404A3D] w-full h-12 text-[#FFC107] font-bold hover:cursor-pointer hover:text-[#404A3D] hover:border-[#404A3D] border-2 hover:bg-transparent hover:shadow-lg hover:rounded-md shadow-black' type="submit" value="Envoyer" />
                             </div>
