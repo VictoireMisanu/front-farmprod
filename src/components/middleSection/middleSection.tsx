@@ -7,9 +7,9 @@ const MiddleSection = ()=>{
     // const form = useForm();
         // const {register} = form
 
-        const handleSendEmail = (e) => {
+        const handleSendEmail = (e: React.FormEvent<HTMLFormElement>) => {
             e.preventDefault()
-            emailjs.sendForm('service_ovww2ku', 'template_d58ekw9', e.target, '9X2ljprEAJ-y3kcvy')
+            emailjs.sendForm('service_ovww2ku', 'template_d58ekw9', e.target as HTMLFormElement, '9X2ljprEAJ-y3kcvy')
 
             .then(
                 (result) => {
