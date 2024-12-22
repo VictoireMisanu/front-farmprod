@@ -3,6 +3,9 @@
 import emailjs from '@emailjs/browser';
 import { BtnIcon } from '../link&btn/btnIcon';
 import SimpleLink from '../link&btn/simpleLink';
+import SectionTitle from '../title/sectionTitle';
+import Service from '../card/service';
+import { Product } from '../card/product';
 
 const MiddleSection = ()=>{
 
@@ -43,13 +46,7 @@ const MiddleSection = ()=>{
                     </div>
                 </div>
                 <div id="aboutSection" className="bg-[#C7DDB5] w-full h-[35rem] flex flex-col px-16 py-10">
-                    <div id="title">
-                        <p className="font-semibold text-[#5B8C51] text-2xl mb-2">A propos de nous</p>
-                        <div className="flex flex-col gap-1 ">
-                            <div className="w-44 h-1 bg-[#EDDD5E]"></div>
-                            <div className="w-36 h-1 bg-[#EDDD5E]"></div>
-                        </div>
-                    </div>
+                    <SectionTitle className='font-semibold text-[#5B8C51] text-2xl mb-2' children='A propos de nous'/>
                     <div id="content" className="flex flex-row py-20 w-full h-[30rem]">
                     <div id="image" className="w-2/3 h-full flex flex-col justify-center items-center p-20">
                         <div className="flex flex-row w-2/3 h-full gap-5">
@@ -68,108 +65,65 @@ const MiddleSection = ()=>{
                                 pour la vente et l’achat des produits de fermes et agricoles.
                             </p>
                         </div>
-                        <div id="learnMore" className=" w-72 h-36">
-                            <a href="#" className="rounded-xl p-3 h-1/3 w-40 text-md border-[#5B8C51] border-[3px] text-[#5B8C51] text-center font-normal shadow-lg shadow-black/50 flex items-center justify-center hover:bg-[#5B8C51] hover:text-white hover:border-none">En savoir plus</a>
-                        </div>
+                        <SimpleLink id='learnMore' to={`/signUp`} className=' h-1/5 w-40 p-3 rounded-xl  text-md border-[#5B8C51] border-[3px] text-[#5B8C51] text-center font-semibold shadow-lg shadow-black/50 flex items-center justify-center hover:bg-[#5B8C51] hover:text-white hover:border-none' children='En savoir plus'/>
+                        
                     </div>
                     </div>
                 </div>
                 <div id="services" className="bg-white w-full h-[35rem] flex flex-col px-16 my-10">
-                    <div id="title" className="mb-16">
-                            <p className="font-semibold text-[#5B8C51] text-2xl mb-2">Services</p>
-                            <div className="flex flex-col gap-1 ">
-                                <div className="w-44 h-1 bg-[#EDDD5E]"></div>
-                                <div className="w-36 h-1 bg-[#EDDD5E]"></div>
-                            </div>
-                    </div>
+                    <SectionTitle className='font-semibold text-[#5B8C51] text-2xl mb-2' children='Services'/>
                     <div className="text-xl">Bénéficier des services tels que :</div>
                     <div id="content" className="flex flex-row items-center justify-center gap-64 py-20 w-full h-96">
-                        <div id="service1" className="h-56">
-                            <div id="picture" className="w-20 h-20 rounded-full flex items-center justify-center border-2 border-white shadow-2xl border-none ml-10 shadow-black">
-                                <img src="/images/Poule1.jpg" alt="" className="w-3/4 h-3/4  rounded-full flex items-center justify-center "/>
-                            </div>
-                            <div id="text" className="w-72 h-60 shadow-lg shadow-black/30 absolute -mt-10 pt-16 px-10 flex flex-col gap-2">
-                                <p className="text-sm font-semibold">Service de vente et/ou d'achat</p>
-                                <p className="font-light text-md text-justify">Que vous soyez fermier ou acheteur, vendez et/ou acheter le produit de votre choix.</p>
-                            </div>
-                        </div>
-                        <div id="service2" className="h-56">
-                            <div id="picture" className="w-20 h-20 rounded-full flex items-center justify-center border-2 border-white shadow-2xl border-none ml-10 shadow-black">
-                                <img src="/images/cow.png" alt="" className="w-3/4 h-3/4  rounded-full flex items-center justify-center "/>
-                            </div>
-                            <div id="text" className="w-72 h-60 shadow-lg shadow-black/30 absolute -mt-10 pt-16 px-10 flex flex-col gap-2">
-                                <p className="text-sm font-semibold">Canal de contact avec les Fermiers</p>
-                                <p className="font-light text-md text-justify">En tant qu’acheteur, écrivez à votre fournisseur de produits agricoles ou de ferme.</p>
-                            </div>
-                        </div>
-                        <div id="service3" className="h-56">
-                            <div id="picture" className="w-20 h-20 rounded-full flex items-center justify-center border-2 border-white shadow-2xl border-none ml-10 shadow-black">
-                                <img src="/images/pouletBlanc.jpg" alt="" className="w-3/4 h-3/4  rounded-full flex items-center justify-center "/>
-                            </div>
-                            <div id="text" className="w-72 h-60 shadow-lg shadow-black/30 absolute -mt-10 pt-16 px-10 flex flex-col gap-2">
-                                <p className="text-sm font-semibold">Information</p>
-                                <p className="font-light text-md text-justify">Vous permettre de rester informé lorsque vos fourisseurs publient des noveaux produits.</p>
-                            </div>
-                        </div>
+                        
+                        <Service className='h-56'src='/images/Poule1.jpg'>
+                            <p className="text-sm font-semibold">Service de vente et/ou d'achat</p>
+                            <p className="font-light text-md text-justify">Que vous soyez fermier ou acheteur, vendez et/ou acheter le produit de votre choix.</p>
+                        </Service>
+                        <Service className='h-56'src='/images/cow.png'>
+                            <p className="text-sm font-semibold">Canal de contact avec les Fermiers</p>
+                            <p className="font-light text-md text-justify">En tant qu’acheteur, écrivez à votre fournisseur de produits agricoles ou de ferme.</p>
+                        </Service>
+                        <Service className='h-56'src='/images/pouletBlanc.jpg'>
+                            <p className="text-sm font-semibold">Information</p>
+                            <p className="font-light text-md text-justify">Vous permettre de rester informé lorsque vos fourisseurs publient des noveaux produits.</p>
+                        </Service>
                     </div>
                 </div>
                 <div id="product" className="bg-[#F2EEEE] w-full h-[45rem] flex flex-col justify-evenly px-16 mt-20">
-                    <div id="title" className="">
-                            <p className="font-semibold text-[#5B8C51] text-2xl mb-2">Produits</p>
-                            <div className="flex flex-col gap-1 ">
-                                <div className="w-44 h-1"></div>
-                                <div className="w-44 h-1 bg-[#EDDD5E]"></div>
-                                <div className="w-36 h-1 bg-[#EDDD5E]"></div>
-                            </div>
-                    </div>
+                    <SectionTitle className='font-semibold text-[#5B8C51] text-2xl mb-2' children='Produits'/>
                     <div id="content" className="flex flex-row items-center justify-around py-20 w-auto h-96">
-                        <div id="product1" className="h-72 w-1/6 drop-shadow-md shadow-black bg-white rounded-t-md flex flex-col gap-5">
-                            <div id="part1" className="w-full h-3/5 rounded-sm flex items-center justify-center">
-                                <img src="/images/vache2.jpeg" alt="" className="w-full h-full  rounded-sm flex items-center justify-center "/>
-                            </div>
+                        
+                        <Product classname='h-72 w-1/6 drop-shadow-md shadow-black bg-white rounded-t-md flex flex-col gap-5' src='/images/vache2.jpeg'>
                             <div id="part2" className="flex flex-col px-5 gap-5 h-2/5">
                                 <p id="productName" className="text-md text-[#404A3D] font-semibold">Vache</p>
                                 <a href="#" className="w-32 h-8 rounded-md text-md bg-[#404A3D] text-white text-center font-normal  flex items-center justify-center hover:bg-[#5B8C51] hover:text-white hover:border-none">Commander</a>
                             </div>
-                        </div>
-                        <div id="product1" className="h-72 w-1/6 drop-shadow-md shadow-black bg-white rounded-t-md flex flex-col gap-5">
-                            <div id="part1" className="w-full h-3/5 rounded-sm flex items-center justify-center">
-                                <img src="/images/goat1.jpeg" alt="" className="w-full h-full  rounded-sm flex items-center justify-center "/>
-                            </div>
+                        </Product>
+
+                        <Product classname='h-72 w-1/6 drop-shadow-md shadow-black bg-white rounded-t-md flex flex-col gap-5' src='/images/goat1.jpeg'>
                             <div id="part2" className="flex flex-col px-5 gap-5 h-2/5">
                                 <p id="productName" className="text-md text-[#404A3D] font-semibold">Chèvre</p>
                                 <a href="#" className="w-32 h-8 rounded-md text-md bg-[#404A3D] text-white text-center font-normal  flex items-center justify-center hover:bg-[#5B8C51] hover:text-white hover:border-none">Commander</a>
                             </div>
-                        </div>
-                        <div id="product1" className="h-72 w-1/6 drop-shadow-md shadow-black bg-white rounded-t-md flex flex-col gap-5">
-                            <div id="part1" className="w-full h-3/5 rounded-sm flex items-center justify-center">
-                                <img src="/images/twoLapin.jpeg" alt="" className="w-full h-full  rounded-sm flex items-center justify-center "/>
-                            </div>
+                        </Product>
+                        <Product classname='h-72 w-1/6 drop-shadow-md shadow-black bg-white rounded-t-md flex flex-col gap-5' src='/images/twoLapin.jpeg'>
                             <div id="part2" className="flex flex-col px-5 gap-5 h-2/5">
                                 <p id="productName" className="text-md text-[#404A3D] font-semibold">Lapin</p>
                                 <a href="#" className="w-32 h-8 rounded-md text-md bg-[#404A3D] text-white text-center font-normal  flex items-center justify-center hover:bg-[#5B8C51] hover:text-white hover:border-none">Commander</a>
                             </div>
-                        </div>
-                        <div id="product1" className="h-72 w-1/6 drop-shadow-md shadow-black bg-white rounded-t-md flex flex-col gap-5">
-                            <div id="part1" className="w-full h-3/5 rounded-sm flex items-center justify-center">
-                                <img src="/images/Canard1.jpeg" alt="" className="w-full h-full  rounded-sm flex items-center justify-center "/>
-                            </div>
+                        </Product>
+                        <Product classname='h-72 w-1/6 drop-shadow-md shadow-black bg-white rounded-t-md flex flex-col gap-5' src='/images/Canard1.jpeg'>
                             <div id="part2" className="flex flex-col px-5 gap-5 h-2/5">
                                 <p id="productName" className="text-md text-[#404A3D] font-semibold">Canard</p>
                                 <a href="#" className="w-32 h-8 rounded-md text-md bg-[#404A3D] text-white text-center font-normal  flex items-center justify-center hover:bg-[#5B8C51] hover:text-white hover:border-none">Commander</a>
                             </div>
-                        </div>
-                        <div id="product1" className="h-72 w-1/6 drop-shadow-md shadow-black bg-white rounded-t-md flex flex-col gap-5">
-                            <div id="part1" className="w-full h-3/5 rounded-sm flex items-center justify-center">
-                                <img src="/images/pouletBlanc.jpg" alt="" className="w-full h-full  rounded-sm flex items-center justify-center "/>
-                            </div>
+                        </Product>
+                        <Product classname='h-72 w-1/6 drop-shadow-md shadow-black bg-white rounded-t-md flex flex-col gap-5' src='/images/pouletBlanc.jpg'>
                             <div id="part2" className="flex flex-col px-5 gap-5 h-2/5">
                                 <p id="productName" className="text-md text-[#404A3D] font-semibold">Poulet</p>
                                 <a href="#" className="w-32 h-8 rounded-md text-md bg-[#404A3D] text-white text-center font-normal  flex items-center justify-center hover:bg-[#5B8C51] hover:text-white hover:border-none">Commander</a>
                             </div>
-                        </div>
-            
-
+                        </Product>
                     </div>
                     <div id="sectionbtn">
                         <div id="learnMore" className=" w-72 flex gap-2 items-center">
