@@ -2,7 +2,8 @@
 
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import LandingPage from "./components/Pages/landingPage"
-import RegisterForm from "./components/Pages/createAccount"
+import CreateAccount from "./components/Pages/createAccount"
+import SignIn from "./components/Pages/signIn"
 
 function App() {
 
@@ -14,7 +15,10 @@ function App() {
             <Route index element={<LandingPage/>}/>
           </Route>
           <Route path="/signUp">
-            <Route index element={<RegisterForm/>}/>
+            <Route index element={<CreateAccount/>}/>
+          </Route>
+          <Route path="/signIn">
+            <Route index element={<SignIn/>}/>
           </Route>
         </Routes>
       </BrowserRouter>
