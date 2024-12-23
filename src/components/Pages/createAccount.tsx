@@ -2,6 +2,7 @@
 import {useForm} from 'react-hook-form'
 import Logo from '../logo/logo';
 import { Link } from 'react-router-dom';
+import React, { useState } from "react";
 // interface formProps{
 //     name : string,
 //     password : string
@@ -10,6 +11,20 @@ const CreateAccount = () => {
     
     const form = useForm();
     const {register} = form
+    const [imagePreview, setImagePreview] = useState<string | null>(null);
+    const handleFileChange = (event:React.ChangeEvent<HTMLInputElement>) =>{
+
+        const file = event.target.files?.[0]; // Récupérer le premier fichier
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                setImagePreview(e.target?.result as string); // Mettre à jour l'état avec l'URL de l'image
+            };
+            reader.readAsDataURL(file); // Lire le fichier comme URL de données
+        } else {
+        setImagePreview(null); // Réinitialiser si aucun fichier
+        }
+    }
     return (
         <div id='' className='w-full h-screen flex flex-col py-5 px-10'>
             <div id='header' className='w-full h-20 flex flex-row items-center justify-between'>
@@ -24,8 +39,9 @@ const CreateAccount = () => {
                     <p className="font-extrabold text-black leading-10 text-2xl mb-2">S'inscrire</p>
                 </div>
                 <div id='middleSection' className='w-3/4 h-auto flex flex-col items-center gap-5'>
-                    <div id='profilePic' className="h-32 w-32 rounded-full border-2 border-[#658221] flex flex-col justify-items-center">
-                        <input className="w-full h-full hover:cursor-pointer opacity-0" type="file" title='Photo de profil' id="profilePic" {...register('profilePic')} name='profilePic'/>
+                    <div id='profilePic' className="h-32 w-32 rounded-full border-[1px] border-slate-800 flex flex-col justify-center items-center">
+                        <input className="w-full h-full hover:cursor-pointer opacity-0" type="file" accept=".jpeg, .png, .jpg" title='Photo de profil' id="profilePic" onChange={handleFileChange}  name='profilePic'/>
+                        {imagePreview &&(<img id='imgPreview' src={imagePreview} alt="" className=' -mt-10 w-full h-full rounded-full'/>)}
                     </div>
                     <div id='userName' className='w-1/2 h-7 flex justify-items-center'>
                         <input className='bg-transparent border-b-2 border-b-[#658221] w-full h-full p-5 outline-none' placeholder='Prenom et nom' type="text" {...register('username')} name='userName'/>
@@ -58,3 +74,7 @@ const CreateAccount = () => {
 }
 
 export default CreateAccount
+
+// function useState(arg0: null): [any, any] {
+//     throw new Error('Function not implemented.');
+// }

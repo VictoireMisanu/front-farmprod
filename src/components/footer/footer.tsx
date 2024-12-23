@@ -107,7 +107,7 @@ const footer = () => {
                 
                 
             </div>
-</div>
+    </div>
     )
 }
 export default footer
