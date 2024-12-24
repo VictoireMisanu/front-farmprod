@@ -1,8 +1,10 @@
 // import React from 'react'
 
+import { Link } from "react-router-dom"
 import Header from "../header/header"
 import SimpleLink from "../link&btn/simpleLink"
 import MiddleSection from "../middleSection/middleSection"
+import TrueProduct from "../card/trueProduct"
 
 const ClientProducts = () => {
     return (
@@ -30,7 +32,24 @@ const ClientProducts = () => {
                     <button className="text-[#EDDD5E] font-bold text-lg">Petit bétail</button>
                     <button className="text-[#EDDD5E] font-bold text-lg">Volaille</button>
                 </div>
-               
+                <div id="products" className="flex flex-col gap-10 px-10 py-5">
+                    <div id="title" className="text-[#1D2E28] font-bold text-2xl">Grand bétail</div>
+                    <div id="content" className=" w-full h-auto flex flex-row gap-5 items-center justify-center">
+                        <Link id="product1" to="#">
+                            <TrueProduct className="w-72 h-auto flex flex-col rounded-lg" src="https://res.cloudinary.com/ddwgsvzlw/image/upload/v1735044661/CowAlone_tnlnfb.png" name="Vache" price='500$' descript="lorem ipsum fhudhgrehfeijfdhfrugrefhughfygdfruhgr"/>
+                        </Link>
+                        <Link id="product1" to="#">
+                            <TrueProduct className="w-72 h-auto flex flex-col rounded-lg" src="https://res.cloudinary.com/ddwgsvzlw/image/upload/v1735053075/Goat_pgbaz1.jpg" name="Chèvre" price='500$' descript="lorem ipsum fhudhgrehfeijfdhfrugrefhughfygdfruhgr"/>
+                        </Link>
+                        <Link id="product1" to="#">
+                            <TrueProduct className="w-72 h-auto flex flex-col rounded-lg" src="https://res.cloudinary.com/ddwgsvzlw/image/upload/v1735053527/groupPig_wvztn6.jpg" name="Porc" price='500$' descript="lorem ipsum fhudhgrehfeijfdhfrugrefhughfygdfruhgr"/>
+                        </Link>
+                        <Link id="product1" to="#">
+                            <TrueProduct className="w-72 h-auto flex flex-col rounded-lg" src="https://res.cloudinary.com/ddwgsvzlw/image/upload/v1735053667/groupMouton_lm1kgf.jpg" name="Mouton" price='500$' descript="lorem ipsum fhudhgrehfeijfdhfrugrefhughfygdfruhgr"/>
+                        </Link>
+                        
+                    </div>
+                </div>
                 
             </MiddleSection>
             

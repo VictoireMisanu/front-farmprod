@@ -113,37 +113,16 @@ const LandingPage = () => {
                             <SectionTitle className='font-semibold text-[#5B8C51] text-2xl mb-2' children='Produits'/>
                             <div id="content" className="flex flex-row items-center justify-around py-20 w-auto h-96">
                                 
-                                <Product classname='h-72 w-1/6 drop-shadow-md shadow-black bg-white rounded-t-md flex flex-col gap-5' src='https://res.cloudinary.com/ddwgsvzlw/image/upload/v1734886261/vache2_afeupe.jpg'>
-                                    <div id="part2" className="flex flex-col px-5 gap-5 h-2/5">
-                                        <p id="productName" className="text-md text-[#404A3D] font-semibold">Vache</p>
-                                        <a href="#" className="w-32 h-8 rounded-md text-md bg-[#404A3D] text-white text-center font-normal  flex items-center justify-center hover:bg-[#5B8C51] hover:text-white hover:border-none">Commander</a>
-                                    </div>
-                                </Product>
+                                <Product classname='h-72 w-1/6 drop-shadow-md shadow-black bg-white rounded-t-md flex flex-col gap-5' src='https://res.cloudinary.com/ddwgsvzlw/image/upload/v1734886261/vache2_afeupe.jpg' name='Vache'/>
 
-                                <Product classname='h-72 w-1/6 drop-shadow-md shadow-black bg-white rounded-t-md flex flex-col gap-5' src='https://res.cloudinary.com/ddwgsvzlw/image/upload/v1734886260/goat1_qn1wzb.jpg'>
-                                    <div id="part2" className="flex flex-col px-5 gap-5 h-2/5">
-                                        <p id="productName" className="text-md text-[#404A3D] font-semibold">Chèvre</p>
-                                        <a href="#" className="w-32 h-8 rounded-md text-md bg-[#404A3D] text-white text-center font-normal  flex items-center justify-center hover:bg-[#5B8C51] hover:text-white hover:border-none">Commander</a>
-                                    </div>
-                                </Product>
-                                <Product classname='h-72 w-1/6 drop-shadow-md shadow-black bg-white rounded-t-md flex flex-col gap-5' src='https://res.cloudinary.com/ddwgsvzlw/image/upload/v1734886308/twoLapin_xcxvwm.jpg'>
-                                    <div id="part2" className="flex flex-col px-5 gap-5 h-2/5">
-                                        <p id="productName" className="text-md text-[#404A3D] font-semibold">Lapin</p>
-                                        <a href="#" className="w-32 h-8 rounded-md text-md bg-[#404A3D] text-white text-center font-normal  flex items-center justify-center hover:bg-[#5B8C51] hover:text-white hover:border-none">Commander</a>
-                                    </div>
-                                </Product>
-                                <Product classname='h-72 w-1/6 drop-shadow-md shadow-black bg-white rounded-t-md flex flex-col gap-5' src='https://res.cloudinary.com/ddwgsvzlw/image/upload/v1734886260/Canard1_j0iesq.jpg'>
-                                    <div id="part2" className="flex flex-col px-5 gap-5 h-2/5">
-                                        <p id="productName" className="text-md text-[#404A3D] font-semibold">Canard</p>
-                                        <a href="#" className="w-32 h-8 rounded-md text-md bg-[#404A3D] text-white text-center font-normal  flex items-center justify-center hover:bg-[#5B8C51] hover:text-white hover:border-none">Commander</a>
-                                    </div>
-                                </Product>
-                                <Product classname='h-72 w-1/6 drop-shadow-md shadow-black bg-white rounded-t-md flex flex-col gap-5' src='https://res.cloudinary.com/ddwgsvzlw/image/upload/v1734886261/pouletBlanc_wuf0ev.jpg'>
-                                    <div id="part2" className="flex flex-col px-5 gap-5 h-2/5">
-                                        <p id="productName" className="text-md text-[#404A3D] font-semibold">Poulet</p>
-                                        <a href="#" className="w-32 h-8 rounded-md text-md bg-[#404A3D] text-white text-center font-normal  flex items-center justify-center hover:bg-[#5B8C51] hover:text-white hover:border-none">Commander</a>
-                                    </div>
-                                </Product>
+                                <Product classname='h-72 w-1/6 drop-shadow-md shadow-black bg-white rounded-t-md flex flex-col gap-5' src='https://res.cloudinary.com/ddwgsvzlw/image/upload/v1734886260/goat1_qn1wzb.jpg' name='Chèvre'/>
+    
+                                <Product classname='h-72 w-1/6 drop-shadow-md shadow-black bg-white rounded-t-md flex flex-col gap-5' src='https://res.cloudinary.com/ddwgsvzlw/image/upload/v1734886308/twoLapin_xcxvwm.jpg' name='Lapin'/>
+
+                                <Product classname='h-72 w-1/6 drop-shadow-md shadow-black bg-white rounded-t-md flex flex-col gap-5' src='https://res.cloudinary.com/ddwgsvzlw/image/upload/v1734886260/Canard1_j0iesq.jpg' name='Canard'/>
+
+                                <Product classname='h-72 w-1/6 drop-shadow-md shadow-black bg-white rounded-t-md flex flex-col gap-5' src='https://res.cloudinary.com/ddwgsvzlw/image/upload/v1734886261/pouletBlanc_wuf0ev.jpg' name='Poulet'/>
+                
                             </div>
                             <div id="sectionbtn">
                                 <div id="learnMore" className=" w-72 flex gap-2 items-center">
