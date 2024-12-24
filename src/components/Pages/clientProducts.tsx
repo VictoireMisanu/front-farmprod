@@ -50,6 +50,42 @@ const ClientProducts = () => {
                         
                     </div>
                 </div>
+                <div id="products" className="flex flex-col gap-10 px-10 py-5">
+                    <div id="title" className="text-[#1D2E28] font-bold text-2xl">Petit bétail</div>
+                    <div id="content" className=" w-full h-auto flex flex-row gap-5 items-center justify-center">
+                        <Link id="product1" to="#">
+                            <TrueProduct className="w-72 h-auto flex flex-col rounded-lg" src="https://res.cloudinary.com/ddwgsvzlw/image/upload/v1735054490/Cobaye4_ilgcbu.jpg" name="Lapin" price='500$' descript="lorem ipsum fhudhgrehfeijfdhfrugrefhughfygdfruhgr"/>
+                        </Link>
+                        <Link id="product1" to="#">
+                            <TrueProduct className="w-72 h-auto flex flex-col rounded-lg" src="https://res.cloudinary.com/ddwgsvzlw/image/upload/v1735054490/Cobaye4_ilgcbu.jpg" name="Cobaye" price='500$' descript="lorem ipsum fhudhgrehfeijfdhfrugrefhughfygdfruhgr"/>
+                        </Link>
+                        <Link id="product1" to="#">
+                            <TrueProduct className="w-72 h-auto flex flex-col rounded-lg" src="https://res.cloudinary.com/ddwgsvzlw/image/upload/v1735054490/Cobaye4_ilgcbu.jpg" name="Cobaye min." price='500$' descript="lorem ipsum fhudhgrehfeijfdhfrugrefhughfygdfruhgr"/>
+                        </Link>
+                        <Link id="product1" to="#">
+                            <TrueProduct className="w-72 h-auto flex flex-col rounded-lg" src="https://res.cloudinary.com/ddwgsvzlw/image/upload/v1735054490/Cobaye4_ilgcbu.jpg" name="Mouton" price='500$' descript="lorem ipsum fhudhgrehfeijfdhfrugrefhughfygdfruhgr"/>
+                        </Link>
+                        
+                    </div>
+                </div>
+                <div id="products" className="flex flex-col gap-10 px-10 py-5">
+                    <div id="title" className="text-[#1D2E28] font-bold text-2xl">Volaille</div>
+                    <div id="content" className=" w-full h-auto flex flex-row gap-5 items-center justify-center">
+                        <Link id="product1" to="#">
+                            <TrueProduct className="w-72 h-auto flex flex-col rounded-lg" src="https://res.cloudinary.com/ddwgsvzlw/image/upload/v1735054490/pondeuse1_mmb9cb.jpg" name="Poule" price='500$' descript="lorem ipsum fhudhgrehfeijfdhfrugrefhughfygdfruhgr"/>
+                        </Link>
+                        <Link id="product1" to="#">
+                            <TrueProduct className="w-72 h-auto flex flex-col rounded-lg" src="https://res.cloudinary.com/ddwgsvzlw/image/upload/v1735054489/Canard1_ed7ag6.jpg" name="Canard" price='500$' descript="lorem ipsum fhudhgrehfeijfdhfrugrefhughfygdfruhgr"/>
+                        </Link>
+                        <Link id="product1" to="#">
+                            <TrueProduct className="w-72 h-auto flex flex-col rounded-lg" src="https://res.cloudinary.com/ddwgsvzlw/image/upload/v1735054489/Dindon1_xxqmc4.jpg" name="Dindon" price='500$' descript="lorem ipsum fhudhgrehfeijfdhfrugrefhughfygdfruhgr"/>
+                        </Link>
+                        <Link id="product1" to="#">
+                            <TrueProduct className="w-72 h-auto flex flex-col rounded-lg" src="https://res.cloudinary.com/ddwgsvzlw/image/upload/v1735054490/Poussin1_dzvxsj.jpg" name="Poussin" price='500$' descript="lorem ipsum fhudhgrehfeijfdhfrugrefhughfygdfruhgr"/>
+                        </Link>
+                        
+                    </div>
+                </div>
                 
             </MiddleSection>
             
