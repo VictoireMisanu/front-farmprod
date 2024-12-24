@@ -2,11 +2,12 @@
 
 import Header from "../header/header"
 import SimpleLink from "../link&btn/simpleLink"
+import MiddleSection from "../middleSection/middleSection"
 
 const ClientProducts = () => {
     return (
         <>
-            <Header className ="w-full h-20 bg-[#C7DDB5] shadow-md shadow-black/20 fixed px-10">
+            <Header className ="w-full h-20 bg-[#C7DDB5] shadow-md shadow-black/20 px-10 z-10">
                 <nav className="w-full h-full flex flex-row justify-between items-center ">
                     <div id="part1" className="flex flex-row items-center gap-5">
                         <button><img src="/svg/burger.svg" alt="" /></button>
@@ -22,6 +23,16 @@ const ClientProducts = () => {
                     </div>
                 </nav>
             </Header>
+            
+            <MiddleSection>
+                <div id="filter" className="w-fill h-20 bg-black flex flex-row justify-center items-center gap-20">
+                    <button className="text-[#EDDD5E] font-bold text-lg">Grand Bétail</button>
+                    <button className="text-[#EDDD5E] font-bold text-lg">Petit bétail</button>
+                    <button className="text-[#EDDD5E] font-bold text-lg">Volaille</button>
+                </div>
+               
+                
+            </MiddleSection>
             
         </>
     )
