@@ -6,7 +6,7 @@ const api = axios.create({
 
 export const getProducts = async () => {
   try {
-    const response = await api.get('/products');
+    const response = await api.get('/');
     return response.data;
   } catch (error) {
     console.error('Erreur lors de la récupération des produits:', error);

@@ -1,4 +1,4 @@
-// import React from 'react'
+import React, { useState, useEffect } from 'react'
 import emailjs from '@emailjs/browser';
 import Footer from "../footer/footer"
 import Header from "../header/header"
@@ -8,9 +8,35 @@ import Logo from "../logo/logo"
 import MiddleSection from "../middleSection/middleSection"
 import SectionTitle from '../title/sectionTitle';
 import Service from '../card/service';
-import { Product } from '../card/product';
+import { Product, productProps } from '../card/product';
+import { getProducts } from '../services/api';
 
-const LandingPage = () => {
+const LandingPage:React.FC = () => {
+
+    const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
+
+    useEffect(() => {
+        const fetchProducts = async () => {
+        try {
+            const data = await getProducts();
+            setProducts(data);
+            setLoading(false);
+        } catch (err: unknown) {
+            const errorMessage = err instanceof Error 
+              ? `Erreur lors du chargement des produits: ${err.message}`
+              : 'Erreur lors du chargement des produits';
+            setError(errorMessage);
+            setLoading(false);
+          }
+        };
+
+        fetchProducts();
+    }, []);
+
+    if (loading) return <div className="text-center">Chargement...</div>;
+    if (error) return <div className="text-center text-red-500">{error}</div>;
 
     const handleSendEmail = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
@@ -112,16 +138,23 @@ const LandingPage = () => {
                         <div id="product" className="bg-[#F2EEEE] w-full h-[45rem] flex flex-col justify-evenly px-16 mt-20">
                             <SectionTitle className='font-semibold text-[#5B8C51] text-2xl mb-2' children='Produits'/>
                             <div id="content" className="flex flex-row items-center justify-around py-20 w-auto h-96">
-                                
-                                <Product classname='h-72 w-1/6 drop-shadow-md shadow-black bg-white rounded-t-md flex flex-col gap-5' src='https://res.cloudinary.com/ddwgsvzlw/image/upload/v1734886261/vache2_afeupe.jpg' name='Vache'/>
+                            {products.map((product:productProps) => (
+                                <Product 
+                                    key={product.key}
+                                    classname="h-72 w-1/6 drop-shadow-md shadow-black bg-white rounded-t-md flex flex-col gap-5"
+                                    productImage={product.productImage}
+                                    productName={product.productName}
+                                />))
+                            }
+                                {/* <Product classname='h-72 w-1/6 drop-shadow-md shadow-black bg-white rounded-t-md flex flex-col gap-5' productImage='https://res.cloudinary.com/ddwgsvzlw/image/upload/v1734886261/vache2_afeupe.jpg' productName='Vache'/>
 
-                                <Product classname='h-72 w-1/6 drop-shadow-md shadow-black bg-white rounded-t-md flex flex-col gap-5' src='https://res.cloudinary.com/ddwgsvzlw/image/upload/v1734886260/goat1_qn1wzb.jpg' name='Chèvre'/>
+                                <Product classname='h-72 w-1/6 drop-shadow-md shadow-black bg-white rounded-t-md flex flex-col gap-5' productImage='https://res.cloudinary.com/ddwgsvzlw/image/upload/v1734886260/goat1_qn1wzb.jpg' productName='Chèvre'/>
     
-                                <Product classname='h-72 w-1/6 drop-shadow-md shadow-black bg-white rounded-t-md flex flex-col gap-5' src='https://res.cloudinary.com/ddwgsvzlw/image/upload/v1734886308/twoLapin_xcxvwm.jpg' name='Lapin'/>
+                                <Product classname='h-72 w-1/6 drop-shadow-md shadow-black bg-white rounded-t-md flex flex-col gap-5' productImage='https://res.cloudinary.com/ddwgsvzlw/image/upload/v1734886308/twoLapin_xcxvwm.jpg' productName='Lapin'/>
 
-                                <Product classname='h-72 w-1/6 drop-shadow-md shadow-black bg-white rounded-t-md flex flex-col gap-5' src='https://res.cloudinary.com/ddwgsvzlw/image/upload/v1734886260/Canard1_j0iesq.jpg' name='Canard'/>
+                                <Product classname='h-72 w-1/6 drop-shadow-md shadow-black bg-white rounded-t-md flex flex-col gap-5' productImage='https://res.cloudinary.com/ddwgsvzlw/image/upload/v1734886260/Canard1_j0iesq.jpg' productName='Canard'/>
 
-                                <Product classname='h-72 w-1/6 drop-shadow-md shadow-black bg-white rounded-t-md flex flex-col gap-5' src='https://res.cloudinary.com/ddwgsvzlw/image/upload/v1734886261/pouletBlanc_wuf0ev.jpg' name='Poulet'/>
+                                <Product classname='h-72 w-1/6 drop-shadow-md shadow-black bg-white rounded-t-md flex flex-col gap-5' productImage='https://res.cloudinary.com/ddwgsvzlw/image/upload/v1734886261/pouletBlanc_wuf0ev.jpg' productName='Poulet'/> */}
                 
                             </div>
                             <div id="sectionbtn">
