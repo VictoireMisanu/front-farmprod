@@ -23,6 +23,7 @@ const LandingPage:React.FC = () => {
             const data = await getProducts();
             setProducts(data);
             setLoading(false);
+            
         } catch (err: unknown) {
             const errorMessage = err instanceof Error 
               ? `Erreur lors du chargement des produits: ${err.message}`
@@ -37,6 +38,8 @@ const LandingPage:React.FC = () => {
 
     if (loading) return <div className="text-center">Chargement...</div>;
     if (error) return <div className="text-center text-red-500">{error}</div>;
+    
+    console.log(products)
 
     const handleSendEmail = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
@@ -52,6 +55,7 @@ const LandingPage:React.FC = () => {
         );
         
     }
+    const someProducts = products.slice(0,4)
     return (
         
         <>
@@ -138,7 +142,7 @@ const LandingPage:React.FC = () => {
                         <div id="product" className="bg-[#F2EEEE] w-full h-[45rem] flex flex-col justify-evenly px-16 mt-20">
                             <SectionTitle className='font-semibold text-[#5B8C51] text-2xl mb-2' children='Produits'/>
                             <div id="content" className="flex flex-row items-center justify-around py-20 w-auto h-96">
-                            {products.map((product:productProps) => (
+                            {someProducts.map((product:productProps) => (
                                 <Product 
                                     key={product.key}
                                     classname="h-72 w-1/6 drop-shadow-md shadow-black bg-white rounded-t-md flex flex-col gap-5"
