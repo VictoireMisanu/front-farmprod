@@ -19,15 +19,16 @@ const footer = () => {
                     </div>
                 </div>
 
-                <div id="page" className="w-1/5 h-full px-14 py-8 flex flex-col gap-5">
+                <div id="page" className="w-1/5 h-full px-14 py-8 flex flex-col justify-center items-center gap-5">
                     <div id="title" className="self-stretch text-[#FFC107] text-xl font-extrabold font-['Roboto Serif'] text-center">Pages</div>
-                        <div id="content" className="w-full flex flex-col gap-3">
-                            <a id="produit" href="#">
+                        <div id="content" className="w-full flex flex-col justify-center items-center gap-3">
+                            <a id="produit" href="#" className="">
                                             <div className="flex flex-row items-center gap-3">
                                             <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="#FEF3B8" stroke-linecap="round" stroke-linejoin="round" d="m10 17l5-5l-5-5"/></svg></span>
                                                 <div className="text-[#FEF3B8] text-sm font-normal font-['Titillium Web'] hover:text-[#FFC107] text-nowrap">Produits</div>
                                             </div>
-                            </a><a id="fermier" href="#">
+                            </a>
+                            <a id="fermier" href="#">
                                             <div className="flex flex-row items-center gap-3">
                                             <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="#FEF3B8" stroke-linecap="round" stroke-linejoin="round" d="m10 17l5-5l-5-5"/></svg></span>
                                                 <div className="text-[#FEF3B8] text-sm font-normal font-['Titillium Web'] hover:text-[#FFC107] text-nowrap">Fermiers</div>
@@ -43,7 +44,7 @@ const footer = () => {
                 </div>
                 <div id="region" className="w-1/5 h-full px-14 py-8 flex flex-col gap-5">
                     <div id="title" className="self-stretch text-[#FFC107] text-xl font-extrabold font-['Roboto Serif'] text-center">Region</div>
-                        <div id="content" className="w-full flex flex-col gap-3">
+                        <div id="content" className="w-full flex flex-col justify-center items-center gap-3">
                             <a id="nord" href="#">
                                             <div className="flex flex-row items-center gap-3">
                                             <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="#FEF3B8" stroke-linecap="round" stroke-linejoin="round" d="m10 17l5-5l-5-5"/></svg></span>
@@ -80,7 +81,7 @@ const footer = () => {
                 </div>
                 <div id="contact" className="w-1/5 h-full px-14 py-8 flex flex-col gap-5">
                     <div id="title" className="self-stretch text-[#FFC107] text-xl font-extrabold font-['Roboto Serif'] text-center">Contact</div>
-                        <div id="content" className="w-full flex flex-col gap-3">
+                        <div id="content" className="w-full flex flex-col justify-center items-center gap-3">
                             <a id="phone" href="#">
                                             <div className="flex flex-row items-center gap-3">
                                             <span><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="#FEF3B8" d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24c1.12.37 2.33.57 3.57.57c.55 0 1 .45 1 1V20c0 .55-.45 1-1 1c-9.39 0-17-7.61-17-17c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1c0 1.25.2 2.45.57 3.57c.11.35.03.74-.25 1.02z"/></svg></span>

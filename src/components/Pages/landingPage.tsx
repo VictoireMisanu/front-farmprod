@@ -79,7 +79,7 @@ const LandingPage:React.FC = () => {
             <MiddleSection>
                 <div>
                         <div id="heroSection" className="w-full h-screen bg-[url('https://res.cloudinary.com/ddwgsvzlw/image/upload/v1734808207/threeCows_rttzmr.png')] bg-no-repeat bg-center bg-cover flex flex-col justify-around px-44 pt-36">
-                            <div id="text" className="w-[30rem] h-3/4 flex flex-col gap-20">
+                            <div id="text" className="w-[30rem] h-3/4 flex flex-col gap-20 pl-20">
                                 <div className="">
                                     <div className="text-white text-xl">Bienvenue <span>chez</span></div>
                                     <div className="text-3xl text-white">FarmProd</div>
@@ -87,7 +87,7 @@ const LandingPage:React.FC = () => {
                                 <p className="text-['Libre_Baskerville'] text-5xl text-white leading-[60px]">Le choix idéal pour vos produits de champs et de ferme</p>
                             </div>
                             <div id="btnSection" className="lg:h-20 w-full flex flex-row items-center justify-center px-10 gap-5">
-                                <BtnIcon to={`/signUp`} className="w-64 h-1/2 bg-[#EDDD5E] rounded-2xl p-3 flex justify-around items-center gap-3 hover:bg-[#FFC107] hover:shadow-lg shadow-black md:text-sm lg:text-md text-black font-bold">
+                                <BtnIcon to={`/signUp`} className="w-auto h-1/2 bg-[#EDDD5E] rounded-2xl p-3 flex justify-around items-center gap-3 hover:bg-[#FFC107] hover:shadow-lg shadow-black md:text-sm lg:text-md text-black font-bold">
                                     <span>Commander dès maintenant</span>
                                     <img src="/svg/basket.svg" alt="" />
                                 </BtnIcon>
