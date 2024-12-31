@@ -6,6 +6,7 @@ import CreateAccount from "./components/Pages/createAccount"
 import SignIn from "./components/Pages/signIn"
 import ClientProducts from "./components/Pages/clientProducts"
 import CreateFarm from "./components/Pages/createFarm"
+import SignInFarm from "./components/Pages/signInFarm"
 
 function App() {
 
@@ -28,8 +29,8 @@ function App() {
           <Route path="/createFarm">
             <Route index element={<CreateFarm/>}/>
           </Route>
-          <Route path="/logInFarm">
-            <Route index element={<CreateFarm/>}/>
+          <Route path="/signInFarm">
+            <Route index element={<SignInFarm/>}/>
           </Route>
         </Routes>
       </BrowserRouter>

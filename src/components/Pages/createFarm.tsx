@@ -32,7 +32,7 @@ const CreateFarm = () => {
                 <Logo className="text-4xl text-[#404A3D] font-bold font-['Titan One']"/>
                 <div id='logInSection' className='w-auto flex flex-row items-center gap-10'>
                     <p className='text-[#00A602] font-semibold'>Vous avez déjà un compte fermier?</p>
-                    <Link to={`/signIn`} className="h-10 flex justify-center items-center text-md text-[#5B8C51] border-2 border-[#5B8C51]  font-normal bg-none p-2 rounded-lg hover:bg-[#5B8C51] hover:text-white">Sign In</Link>
+                    <Link to={`/signInFarm`} className="h-10 flex justify-center items-center text-md text-[#5B8C51] border-2 border-[#5B8C51]  font-normal bg-none p-2 rounded-lg hover:bg-[#5B8C51] hover:text-white">Sign In</Link>
                 </div>
             </div>
             <form className='w-3/4 h-auto flex flex-col justify-center items-center gap-10 mb-10 p-0'>
