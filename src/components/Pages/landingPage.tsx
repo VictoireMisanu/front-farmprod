@@ -11,6 +11,7 @@ import Service from '../card/service';
 import { Product, productProps } from '../card/product';
 import { getProducts } from '../services/api';
 
+
 const LandingPage:React.FC = () => {
 
     const [products, setProducts] = useState([]);
@@ -65,7 +66,7 @@ const LandingPage:React.FC = () => {
                         <SimpleLink to={`/signUp`} className="text-md text-[#5B8C51] p-2 rounded-lg hover:bg-[#FEF3B8] font-normal" children='Acceuil'/>
                         <SimpleLink to={`/signUp`} className="text-md text-black  font-normal bg-none p-2 rounded-lg hover:bg-[#FEF3B8] hover:text-[#5B8C51]" children='A propos'/>
                         <SimpleLink to={`/products`} className="text-md text-black  font-normal bg-none p-2 rounded-lg hover:bg-[#FEF3B8] hover:text-[#5B8C51]" children='Produits'/>
-                        <SimpleLink to={`/signUp`} className="text-md text-black  font-normal bg-none p-2 rounded-lg hover:bg-[#FEF3B8] hover:text-[#5B8C51]" children='Fermiers'/>
+                        <SimpleLink to={`/createFarm`} className="text-md text-black  font-normal bg-none p-2 rounded-lg hover:bg-[#FEF3B8] hover:text-[#5B8C51]" children='Fermiers'/>
                 </nav   >
                 <div id="btnSection" className="h-full w-[22rem] flex flex-row items-center justify-center px-10 gap-5">
                         <BtnIcon to={`/products`} className="w-2/3 h-1/2 bg-[#EDDD5E] rounded-2xl p-3 flex flex-row justify-around items-center hover:bg-[#FFC107] hover:shadow-lg shadow-black lg:md:text-md text-black font-semibold">
@@ -185,6 +186,7 @@ const LandingPage:React.FC = () => {
                                             <input className='bg-transparent border-b-[1px] border-black w-full h-12 p-5 outline-none' placeholder='Votre message'  type="text" name='message'/>
                                         </div>
                                         <input className='bg-[#404A3D] w-full h-12 text-[#FFC107] font-bold hover:cursor-pointer hover:text-[#404A3D] hover:border-[#404A3D] border-2 hover:bg-transparent hover:shadow-lg hover:rounded-md shadow-black' type="submit" value="Envoyer" />
+                                            
                                     </div>
                                 </form>
                                 <div id="contact" className="bg-[#404A3D] h-3/4">
