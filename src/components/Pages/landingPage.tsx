@@ -13,7 +13,9 @@ import { getProducts } from '../services/api';
 
 
 const LandingPage:React.FC = () => {
-
+    // const serviceId = process.env.EMAILJS_SERVICE_ID || 'default_service_id'
+    // const templateId = process.env.EMAILJS_TEMPLATE_ID || 'default_template_id'
+    // const publicKey = process.env.PUBLIC_KEY
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
@@ -21,9 +23,10 @@ const LandingPage:React.FC = () => {
     useEffect(() => {
         const fetchProducts = async () => {
         try {
-            const data = await getProducts();
-            setProducts(data);
+            const dataProduct = await getProducts();
+            setProducts(dataProduct);
             setLoading(false);
+
             
         } catch (err: unknown) {
             const errorMessage = err instanceof Error 
@@ -40,7 +43,7 @@ const LandingPage:React.FC = () => {
     if (loading) return <div className="text-center">Chargement...</div>;
     if (error) return <div className="text-center text-red-500">{error}</div>;
     
-    console.log(products)
+    const someProducts = products.slice(0,4)
 
     const handleSendEmail = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
@@ -56,26 +59,30 @@ const LandingPage:React.FC = () => {
         );
         
     }
-    const someProducts = products.slice(0,4)
+    
     return (
         
         <>
             <Header className ="bg-white w-full h-20 flex justify-between items-center pl-16 shadow-md shadow-black/20 fixed z-10">
                 <Logo className="text-4xl text-[#404A3D] font-bold font-['Titan One']"/>
-                <nav id="navElement" className="w-42 h-full flex flex-row items-center justify-center px-10 gap-12">
-                        <SimpleLink to={`/signUp`} className="text-md text-[#5B8C51] p-2 rounded-lg hover:bg-[#FEF3B8] font-normal" children='Acceuil'/>
-                        <SimpleLink to={`/signUp`} className="text-md text-black  font-normal bg-none p-2 rounded-lg hover:bg-[#FEF3B8] hover:text-[#5B8C51]" children='A propos'/>
+                <nav id="navElement" className="h-full px-10 hidden md:lg:w-42 md:lg:flex flex-row items-center justify-center gap-12">
+                        <SimpleLink to={`/`} className="text-md text-[#5B8C51] p-2 rounded-lg hover:bg-[#FEF3B8] font-normal" children='Acceuil'/>
+                        <SimpleLink to={`#`} className="text-md text-black  font-normal bg-none p-2 rounded-lg hover:bg-[#FEF3B8] hover:text-[#5B8C51]" children='A propos'/>
                         <SimpleLink to={`/products`} className="text-md text-black  font-normal bg-none p-2 rounded-lg hover:bg-[#FEF3B8] hover:text-[#5B8C51]" children='Produits'/>
                         <SimpleLink to={`/createFarm`} className="text-md text-black  font-normal bg-none p-2 rounded-lg hover:bg-[#FEF3B8] hover:text-[#5B8C51]" children='Fermiers'/>
-                </nav   >
-                <div id="btnSection" className="h-full w-[22rem] flex flex-row items-center justify-center px-10 gap-5">
+                </nav>
+                <div id="btnSection" className="hidden h-full w-[22rem] md:lg:flex flex-row items-center justify-center px-10 gap-5">
                         <BtnIcon to={`/products`} className="w-2/3 h-1/2 bg-[#EDDD5E] rounded-2xl p-3 flex flex-row justify-around items-center hover:bg-[#FFC107] hover:shadow-lg shadow-black lg:md:text-md text-black font-semibold">
                             <span>Commander</span>
                             <img src="/svg/basket.svg" alt="" />
                         </BtnIcon>
-                        
-
+                        <SimpleLink to={`/signUp`} className="border-l-[1px] border-black  pl-5 flex items-center justify-center "><img src="/svg/user.svg" alt="" className="w-10 h-10"/></SimpleLink>
                 </div>
+                <button className="md:lg:hidden pr-5">
+                    <svg className="w-15 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
             </Header>
             <MiddleSection>
                 <div>
@@ -88,11 +95,11 @@ const LandingPage:React.FC = () => {
                                 <p className="text-['Libre_Baskerville'] text-5xl text-white leading-[60px]">Le choix idéal pour vos produits de champs et de ferme</p>
                             </div>
                             <div id="btnSection" className="lg:h-20 w-full flex flex-row items-center justify-center px-10 gap-5">
-                                <BtnIcon to={`/signUp`} className="w-auto h-1/2 bg-[#EDDD5E] rounded-2xl p-3 flex justify-around items-center gap-3 hover:bg-[#FFC107] hover:shadow-lg shadow-black md:text-sm lg:text-md text-black font-bold">
+                                <BtnIcon to={`/products`} className="w-auto h-1/2 bg-[#EDDD5E] rounded-2xl p-3 flex justify-around items-center gap-3 hover:bg-[#FFC107] hover:shadow-lg shadow-black md:text-sm lg:text-md text-black font-bold">
                                     <span>Commander dès maintenant</span>
                                     <img src="/svg/basket.svg" alt="" />
                                 </BtnIcon>
-                                <SimpleLink to={`/signUp`} className="w-1/4 h-1/2 border-2 border-[#EDDD5E] rounded-2xl p-3 flex justify-center items-center hover:bg-[#405500] hover:border-none hover:shadow-lg shadow-black md:text-sm lg:text-md text-[#EDDD5E] font-normal" children='En savoir plus'/>
+                                <SimpleLink to={`#`} className="w-1/4 h-1/2 border-2 border-[#EDDD5E] rounded-2xl p-3 flex justify-center items-center hover:bg-[#405500] hover:border-none hover:shadow-lg shadow-black md:text-sm lg:text-md text-[#EDDD5E] font-normal" children='En savoir plus'/>
                                         
                             </div>
                         </div>

@@ -25,15 +25,15 @@ const SignIn = () => {
                 </div>
                 <div id='middleSection' className='w-full h-auto flex flex-col items-center gap-8'>
                     
-                    <div id='emailAddress'className='w-1/2 h-7 flex justify-center items-center rounded-md'>
+                    <div id='emailAddress'className='w-4/6 h-7 flex justify-center items-center rounded-md'>
                         <input className='bg-transparent border-[1px] border-black focus-within:border-2 focus-within:border-[#658221] w-2/3 h-full p-5 outline-none rounded-md' placeholder='Adresse email' type="email" {...register('email')} name='emailAddress'/>
                     </div>
-                    <div id='password' className='w-1/2 h-7 flex flex-col justify-center items-center'>
+                    <div id='password' className='w-4/6 h-7 flex flex-col justify-center items-center'>
                         <input className='bg-transparent border-[1px] border-black focus-within:border-2 focus-within:border-[#658221] w-2/3 h-full p-5 outline-none rounded-md' placeholder='Mot de passe'  type="password" {...register('password')} name='password'/>
                     </div>
                     <Link to={"#"}><p className='text-[#00A602] font-semibold -ml-52'>Mot de passe oublié?</p></Link>
                 </div>
-                <input className='bg-[#658221] w-1/3 h-12 rounded-md text-white font-bold hover:cursor-pointer hover:text-[#658221] hover:border-[#658221] border-2 hover:bg-transparent hover:shadow-lg shadow-black' type="submit" value="Se connecter" />
+                <input className='bg-[#658221] w-3/6 h-12 rounded-md text-white font-bold hover:cursor-pointer hover:text-[#658221] hover:border-[#658221] border-2 hover:bg-transparent hover:shadow-lg shadow-black' type="submit" value="Se connecter" />
                 
             </form>
 

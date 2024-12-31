@@ -11,5 +11,17 @@ export const getProducts = async () => {
   } catch (error) {
     console.error('Erreur lors de la récupération des produits:', error);
     throw error;
+    
+  }
+};
+
+export const getFarms = async () => {
+  try {
+    const response = await api.get('/farms');
+    return response.data;
+  } catch (error) {
+    console.error('Erreur lors de la récupération des fermiers:', error);
+    throw error;
+    
   }
 };

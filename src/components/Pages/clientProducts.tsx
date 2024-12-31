@@ -7,10 +7,12 @@ import TrueProduct from "../card/trueProduct"
 import SideNav from "../sideNav/sideNav"
 import { useState } from "react"
 
+
 const ClientProducts = () => {
-
-    const [isOpen, setIsOpen] = useState(false);
-
+ 
+    const [isOpen, setIsOpen] = useState(false)
+    
+    
     const toggleSideNav = () => {
         setIsOpen(!isOpen);
     };
@@ -121,4 +123,5 @@ const ClientProducts = () => {
 }
 
 export  default ClientProducts
+
 
