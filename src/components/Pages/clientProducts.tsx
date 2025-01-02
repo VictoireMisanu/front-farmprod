@@ -13,7 +13,7 @@ import { productProps } from "../card/trueProduct"
 const ClientProducts = () => {
  
     const [isOpen, setIsOpen] = useState(false)
-    const [products, setProducts] = useState([]);
+    const [products, setProducts] = useState<productProps[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
@@ -82,7 +82,7 @@ const ClientProducts = () => {
                             <h2 className="text-2xl text-[#404A3D] font-bold mb-6">Grand bétail</h2>
                             <div id="products" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                             {Category1.map((product:productProps)=>(
-                                <TrueProduct to="#" className="bg-[#CCDCC3] p-4 rounded-lg flex flex-col" src={product.src} name={product.name} descript={product.descript} price={product.price}/>
+                                <TrueProduct to="#" className="bg-[#CCDCC3] p-4 rounded-lg flex flex-col" src={product.src} name={product.name} descript={product.descript} price={`${product.price} $`}/>
                             ))}
                             </div>    
                         </section>

@@ -7,7 +7,8 @@ export interface productProps{
     name:string,
     descript:string,
     price:string,
-    to:string
+    to:string,
+    category?:number
 }
 
 const TrueProduct: React.FC<productProps> = ({className, src, name, descript, price, to}) => {
