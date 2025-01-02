@@ -7,6 +7,7 @@ import SignIn from "./components/Pages/signIn"
 import ClientProducts from "./components/Pages/clientProducts"
 import CreateFarm from "./components/Pages/createFarm"
 import SignInFarm from "./components/Pages/signInFarm"
+import ProductDetails from "./components/Pages/productDetails"
 
 function App() {
 
@@ -26,6 +27,8 @@ function App() {
           <Route path="/products">
             <Route index element={<ClientProducts/>}/>
           </Route>
+          <Route path="/productDetails" element={
+            <ProductDetails/>} />
           <Route path="/createFarm">
             <Route index element={<CreateFarm/>}/>
           </Route>

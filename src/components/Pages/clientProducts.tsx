@@ -82,7 +82,7 @@ const ClientProducts = () => {
                             <h2 className="text-2xl text-[#404A3D] font-bold mb-6">Grand bétail</h2>
                             <div id="products" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                             {Category1.map((product:productProps)=>(
-                                <TrueProduct to="#" className="bg-[#CCDCC3] p-4 rounded-lg flex flex-col" src={product.src} name={product.name} descript={product.descript} price={`${product.price} $`}/>
+                                <TrueProduct to={`/productDetails`} className="bg-[#CCDCC3] p-4 rounded-lg flex flex-col" src={product.src} name={product.name} descript={product.descript} price={`${product.price} $`}/>
                             ))}
                             </div>    
                         </section>
@@ -90,7 +90,7 @@ const ClientProducts = () => {
                             <h2 className="text-2xl text-[#404A3D] font-bold mb-6">Petit bétail</h2>
                             <div id="products" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                             {Category2.map((product:productProps)=>(
-                                <TrueProduct to="#" className="bg-[#CCDCC3] p-4 rounded-lg flex flex-col" src={product.src} name={product.name} descript={product.descript} price={product.price}/>
+                                <TrueProduct to={`/productDetails`} className="bg-[#CCDCC3] p-4 rounded-lg flex flex-col" src={product.src} name={product.name} descript={product.descript} price={product.price}/>
                             ))}
                             </div>    
                         </section>
@@ -98,7 +98,7 @@ const ClientProducts = () => {
                             <h2 className="text-2xl text-[#404A3D] font-bold mb-6">Volaille</h2>
                             <div id="products" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                             {Category3.map((product:productProps)=>(
-                                <TrueProduct to="#" className="bg-[#CCDCC3] p-4 rounded-lg flex flex-col" src={product.src} name={product.name} descript={product.descript} price={product.price}/>
+                                <TrueProduct to={`/productDetails`} className="bg-[#CCDCC3] p-4 rounded-lg flex flex-col" src={product.src} name={product.name} descript={product.descript} price={product.price}/>
                             ))}
                             </div>    
                         </section>
