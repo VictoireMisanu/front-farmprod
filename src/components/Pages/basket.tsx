@@ -34,7 +34,13 @@ const Basket = () => {
                 <div id="content" className="w-full flex flex-row mt-20">
                     <SideNav className={`sidebar ${isOpen ? 'h-screen w-[20%] bg-[#3B4F3A] p-4 flex flex-col' : 'hidden'}`}/>
                     <div id="mainSection" className={`sidebar ${isOpen ? 'h-screen w-[70%] flex flex-col justify-center gap-20 px-20' : 'w-[100%] h-screen flex flex-col justify-center gap-20 px-20'}`}>
-                        <h2 className="text-2xl text-[#404A3D] font-bold">Panier</h2>
+                        <div className="w-full flex justify-between">
+                            <h2 className="text-2xl text-[#404A3D] font-bold">Panier</h2>
+                            <div id='price' className="flex items-center gap-2">
+                                <span className="text-gray-600">Prix total</span>
+                                <span className="bg-[#404A3D] px-2 py-1 rounded text-white">500$</span>
+                            </div>
+                        </div>
                         <div className="flex flex-col items-center">
                             <ProductInBasket name="Vache" image="https://res.cloudinary.com/ddwgsvzlw/image/upload/v1735053424/pig_bhpjcl.jpg" weight="50" quantity={2} gender="Male" age="2" price="500 $"/>
                             <ProductInBasket name="Vache" image="https://res.cloudinary.com/ddwgsvzlw/image/upload/v1735053424/pig_bhpjcl.jpg" weight="50" quantity={2} gender="Male" age="2" price="500 $"/>
