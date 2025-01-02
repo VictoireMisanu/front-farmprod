@@ -13,9 +13,9 @@ import { getProducts } from '../services/api';
 
 
 const LandingPage:React.FC = () => {
-    // const serviceId = process.env.EMAILJS_SERVICE_ID || 'default_service_id'
-    // const templateId = process.env.EMAILJS_TEMPLATE_ID || 'default_template_id'
-    // const publicKey = process.env.PUBLIC_KEY
+    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID
+    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID
+    const publicKey = import.meta.env.VITE_PUBLIC_KEY
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
@@ -47,7 +47,7 @@ const LandingPage:React.FC = () => {
 
     const handleSendEmail = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        emailjs.sendForm('service_ovww2ku', 'template_d58ekw9', e.target as HTMLFormElement, '9X2ljprEAJ-y3kcvy')
+        emailjs.sendForm(serviceId, templateId, e.target as HTMLFormElement, publicKey)
 
         .then(
             (result) => {

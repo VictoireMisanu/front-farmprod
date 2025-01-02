@@ -8,6 +8,7 @@ import ClientProducts from "./components/Pages/clientProducts"
 import CreateFarm from "./components/Pages/createFarm"
 import SignInFarm from "./components/Pages/signInFarm"
 import ProductDetails from "./components/Pages/productDetails"
+import Basket from "./components/Pages/basket"
 
 function App() {
 
@@ -29,6 +30,8 @@ function App() {
           </Route>
           <Route path="/productDetails" element={
             <ProductDetails/>} />
+            <Route path="/basket" element={
+            <Basket/>} />
           <Route path="/createFarm">
             <Route index element={<CreateFarm/>}/>
           </Route>
