@@ -17,7 +17,7 @@ export const getProducts = async () => {
 
 export const getFarms = async () => {
   try {
-    const response = await api.get('/farms');
+    const response = await api.get('/products');
     return response.data;
   } catch (error) {
     console.error('Erreur lors de la récupération des fermiers:', error);

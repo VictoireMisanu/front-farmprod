@@ -1,6 +1,8 @@
 import React, { useState, useEffect} from 'react'
 import Logo from '../logo/logo'
 import { getFarms } from '../services/api';
+// import { BtnIcon } from '../link&btn/btnIcon';
+import { Farm, farmProps } from '../card/farm';
 
 const Icon = ({ d, ...props }: React.SVGProps<SVGSVGElement> & { d: string }) => (
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
@@ -25,19 +27,20 @@ export default function SideNav({className}:sideNavProps) {
             
         } catch (err: unknown) {
             const errorMessage = err instanceof Error 
-              ? `Erreur lors du chargement des produits: ${err.message}`
-              : 'Erreur lors du chargement des produits';
+              ? `Erreur lors du chargement des fermiers: ${err.message}`
+              : 'Erreur lors du chargement des fermiers';
             setError(errorMessage);
             setLoading(false);
           }
         };
 
         fetchFarms();
+        
     }, []);
-
+    
     if (loading) return <div className="text-center">Chargement...</div>;
     if (error) return <div className="text-center text-red-500">{error}</div>;
-
+    
     return (
         <aside className={className}>
             <div className="mb-8">
@@ -77,14 +80,12 @@ export default function SideNav({className}:sideNavProps) {
                 </button>
                 
                 <div className={`mt-2 space-y-2 overflow-hidden transition-all duration-200 ${isFarmersOpen ? 'max-h-60' : 'max-h-0'}`}>
-                {farms.map((farm) => (
-                    <button
-                    key={farm}
-                    className="flex items-center gap-3 p-2 w-full text-[#F5E6C8] border border-[#666666]/30 rounded-md hover:bg-[#4A6741] transition-colors"
-                    >
-                    <Icon d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" className="w-5 h-5" />
-                    <span>{farm}</span>
-                    </button>
+                {farms.map((farm:farmProps) => (
+                    // <BtnIcon to='#' className="flex items-center gap-3 p-2 w-full text-[#F5E6C8] border border-[#666666]/30 rounded-md hover:bg-[#4A6741] transition-colors">
+                    //     <Icon d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" className="w-5 h-5" />
+                    //     <span>{farm}</span>
+                    // </BtnIcon>
+                    <Farm key={farm.key} to='#' classname='flex items-center gap-3 p-2 w-full text-[#F5E6C8] border border-[#666666]/30 rounded-md hover:bg-[#4A6741] transition-colors' farmImage={farm.farmImage} enterpriseName={farm.enterpriseName}/>
                 ))}
                 </div>
             </div>

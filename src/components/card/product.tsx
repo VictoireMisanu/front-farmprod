@@ -5,6 +5,7 @@ export interface productProps{
     classname:string;
     productImage:string;
     productName:string;
+    productPrice?:number;
 }
 
 export const Product: React.FC<productProps> = ({key, classname, productImage, productName}) => {
