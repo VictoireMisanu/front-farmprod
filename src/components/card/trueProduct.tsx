@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 
-interface productProps{
+export interface productProps{
     className:string;
     src:string,
     name:string,
