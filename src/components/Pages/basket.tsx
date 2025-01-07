@@ -14,7 +14,7 @@ const Basket = () => {
     }
     return(
         <>
-            <Header className ="w-full h-20 bg-[#C7DDB5] shadow-md shadow-black/20 px-10">
+            <Header className ="w-full h-20 bg-[#C7DDB5] shadow-md shadow-black/20 px-10 fixed">
                 <nav className="w-full h-full flex flex-row justify-between items-center ">
                     <div id="part1" className="flex flex-row items-center gap-5">
                         <button onClick={toggleSideNav}><img src="/svg/burger.svg" alt="" /></button>
@@ -31,10 +31,10 @@ const Basket = () => {
                 </nav>
             </Header>
             <MiddleSection>
-                <div id="content" className="w-full flex flex-row mt-20">
-                    <SideNav className={`sidebar ${isOpen ? 'h-screen w-[20%] bg-[#3B4F3A] p-4 flex flex-col' : 'hidden'}`}/>
-                    <div id="mainSection" className={`sidebar ${isOpen ? 'h-screen w-[70%] flex flex-col justify-center gap-20 px-20' : 'w-[100%] h-screen flex flex-col justify-center gap-20 px-20'}`}>
-                        <div className="w-full flex justify-between">
+                <div id="content" className="w-full flex flex-row">
+                    <SideNav className={`sidebar ${isOpen ? 'h-full w-[20%] bg-[#3B4F3A] p-4 flex flex-col' : 'hidden'}`}/>
+                    <div id="mainSection" className={`sidebar ${isOpen ? 'w-[70%] flex flex-col justify-center gap-20' : 'w-[100%] flex flex-col justify-center gap-20'}`}>
+                        <div className="w-full flex justify-between mt-10 px-10">
                             <h2 className="text-2xl text-[#404A3D] font-bold">Panier</h2>
                             <div id='price' className="flex items-center gap-2">
                                 <span className="text-gray-600">Prix total</span>
@@ -47,7 +47,7 @@ const Basket = () => {
                             <ProductInBasket name="Vache" image="https://res.cloudinary.com/ddwgsvzlw/image/upload/v1735053424/pig_bhpjcl.jpg" weight="50" quantity={2} gender="Male" age="2" price="500 $"/>
                             <ProductInBasket name="Vache" image="https://res.cloudinary.com/ddwgsvzlw/image/upload/v1735053424/pig_bhpjcl.jpg" weight="50" quantity={2} gender="Male" age="2" price="500 $"/>
 
-                            <div id='btnSection' className='w-2/3 h-20 flex flex-row items-center justify-between px-20'>
+                            <div id='btnSection' className='w-full h-20 flex flex-row items-center justify-between px-10'>
                                 <Link to={`/products`} className='bg-transparent w-auto h-12 text-[#658221] font-bold hover:cursor-pointer border-b-[3px] border-[#404A3D] hover:bg-[#9BA3AF] hover:shadow-lg shadow-black p-3'>Continuer le shopping</Link>
                                 <Link to={``} className='bg-[#658221] w-auto h-12 rounded-md text-white font-semibold hover:cursor-pointer hover:text-[#658221] hover:border-[#658221] border-2 hover:bg-transparent hover:shadow-lg shadow-black flex justify-center items-center p-2'>Passer au paiement</Link>
                             </div>

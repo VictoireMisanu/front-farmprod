@@ -1,6 +1,6 @@
 import { XMarkIcon } from '@heroicons/react/24/outline'
 
-interface AnimalCardProps {
+interface ProductInBasketProps {
   name: string;
   image: string;
   quantity: number;
@@ -11,18 +11,9 @@ interface AnimalCardProps {
   onRemove?: () => void;
 }
 
-export default function AnimalCard({
-  name,
-  image,
-  quantity,
-  weight,
-  gender,
-  age,
-  price,
-  onRemove
-}: AnimalCardProps) {
+export default function ProductInBasket({name,image,quantity,weight,gender,age,price,onRemove}: ProductInBasketProps){
   return (
-    <div className="w-[55%] h-auto flex flex-row items-start gap-10 bg-[#C7DDB5] p-4 rounded-lg mb-8">
+    <div className="w-auto h-auto flex flex-row items-start gap-10 bg-[#C7DDB5] p-4 rounded-lg mb-8">
       <div id='productImage' className="w-32 h-32 flex-shrink-0">
         <img 
           src={image} 
