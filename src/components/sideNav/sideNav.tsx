@@ -47,7 +47,7 @@ export default function SideNav({className}:sideNavProps) {
                 <Logo className="text-[#EDDD5E] font-bold text-3xl"/>
             </div>
 
-            <nav className="flex flex-col gap-4 mb-8">
+            <nav className="flex flex-col gap-4 mb-8 h-auto">
                 <a href="#" className="flex items-center gap-3 text-[#F5E6C8] hover:bg-[#4A6741] p-2 rounded-md">
                 <Icon d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" className="w-5 h-5" />
                 <span>Acceuil</span>
@@ -67,7 +67,7 @@ export default function SideNav({className}:sideNavProps) {
                 </a>
             </nav>
 
-            <div className="flex-1">
+            <div className="flex-1 h-auto">
                 <button 
                     onClick={() => setIsFarmersOpen(!isFarmersOpen)}
                     className="flex items-center justify-between w-full text-[#F5E6C8] hover:bg-[#4A6741] p-2 rounded-md"
@@ -79,12 +79,9 @@ export default function SideNav({className}:sideNavProps) {
                     <Icon d="M6 9l6 6 6-6" className={`w-5 h-5 transition-transform duration-200 ${isFarmersOpen ? 'rotate-180' : ''}`} />
                 </button>
                 
-                <div className={`mt-2 space-y-2 overflow-hidden transition-all duration-200 ${isFarmersOpen ? 'max-h-60' : 'max-h-0'}`}>
+                <div className={`h-auto mt-2 space-y-2 overflow-hidden transition-all duration-200 ${isFarmersOpen ? 'max-h-auto' : 'max-h-0'}`}>
                 {farms.map((farm:farmProps) => (
-                    // <BtnIcon to='#' className="flex items-center gap-3 p-2 w-full text-[#F5E6C8] border border-[#666666]/30 rounded-md hover:bg-[#4A6741] transition-colors">
-                    //     <Icon d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" className="w-5 h-5" />
-                    //     <span>{farm}</span>
-                    // </BtnIcon>
+                
                     <Farm key={farm.key} to='#' classname='flex items-center gap-3 p-2 w-full text-[#F5E6C8] border border-[#666666]/30 rounded-md hover:bg-[#4A6741] transition-colors' farmImage={farm.farmImage} enterpriseName={farm.enterpriseName}/>
                 ))}
                 </div>

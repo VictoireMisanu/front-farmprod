@@ -25,3 +25,14 @@ export const getFarms = async () => {
     
   }
 };
+
+// export const getUsers = async () => {
+//   try {
+//     const response = await api.get('/users');
+//     return response.data;
+//   } catch (error) {
+//     console.error('Erreur lors de la récupération des users et des produits:', error);
+//     throw error;
+    
+//   }
+// };

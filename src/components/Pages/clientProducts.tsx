@@ -102,7 +102,7 @@ const ClientProducts = () => {
                             ))}
                             </div>    
                         </section>
-                        {/* <div>{JSON.stringify(products)}</div> */}
+                        {/* <div>{JSON.stringify(users)}</div> */}
 
                         </div>
                         
