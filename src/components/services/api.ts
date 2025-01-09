@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'http://localhost:3333' // Ajustez l'URL selon votre configuration AdonisJS
+  baseURL: 'https://api-farmprod.onrender.com'
 });
 
 export const getProducts = async () => {
