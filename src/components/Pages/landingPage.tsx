@@ -158,16 +158,7 @@ const LandingPage:React.FC = () => {
                                     productName={product.productName}
                                 />))
                             }
-                                {/* <Product classname='h-72 w-1/6 drop-shadow-md shadow-black bg-white rounded-t-md flex flex-col gap-5' productImage='https://res.cloudinary.com/ddwgsvzlw/image/upload/v1734886261/vache2_afeupe.jpg' productName='Vache'/>
-
-                                <Product classname='h-72 w-1/6 drop-shadow-md shadow-black bg-white rounded-t-md flex flex-col gap-5' productImage='https://res.cloudinary.com/ddwgsvzlw/image/upload/v1734886260/goat1_qn1wzb.jpg' productName='Chèvre'/>
-    
-                                <Product classname='h-72 w-1/6 drop-shadow-md shadow-black bg-white rounded-t-md flex flex-col gap-5' productImage='https://res.cloudinary.com/ddwgsvzlw/image/upload/v1734886308/twoLapin_xcxvwm.jpg' productName='Lapin'/>
-
-                                <Product classname='h-72 w-1/6 drop-shadow-md shadow-black bg-white rounded-t-md flex flex-col gap-5' productImage='https://res.cloudinary.com/ddwgsvzlw/image/upload/v1734886260/Canard1_j0iesq.jpg' productName='Canard'/>
-
-                                <Product classname='h-72 w-1/6 drop-shadow-md shadow-black bg-white rounded-t-md flex flex-col gap-5' productImage='https://res.cloudinary.com/ddwgsvzlw/image/upload/v1734886261/pouletBlanc_wuf0ev.jpg' productName='Poulet'/> */}
-                
+                            
                             </div>
                             <div id="sectionbtn">
                                 <div id="learnMore" className=" w-72 flex gap-2 items-center">
