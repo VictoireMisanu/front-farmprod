@@ -9,6 +9,7 @@ import CreateFarm from "./components/Pages/createFarm"
 import SignInFarm from "./components/Pages/signInFarm"
 import ProductDetails from "./components/Pages/productDetails"
 import Basket from "./components/Pages/basket"
+import AuthCallback from "./components/Pages/authCallBack"
 
 function App() {
 
@@ -37,6 +38,7 @@ function App() {
           <Route path="/signInFarm">
             <Route index element={<SignInFarm/>}/>
           </Route>
+          <Route path="/auth/callback" element={<AuthCallback />} />
         </Routes>
       
       </>

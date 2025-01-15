@@ -10,6 +10,7 @@ const SignIn = () => {
     
     const form = useForm();
     const {register} = form
+
     return (
         <div id='' className='w-full h-screen flex flex-col py-5 px-10 gap-20'>
             <div id='header' className='w-full h-20 flex flex-row items-center justify-between gap-10'>
@@ -41,8 +42,8 @@ const SignIn = () => {
                     </div>
                     <div id='socialMedia' className='w-1/2 h-auto flex flex-row items-center justify-center gap-8'>
                         <Link to="#"><img src="/svg/google.svg" alt="Google" title='Créer un compte avec google' /></Link>
-                        <Link to="#"><img src="/svg/facebook.svg" alt="Google" title='Créer un compte avec google' /></Link>
-                        <Link to="#"><img src="/svg/apple.svg" alt="Google" title='Créer un compte avec google' /></Link>
+                        <Link to="#"><img src="/svg/facebook.svg" alt="Facebook" title='Créer un compte avec google' /></Link>
+                        <Link to="#"><img src="/svg/apple.svg" alt="Apple" title='Créer un compte avec google' /></Link>
                     </div>
                 </div>
             </form>

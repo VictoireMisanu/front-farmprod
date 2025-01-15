@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'https://api-farmprod.onrender.com'
+  baseURL: 'http://127.0.0.1:51111'
 });
 
 export const getProducts = async () => {
