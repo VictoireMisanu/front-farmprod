@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'http://127.0.0.1:51111'
+  baseURL: 'http://localhost:3333'
 });
 
 export const getProducts = async () => {
@@ -26,13 +26,26 @@ export const getFarms = async () => {
   }
 };
 
-// export const getUsers = async () => {
-//   try {
-//     const response = await api.get('/users');
-//     return response.data;
-//   } catch (error) {
-//     console.error('Erreur lors de la récupération des users et des produits:', error);
-//     throw error;
+export const registerAccountInfo = async (formData:FormData) => {
+  try {
+    console.log(formData.entries, api.getUri)
+    const response = await api.post('/signup', formData)
+    console.log(formData.get("userEmail"), api.getUri)
+    return response.data
+  } catch (error) {
+    console.error("Erreur lors de la création du compte", error);
+    throw error;
     
-//   }
-// };
+  }
+};
+
+export const authenticateUser = async (email:string, password:string) => {
+  try {
+    const response = await api.post('/signin', {email, password})
+    return response.data
+  } catch (error) {
+    console.error("Erreur lors de l'authentification", error);
+    throw error;
+    
+  }
+};
