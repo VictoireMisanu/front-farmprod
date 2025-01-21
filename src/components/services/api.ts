@@ -28,9 +28,7 @@ export const getFarms = async () => {
 
 export const registerAccountInfo = async (formData:FormData) => {
   try {
-    console.log(formData.entries, api.getUri)
     const response = await api.post('/signup', formData)
-    console.log(formData.get("userEmail"), api.getUri)
     return response.data
   } catch (error) {
     console.error("Erreur lors de la création du compte", error);
@@ -39,9 +37,9 @@ export const registerAccountInfo = async (formData:FormData) => {
   }
 };
 
-export const authenticateUser = async (email:string, password:string) => {
+export const authenticateUser = async (formData:FormData) => {
   try {
-    const response = await api.post('/signin', {email, password})
+    const response = await api.post('/signin', formData)
     return response.data
   } catch (error) {
     console.error("Erreur lors de l'authentification", error);

@@ -1,10 +1,10 @@
 // import React from 'react'
-import {useForm} from 'react-hook-form'
 import Logo from '../logo/logo';
 import { Link, useNavigate  } from 'react-router-dom';
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Loader2 } from 'lucide-react';
 import { registerAccountInfo } from '../services/api';
+import axios from 'axios';
 // interface formProps{
 //     name : string,
 //     password : string
@@ -12,12 +12,12 @@ import { registerAccountInfo } from '../services/api';
 //const API_URL = import.meta.env.VITE_API_URL;
 const CreateAccount = () => {
     
-    interface RegisterFormData {
-        userPicture: string;
-        userName: string; 
-        userEmail: string;
-        userPassword: string;
-      }
+    // interface RegisterFormData {
+    //     user_picture: string;
+    //     user_name: string; 
+    //     user_email: string;
+    //     user_password: string;
+    //   }
     // const form = useForm();
     // const {register} = form
     const [imagePreview, setImagePreview] = useState<string | null>(null);
@@ -35,40 +35,51 @@ const CreateAccount = () => {
         }
     }
 
-    const uploadToCloudinary = async (file: File | Blob | string) => {
+    const uploadToCloudinary = async (file: File | Blob | string):Promise<string> => {
       const cloudName = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
-      console.log(file,"cloudnary")
-      const uploadPreset = import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET;
+      //const uploadPreset = import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET;
         const formData = new FormData();
         console.log(file,"cloudnary")
         formData.append('file', file);
-        formData.append('upload_preset', 'YOUR_UPLOAD_PRESET'); // Remplacez par votre upload preset
-        console.log(file,"cloudnary")
+        formData.append('upload_preset', "sekdk8ng");
+        formData.append('cloud_name', cloudName);
+        //console.log(file,"cloudnary",`https://942951434159474:3nosH8dSJjhYEbLYyQmtfvmdAbI@api.cloudinary.com/v1_1/${cloudName}/resources`)
         try {
-          const response = await fetch(
-            `https://api.cloudinary.com/v1_1/${cloudName}/image/${uploadPreset}`, // Remplacez par votre cloud name
-            {
-              method: 'POST',
-              body: formData,
-            }
-          );
+          //const response = await axios.post(`https://942951434159474:3nosH8dSJjhYEbLYyQmtfvmdAbI@api.cloudinary.com/v1_1/${cloudName}/resources/image/`)
+          const response = await axios.post(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`,formData)
+          // fetch(
+          //   `https://api.cloudinary.com/v1_1/${cloudName}/image/sekdk8ng`,
+          //   {
+          //     method: 'POST',
+          //     body: formData,
+          //   }
+          // );
     
-          if (!response.ok) {
-            throw new Error('Erreur lors de l\'upload');
-          }
+          // if (!response.status) {
+          //   throw new Error('Erreur lors de l\'upload');
+          // }
     
-          const data = await response.json();
+          const data = await response.data;
+          console.log(data,"FROM CLOUDINARY")
           return data.secure_url;
         } catch (error) {
           console.error('Erreur upload Cloudinary:', error);
           throw error;
+          
         }
     };
 
-    const { register, handleSubmit } = useForm<RegisterFormData>();
+    // const { register, handleSubmit } = useForm<RegisterFormData>();
     const navigate = useNavigate();
     const [isUploading, setIsUploading] = useState(false);
     const [error, setError] = useState<string | null>(null);
+
+    useEffect(() => {
+      const token = localStorage.getItem('auth_token');
+      if (token) {
+          navigate('/');
+      }
+    }, [navigate]);
 
     const onSubmit = async (e:React.FormEvent<HTMLFormElement>) => {
       e.preventDefault()
@@ -76,29 +87,42 @@ const CreateAccount = () => {
         setIsUploading(true);
         setError(null);
         const data = new FormData(e.currentTarget)
-        const imageData=data.get("userPicture")
-        const imageUrl = uploadToCloudinary(imageData[0])
-        data.append("profileImageUrl", imageUrl)
-        console.log(data)
-        const response = await registerAccountInfo(data)
+        const imageData=data.get("user_picture")
+        console.log(imageData)
 
-        console.log(response)
+        let cloudinaryUrl=""
+        if(imageData) {
+          cloudinaryUrl = (await uploadToCloudinary(imageData)).toString()
+          data.append("user_picture",cloudinaryUrl)
+          console.log(data)
+        }
+        else{
+          alert("Veuillez selectioner votre photo en cliquant sur la forme ronde")
+          return
+        }
+        const response = await registerAccountInfo(data).then((result)=>{
+          alert("Compte crée avec succès")
+          navigate("/signIn")
+        }).catch((error)=>{
+          //console.log(error)
+          alert(error.response.data.message+" ; "+error.response.data.error)
+        })
 
         // let imageUrl = '';
         
-        // if (data.userPicture && data.userPicture.length > 0) {
-        //   const file = data.userPicture[0];
+        // if (data.user_picture && data.user_picture.length > 0) {
+        //   const file = data.user_picture[0];
         //   imageUrl = await uploadToCloudinary(file);
         // }
-        // const file = data.userPicture?.[0];
+        // const file = data.user_picture?.[0];
         // if (file instanceof File) {
         //   imageUrl = await uploadToCloudinary(file);
         // }
         // const formData = new FormData()
         // const userData = {
-        //   userName: data.userName,
-        //   userEmail: data.userEmail,
-        //   userPassword: data.userPassword,
+        //   user_name: data.user_name,
+        //   user_email: data.user_email,
+        //   user_password: data.user_password,
         //   profileImageUrl: imageUrl
         // };
   
@@ -165,17 +189,20 @@ const CreateAccount = () => {
                 </div>
                 <div id='middleSection' className='w-3/4 h-auto flex flex-col items-center gap-5'>
                     <div id='profilePic' className="h-32 w-32 rounded-full border-[1px] border-slate-800 flex flex-col justify-center items-center">
-                        <input className="w-full h-full hover:cursor-pointer opacity-0" type="file" accept=".jpeg, .png, .jpg" title='Photo de profil' id="userPicture" onChange={handleFileChange}  name='userPicture'/>
+                        <input className="w-full h-full hover:cursor-pointer opacity-0" type="file" accept=".jpeg, .png, .jpg" title='Photo de profil' id="user_picture" onChange={handleFileChange}  name='user_picture'/>
                         {imagePreview &&(<img id='imgPreview' src={imagePreview} alt="" className=' -mt-10 w-full h-full rounded-full'/>)}
                     </div>
-                    <div id='userName' className='w-1/2 h-7 flex justify-items-center'>
-                        <input className='bg-transparent border-b-2 border-b-[#658221] w-full h-full p-5 outline-none' placeholder='Prenom et nom' type="text"  name='userName' id='userName'/>
+                    <div id='user_name' className='w-1/2 h-7 flex justify-items-center'>
+                        <input className='bg-transparent border-b-2 border-b-[#658221] w-full h-full p-5 outline-none' placeholder='Prenom et nom' type="text"  name='user_name' id='user_name'/>
                     </div>
                     <div id='emailAddress'className='w-1/2 h-7 flex justify-items-center rounded-md'>
-                        <input className='bg-transparent border-b-2 border-[#658221] w-full h-full p-5 outline-none' placeholder='Adresse email' type="email"  name='userEmail' id='userEmail' />
+                        <input className='bg-transparent border-b-2 border-[#658221] w-full h-full p-5 outline-none' placeholder='Adresse email' type="email"  name='user_email' id='user_email' />
                     </div>
-                    <div id='userPassword' className='w-1/2 h-7 flex justify-items-center rounded-md'>
-                        <input className='bg-transparent border-b-2 border-[#658221] w-full h-full p-5 outline-none' placeholder='Mot de passe'  type="password" name='userPassword'/>
+                    <div id='user_password' className='w-1/2 h-7 flex justify-items-center rounded-md'>
+                        <input className='bg-transparent border-b-2 border-[#658221] w-full h-full p-5 outline-none' placeholder='Mot de passe'  type="password" name='user_password'/>
+                    </div>
+                    <div id='user_address' className='w-1/2 h-7 flex justify-items-center rounded-md'>
+                        <input className='bg-transparent border-b-2 border-[#658221] w-full h-full p-5 outline-none' placeholder='Adresse'  type="text" name='user_address'/>
                     </div>
                 </div>
                 <button 
