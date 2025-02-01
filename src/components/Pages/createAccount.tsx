@@ -37,7 +37,7 @@ const CreateAccount = () => {
 
     const uploadToCloudinary = async (file: File | Blob | string):Promise<string> => {
       const cloudName = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
-      //const uploadPreset = import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET;
+      const uploadPreset = import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET;
         const formData = new FormData();
         console.log(file,"cloudnary")
         formData.append('file', file);
@@ -46,7 +46,7 @@ const CreateAccount = () => {
         //console.log(file,"cloudnary",`https://942951434159474:3nosH8dSJjhYEbLYyQmtfvmdAbI@api.cloudinary.com/v1_1/${cloudName}/resources`)
         try {
           //const response = await axios.post(`https://942951434159474:3nosH8dSJjhYEbLYyQmtfvmdAbI@api.cloudinary.com/v1_1/${cloudName}/resources/image/`)
-          const response = await axios.post(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`,formData)
+          const response = await axios.post(`https://api.cloudinary.com/v1_1/${cloudName}/image/${uploadPreset}`,formData)
           // fetch(
           //   `https://api.cloudinary.com/v1_1/${cloudName}/image/sekdk8ng`,
           //   {
@@ -100,13 +100,19 @@ const CreateAccount = () => {
           alert("Veuillez selectioner votre photo en cliquant sur la forme ronde")
           return
         }
-        const response = await registerAccountInfo(data).then((result)=>{
-          alert("Compte crée avec succès")
-          navigate("/signIn")
-        }).catch((error)=>{
-          //console.log(error)
-          alert(error.response.data.message+" ; "+error.response.data.error)
-        })
+       try{
+          const response = await registerAccountInfo(data)
+          if(response.status===200){
+            alert("Votre compte a été créé avec succès")
+            navigate('/signIn')
+          }
+       }catch (error: unknown) {
+        if (axios.isAxiosError(error) && error.response && error.response.data) {
+            alert(error.response.data.message + " ; " + error.response.data.error);
+        } else {
+            alert("Une erreur est survenue");
+        }
+    }
 
         // let imageUrl = '';
         
