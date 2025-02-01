@@ -1,6 +1,6 @@
 //import { useState } from 'react'
 
-import {Route, Routes } from "react-router-dom"
+import {BrowserRouter, Route, Routes } from "react-router-dom"
 import LandingPage from "./components/Pages/landingPage"
 import CreateAccount from "./components/Pages/createAccount"
 import SignIn from "./components/Pages/signIn"
@@ -14,7 +14,7 @@ import AuthCallback from "./components/Pages/authCallBack"
 function App() {
 
   return (
-      <>
+      <BrowserRouter>
         <Routes>
           <Route path="/">
             <Route index element={<LandingPage/>}/>
@@ -41,7 +41,7 @@ function App() {
           <Route path="/auth/callback" element={<AuthCallback />} />
         </Routes>
       
-      </>
+      </BrowserRouter>
   )
 }
 
