@@ -3,7 +3,7 @@ import Header from "../header/header";
 import SimpleLink from "../link&btn/simpleLink";
 import MiddleSection from "../middleSection/middleSection";
 import SideNav from "../sideNav/sideNav";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { productProps } from "../card/product";
 import { getProduct } from "../services/api";
 import useStore from "../../store/zustand";
@@ -20,15 +20,14 @@ const ProductDetails = () =>{
         setIsOpen(!isOpen);
     }
 
-    const navigate = useNavigate();
     const {id} = useParams();
-    const {appendData, removeData, data} = useStore() 
+    const {appendData, data} = useStore() 
     
     const [products, setProducts] = useState<productProps[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
-
-    const [basket, setBasket] = useState([]);
+    console.log(loading, error, products);
+    
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -67,15 +66,14 @@ const ProductDetails = () =>{
       gender,
       age
     })
-    const product = {
-      ...products,
+    const product : productProps = {
+      ...products[0],
       quantity,
-      weight,
+      weight: Number(weight),
       gender,
-      age
+      age: Number(age)
     }
 
-    setBasket([...basket, product])
     appendData(product)
   }
 
@@ -92,8 +90,12 @@ const ProductDetails = () =>{
                         <input type="search" name="searchInput" id="search" className="w-2/3 outline-none" placeholder="Rechercher"/>
                     </div>
                     <div id="part3" className="flex flex-row items-center gap-5">
-                        <SimpleLink to={`/basket`} className="flex items-center justify-center pr-5 border-black border-r-[1px]"><img src="/svg/basket.svg" alt="" className="w-10 h-10"/>{data.length}</SimpleLink>
-                        <SimpleLink to="" className="flex items-center justify-center "><img src="/svg/user.svg" alt="" className="w-10 h-10"/></SimpleLink>
+                    <SimpleLink to={`/basket`} className="flex items-center justify-center pr-5 border-black border-r-[1px]">
+                        <div>
+                            <img src="/svg/basket.svg" alt="" className="w-10 h-10"/>
+                            {data.length.toString()}
+                        </div>
+                    </SimpleLink>                        <SimpleLink to="" className="flex items-center justify-center "><img src="/svg/user.svg" alt="" className="w-10 h-10"/></SimpleLink>
                     </div>
                 </nav>
             </Header>
@@ -102,13 +104,13 @@ const ProductDetails = () =>{
                     <SideNav className={`sidebar ${isOpen ? 'h-screen w-[20%] bg-[#3B4F3A] p-4 flex flex-col' : 'hidden'}`}/>
                     <div id="mainSection" className={`sidebar ${isOpen ? 'h-screen w-[80%] flex flex-row justify-center gap-20 py-20' : 'w-[100%] h-screen flex flex-row justify-center gap-20 py-20'}`}>
                         <div id="productImage" className="w-[30%] h-[90%] ">
-                            <img src={`${products.productImage}`}  alt="" className="w-full h-full rounded-lg"/>
+                            <img src={`${products[0].productImage}`}  alt="" className="w-full h-full rounded-lg"/>
                         </div>
                         <div id="details" className="bg-[#d8e4d5] p-6 rounded-lg max-w-md h-[90%]">
-                            <h2 className="text-2xl font-semibold text-[#4a4a4a] mb-4">{products.productName}</h2>
+                            <h2 className="text-2xl font-semibold text-[#4a4a4a] mb-4">{products[0].productName}</h2>
       
                             <div className="inline-block border bg-[#5b8350] rounded px-3 py-1 mb-6">
-                                <span className="text-[#F2EEEE] font-bold">{products.price}</span>
+                                <span className="text-[#F2EEEE] font-bold">{products[0].price}</span>
                             </div>
 
                             <div className="mb-6">
@@ -180,11 +182,11 @@ const ProductDetails = () =>{
                             </button>
 
                             <p className="mt-6 text-sm text-[#4a4a4a]">
-                                {products.productDescript}
+                                {products[0].productDescript}
                             </p>
                             <div className="bg-black text-white text-wrap">
-                                <p>{new Date(products.birthDate).toUTCString()}</p>
-                                {new Date(products.lifeDuration).toLocaleDateString()}  
+                                <p>{new Date(products[0].birthDate).toUTCString()}</p>
+                                {new Date(products[0].lifeDuration).toLocaleDateString()}  
 
                             </div>
                         </div>

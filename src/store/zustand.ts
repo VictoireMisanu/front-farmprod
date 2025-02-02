@@ -1,15 +1,19 @@
 import { create } from "zustand";
-import { persist } from 'zustand/middleware';
+import { persist, PersistOptions } from "zustand/middleware";
+import { productProps } from "../components/card/product";
 
 interface State {
-  data: [];
-    appendData: (newData: any) => void;
-    removeData: (id: string) => void;
-    reset: () => void;
+  data: productProps[];
+  appendData: (newData: productProps) => void;
+  removeData: (id: number) => void;
+  reset: () => void;
 }
 
-const useStore = create(
-  persist(
+// Définir les options de persistance correctement
+type MyPersist = PersistOptions<State>;
+
+const useStore = create<State>()(
+  persist<State>(
     (set) => ({
       data: [],
       appendData: (newData) => set((state) => ({ data: [...state.data, newData] })),
@@ -18,7 +22,7 @@ const useStore = create(
     }),
     {
       name: 'basket-storage', // nom de la clé dans le localStorage
-    }
+    } as MyPersist
   )
 );
 

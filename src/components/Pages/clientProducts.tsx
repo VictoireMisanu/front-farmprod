@@ -7,9 +7,9 @@ import TrueProduct from "../card/trueProduct"
 import SideNav from "../sideNav/sideNav"
 import { useEffect, useState } from "react"
 import { getProducts } from '../services/api';
-import { productProps } from "../card/trueProduct"
 import { useNavigate } from "react-router-dom"
 import useStore from "../../store/zustand"
+import { productProps } from "../card/product"
 
 
 const ClientProducts = () => {
@@ -76,7 +76,12 @@ const ClientProducts = () => {
                         <input type="search" name="searchInput" id="search" className="w-2/3 outline-none" placeholder="Rechercher"/>
                     </div>
                     <div id="part3" className="flex flex-row items-center gap-5">
-                    <SimpleLink to={`/basket`} className="flex items-center justify-center pr-5 border-black border-r-[1px]"><img src="/svg/basket.svg" alt="" className="w-10 h-10"/>{data.length}</SimpleLink>
+                    <SimpleLink to={`/basket`} className="flex items-center justify-center pr-5 border-black border-r-[1px]">
+                        <div>
+                            <img src="/svg/basket.svg" alt="" className="w-10 h-10"/>
+                            {data.length.toString()}
+                        </div>
+                    </SimpleLink>
                     <SimpleLink to="" className="flex items-center justify-center "><img src="/svg/user.svg" alt="" className="w-10 h-10"/></SimpleLink>
                     </div>
                 </nav>
@@ -105,7 +110,7 @@ const ClientProducts = () => {
                             <h2 className="text-2xl text-[#404A3D] font-bold mb-6">Petit bétail</h2>
                             <div id="products" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                             {Category2.map((product:productProps)=>(
-                                <TrueProduct to={`/productDetails`} className="bg-[#CCDCC3] p-4 rounded-lg flex flex-col" src={product.src} name={product.name} descript={product.descript} price={product.price}/>
+                                <TrueProduct to={`/productDetails`} className="bg-[#CCDCC3] p-4 rounded-lg flex flex-col" src={product.productImage} name={product.productName} descript={product.productDescript} price={`${product.price} $`}/>
                             ))}
                             </div>    
                         </section>
@@ -113,7 +118,7 @@ const ClientProducts = () => {
                             <h2 className="text-2xl text-[#404A3D] font-bold mb-6">Volaille</h2>
                             <div id="products" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                             {Category3.map((product:productProps)=>(
-                                <TrueProduct to={`/productDetails`} className="bg-[#CCDCC3] p-4 rounded-lg flex flex-col" src={product.src} name={product.name} descript={product.descript} price={product.price}/>
+                                <TrueProduct to={`/productDetails`} className="bg-[#CCDCC3] p-4 rounded-lg flex flex-col" src={product.productImage} name={product.productName} descript={product.productDescript} price={`${product.price} $`}/>
                             ))}
                             </div>    
                         </section>

@@ -5,10 +5,31 @@ export interface productProps{
     classname:string;
     productImage:string;
     productName:string;
-    productPrice?:number;
+    price:number;
+    productId: number, 
+    productDescript: string, 
+    birthDate: Date, 
+    lifeDuration: number,
+    category: number,
+createdAt
+: Date,
+farm
+: number,
+updatedAt: Date,
+weight: number,
+quantity: number,
+age: number,
+gender: string,
 }
 
-export const Product: React.FC<productProps> = ({key, classname, productImage, productName}) => {
+interface productProp{
+    key?: string;
+    classname:string;
+    productImage:string;
+    productName:string;
+}
+
+export const Product: React.FC<productProp> = ({key, classname, productImage, productName}) => {
     return (
         
         <div key={key} className={classname}>
