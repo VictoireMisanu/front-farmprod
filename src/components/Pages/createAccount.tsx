@@ -36,10 +36,11 @@ const CreateAccount = () => {
     }
 
     const uploadToCloudinary = async (file: File | Blob | string):Promise<string> => {
-      const cloudName = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
-      const uploadPreset = import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET;
+      const cloudName = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME!
+      const uploadPreset = import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET!
+      console.log(cloudName,uploadPreset)
         const formData = new FormData();
-        console.log(file,"cloudnary")
+        // console.log(file,"cloudnary")
         formData.append('file', file);
         formData.append('upload_preset', "sekdk8ng");
         formData.append('cloud_name', cloudName);
@@ -94,7 +95,8 @@ const CreateAccount = () => {
         if(imageData) {
           cloudinaryUrl = (await uploadToCloudinary(imageData)).toString()
           data.append("user_picture",cloudinaryUrl)
-          console.log(data)
+          console.log('cloudinaryUrl',cloudinaryUrl)
+          console.log('toutes les données du form',data)
         }
         else{
           alert("Veuillez selectioner votre photo en cliquant sur la forme ronde")
@@ -102,7 +104,9 @@ const CreateAccount = () => {
         }
        try{
           const response = await registerAccountInfo(data)
-          if(response.status===200){
+          console.log(response);
+          
+          if(response.status===201){
             alert("Votre compte a été créé avec succès")
             navigate('/signIn')
           }

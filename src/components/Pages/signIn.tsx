@@ -13,7 +13,7 @@ const SignIn = () => {
     useEffect(() => {
         const token = localStorage.getItem('auth_token');
         if (token) {
-            navigate('/');
+            navigate('/products');
         }
     }, [navigate]);
 
@@ -21,6 +21,10 @@ const SignIn = () => {
         e.preventDefault()
 
         const formData = new FormData(e.currentTarget)
+        formData.forEach((value, key) => {
+        console.log(key, value);
+        });
+        
 
         await authenticateUser(formData).then((result)=>{
             //enregistrer les infos et le token

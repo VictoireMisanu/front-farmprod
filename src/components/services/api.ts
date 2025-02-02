@@ -29,7 +29,7 @@ export const getFarms = async () => {
 export const registerAccountInfo = async (formData:FormData) => {
   try {
     const response = await api.post('/signup', formData)
-    return response.data
+    return response
   } catch (error) {
     console.error("Erreur lors de la création du compte", error);
     throw error;

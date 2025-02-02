@@ -8,10 +8,13 @@ import SideNav from "../sideNav/sideNav"
 import { useEffect, useState } from "react"
 import { getProducts } from '../services/api';
 import { productProps } from "../card/trueProduct"
+import { useNavigate } from "react-router-dom"
 
 
 const ClientProducts = () => {
  
+    const navigate = useNavigate();
+    
     const [isOpen, setIsOpen] = useState(false)
     const [products, setProducts] = useState<productProps[]>([]);
     const [loading, setLoading] = useState(true);
@@ -49,6 +52,15 @@ const ClientProducts = () => {
     const toggleSideNav = () => {
         setIsOpen(!isOpen);
     };
+
+    const users = JSON.parse(localStorage.getItem('user_info') || '{}');
+    console.log(users)
+    
+    const handleDeconnection = () => {
+        localStorage.removeItem('auth_token');
+        localStorage.removeItem('user_info');
+        navigate('/');
+    }
     return (
         <>
             <Header className ="w-full h-20 bg-[#C7DDB5] shadow-md shadow-black/20 px-10">
@@ -102,7 +114,8 @@ const ClientProducts = () => {
                             ))}
                             </div>    
                         </section>
-                        {/* <div>{JSON.stringify(users)}</div> */}
+                        <div>{JSON.stringify(users)}</div>
+                        <button className="border-2 border-black" onClick={handleDeconnection}>Deconnxion</button>
 
                         </div>
                         
