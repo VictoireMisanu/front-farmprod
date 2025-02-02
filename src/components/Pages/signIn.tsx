@@ -32,7 +32,7 @@ const SignIn = () => {
             localStorage.setItem('user_info', JSON.stringify(result.userInfo));
             console.log(result)
             alert("vous êtes connecté")
-            navigate('/')
+            navigate('/products')
         }).catch((error)=>{
             alert(error.response.data.message + " ; " +error.response.data.error)
         })

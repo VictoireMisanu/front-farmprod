@@ -5,8 +5,12 @@ const api = axios.create({
 });
 
 export const getProducts = async () => {
+  console.log('fff');
+  
   try {
     const response = await api.get('/');
+    console.log('derftgh', response.status);
+    
     return response.data;
   } catch (error) {
     console.error('Erreur lors de la récupération des produits:', error);
@@ -14,6 +18,17 @@ export const getProducts = async () => {
     
   }
 };
+
+export const getProduct = async (id: string) => {
+  try {
+    const response = await api.get(`/products/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error('Erreur lors de la récupération du produit:', error);
+    throw error;
+    
+  }
+}
 
 export const getFarms = async () => {
   try {
@@ -26,8 +41,12 @@ export const getFarms = async () => {
   }
 };
 
-export const registerAccountInfo = async (formData:FormData) => {
+export const registerAccountInfo = async (formData:FormData, url: string) => {
   try {
+    formData.append('user_picture', url.toString());
+    formData.forEach((value, key) => console.log(key, value));
+
+    
     const response = await api.post('/signup', formData)
     return response
   } catch (error) {

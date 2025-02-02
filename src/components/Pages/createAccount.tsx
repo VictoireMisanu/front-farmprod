@@ -70,6 +70,7 @@ const CreateAccount = () => {
         }
     };
 
+        let cloudinaryUrl=""
     // const { register, handleSubmit } = useForm<RegisterFormData>();
     const navigate = useNavigate();
     const [isUploading, setIsUploading] = useState(false);
@@ -91,10 +92,9 @@ const CreateAccount = () => {
         const imageData=data.get("user_picture")
         console.log(imageData)
 
-        let cloudinaryUrl=""
         if(imageData) {
           cloudinaryUrl = (await uploadToCloudinary(imageData)).toString()
-          data.append("user_picture",cloudinaryUrl)
+          // data.append("user_picture",cloudinaryUrl.toString())
           console.log('cloudinaryUrl',cloudinaryUrl)
           console.log('toutes les données du form',data)
         }
@@ -103,8 +103,8 @@ const CreateAccount = () => {
           return
         }
        try{
-          const response = await registerAccountInfo(data)
-          console.log(response);
+        console.log("response",data.getAll("user_picture"));
+          const response = await registerAccountInfo(data, cloudinaryUrl)
           
           if(response.status===201){
             alert("Votre compte a été créé avec succès")

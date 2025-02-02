@@ -1,13 +1,18 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Header from "../header/header";
 import SimpleLink from "../link&btn/simpleLink";
 import MiddleSection from "../middleSection/middleSection";
 import SideNav from "../sideNav/sideNav";
+import { useNavigate, useParams } from "react-router-dom";
+import { productProps } from "../card/product";
+import { getProduct } from "../services/api";
+import useStore from "../../store/zustand";
+
 
 const ProductDetails = () =>{
     const [isOpen, setIsOpen] = useState(false)
 
-    const [quantity, setQuantity] = useState(0)
+    const [quantity, setQuantity] = useState(1)
     const [weight, setWeight] = useState('')
     const [gender, setGender] = useState('')
     const [age, setAge] = useState('')
@@ -15,12 +20,43 @@ const ProductDetails = () =>{
         setIsOpen(!isOpen);
     }
 
+    const navigate = useNavigate();
+    const {id} = useParams();
+    const {appendData, removeData, data} = useStore() 
+    
+    const [products, setProducts] = useState<productProps[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
+
+    const [basket, setBasket] = useState([]);
+
+    useEffect(() => {
+        const fetchProducts = async () => {
+        try {
+            const dataProduct = await getProduct(id ? id : '');
+            setProducts(dataProduct);
+            setLoading(false);
+
+            
+        } catch (err: unknown) {
+            const errorMessage = err instanceof Error 
+              ? `Erreur lors du chargement des produits: ${err.message}`
+              : 'Erreur lors du chargement des produits';
+            setError(errorMessage);
+            setLoading(false);
+          }
+        };
+
+        fetchProducts();
+    }, [id]);
+    console.log('sdfg',products);
+
   const incrementQuantity = () => {
     setQuantity(prev => prev + 1)
   }
 
   const decrementQuantity = () => {
-    setQuantity(prev => prev > 0 ? prev - 1 : 0)
+    setQuantity(prev => prev > 1 ? prev - 1 : 1)
   }
 
   const handleAddToCart = () => {
@@ -31,6 +67,16 @@ const ProductDetails = () =>{
       gender,
       age
     })
+    const product = {
+      ...products,
+      quantity,
+      weight,
+      gender,
+      age
+    }
+
+    setBasket([...basket, product])
+    appendData(product)
   }
 
     return(
@@ -46,7 +92,7 @@ const ProductDetails = () =>{
                         <input type="search" name="searchInput" id="search" className="w-2/3 outline-none" placeholder="Rechercher"/>
                     </div>
                     <div id="part3" className="flex flex-row items-center gap-5">
-                        <SimpleLink to={`/basket`} className="flex items-center justify-center pr-5 border-black border-r-[1px]"><img src="/svg/basket.svg" alt="" className="w-10 h-10"/></SimpleLink>
+                        <SimpleLink to={`/basket`} className="flex items-center justify-center pr-5 border-black border-r-[1px]"><img src="/svg/basket.svg" alt="" className="w-10 h-10"/>{data.length}</SimpleLink>
                         <SimpleLink to="" className="flex items-center justify-center "><img src="/svg/user.svg" alt="" className="w-10 h-10"/></SimpleLink>
                     </div>
                 </nav>
@@ -56,13 +102,13 @@ const ProductDetails = () =>{
                     <SideNav className={`sidebar ${isOpen ? 'h-screen w-[20%] bg-[#3B4F3A] p-4 flex flex-col' : 'hidden'}`}/>
                     <div id="mainSection" className={`sidebar ${isOpen ? 'h-screen w-[80%] flex flex-row justify-center gap-20 py-20' : 'w-[100%] h-screen flex flex-row justify-center gap-20 py-20'}`}>
                         <div id="productImage" className="w-[30%] h-[90%] ">
-                            <img src="https://res.cloudinary.com/ddwgsvzlw/image/upload/v1735053424/pig_bhpjcl.jpg" alt="" className="w-full h-full rounded-lg"/>
+                            <img src={`${products.productImage}`}  alt="" className="w-full h-full rounded-lg"/>
                         </div>
                         <div id="details" className="bg-[#d8e4d5] p-6 rounded-lg max-w-md h-[90%]">
-                            <h2 className="text-2xl font-semibold text-[#4a4a4a] mb-4">Porc</h2>
+                            <h2 className="text-2xl font-semibold text-[#4a4a4a] mb-4">{products.productName}</h2>
       
                             <div className="inline-block border bg-[#5b8350] rounded px-3 py-1 mb-6">
-                                <span className="text-[#F2EEEE] font-bold">100$/U</span>
+                                <span className="text-[#F2EEEE] font-bold">{products.price}</span>
                             </div>
 
                             <div className="mb-6">
@@ -134,8 +180,13 @@ const ProductDetails = () =>{
                             </button>
 
                             <p className="mt-6 text-sm text-[#4a4a4a]">
-                                It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.
+                                {products.productDescript}
                             </p>
+                            <div className="bg-black text-white text-wrap">
+                                <p>{new Date(products.birthDate).toUTCString()}</p>
+                                {new Date(products.lifeDuration).toLocaleDateString()}  
+
+                            </div>
                         </div>
 
                     </div>

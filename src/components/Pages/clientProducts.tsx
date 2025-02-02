@@ -9,11 +9,13 @@ import { useEffect, useState } from "react"
 import { getProducts } from '../services/api';
 import { productProps } from "../card/trueProduct"
 import { useNavigate } from "react-router-dom"
+import useStore from "../../store/zustand"
 
 
 const ClientProducts = () => {
  
     const navigate = useNavigate();
+    const {data} = useStore()
     
     const [isOpen, setIsOpen] = useState(false)
     const [products, setProducts] = useState<productProps[]>([]);
@@ -74,8 +76,8 @@ const ClientProducts = () => {
                         <input type="search" name="searchInput" id="search" className="w-2/3 outline-none" placeholder="Rechercher"/>
                     </div>
                     <div id="part3" className="flex flex-row items-center gap-5">
-                        <SimpleLink to="" className="flex items-center justify-center pr-5 border-black border-r-[1px]"><img src="/svg/basket.svg" alt="" className="w-10 h-10"/></SimpleLink>
-                        <SimpleLink to="" className="flex items-center justify-center "><img src="/svg/user.svg" alt="" className="w-10 h-10"/></SimpleLink>
+                    <SimpleLink to={`/basket`} className="flex items-center justify-center pr-5 border-black border-r-[1px]"><img src="/svg/basket.svg" alt="" className="w-10 h-10"/>{data.length}</SimpleLink>
+                    <SimpleLink to="" className="flex items-center justify-center "><img src="/svg/user.svg" alt="" className="w-10 h-10"/></SimpleLink>
                     </div>
                 </nav>
             </Header>
@@ -94,7 +96,8 @@ const ClientProducts = () => {
                             <h2 className="text-2xl text-[#404A3D] font-bold mb-6">Grand bétail</h2>
                             <div id="products" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                             {Category1.map((product:productProps)=>(
-                                <TrueProduct to={`/productDetails`} className="bg-[#CCDCC3] p-4 rounded-lg flex flex-col" src={product.src} name={product.name} descript={product.descript} price={`${product.price} $`}/>
+                                console.log('dfghjk',product),
+                                <TrueProduct to={`/productDetails/${product.productId}`} className="bg-[#CCDCC3] p-4 rounded-lg flex flex-col" src={product.productImage} name={product.productName} descript={product.productDescript} price={`${product.price} $`}/>
                             ))}
                             </div>    
                         </section>

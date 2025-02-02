@@ -28,7 +28,7 @@ function App() {
           <Route path="/products">
             <Route index element={<ClientProducts/>}/>
           </Route>
-          <Route path="/productDetails" element={
+          <Route path="/productDetails/:id" element={
             <ProductDetails/>} />
             <Route path="/basket" element={
             <Basket/>} />

@@ -3,8 +3,9 @@ import Header from "../header/header"
 import SimpleLink from "../link&btn/simpleLink"
 import MiddleSection from "../middleSection/middleSection"
 import SideNav from "../sideNav/sideNav"
-import ProductInBasket from "../card/productInBasket"
+import ProductInBasket, { ProductInBasketProps} from "../card/productInBasket"
 import { Link } from "react-router-dom"
+import useStore from "../../store/zustand"
 
 const Basket = () => {
 
@@ -12,6 +13,8 @@ const Basket = () => {
     const toggleSideNav = () => {
         setIsOpen(!isOpen);
     }
+
+    const {appendData, removeData, data, reset} = useStore()
     return(
         <>
             <Header className ="w-full h-20 bg-[#C7DDB5] shadow-md shadow-black/20 px-10 fixed">
@@ -25,7 +28,7 @@ const Basket = () => {
                         <input type="search" name="searchInput" id="search" className="w-2/3 outline-none" placeholder="Rechercher"/>
                     </div>
                     <div id="part3" className="flex flex-row items-center gap-5">
-                        <SimpleLink to="" className="flex items-center justify-center pr-5 border-black border-r-[1px]"><img src="/svg/basket.svg" alt="" className="w-10 h-10"/></SimpleLink>
+                        <SimpleLink to={``} className="flex items-center justify-center pr-5 border-black border-r-[1px]"><img src="/svg/basket.svg" alt="" className="w-10 h-10"/>{data.length}</SimpleLink>
                         <SimpleLink to="" className="flex items-center justify-center "><img src="/svg/user.svg" alt="" className="w-10 h-10"/></SimpleLink>
                     </div>
                 </nav>
@@ -42,10 +45,13 @@ const Basket = () => {
                             </div>
                         </div>
                         <div className="flex flex-col items-center">
+                            {data?.map((product:ProductInBasketProps) => {
+                                return <ProductInBasket name={product.productName} id={product.productId} image={product.productImage} weight={product.weight} quantity={product.quantity} gender={product.gender} age={product.age} price={product.price}/>
+                            })}
+                            
+                            {/* <ProductInBasket name="Vache" image="https://res.cloudinary.com/ddwgsvzlw/image/upload/v1735053424/pig_bhpjcl.jpg" weight="50" quantity={2} gender="Male" age="2" price="500 $"/>
                             <ProductInBasket name="Vache" image="https://res.cloudinary.com/ddwgsvzlw/image/upload/v1735053424/pig_bhpjcl.jpg" weight="50" quantity={2} gender="Male" age="2" price="500 $"/>
-                            <ProductInBasket name="Vache" image="https://res.cloudinary.com/ddwgsvzlw/image/upload/v1735053424/pig_bhpjcl.jpg" weight="50" quantity={2} gender="Male" age="2" price="500 $"/>
-                            <ProductInBasket name="Vache" image="https://res.cloudinary.com/ddwgsvzlw/image/upload/v1735053424/pig_bhpjcl.jpg" weight="50" quantity={2} gender="Male" age="2" price="500 $"/>
-                            <ProductInBasket name="Vache" image="https://res.cloudinary.com/ddwgsvzlw/image/upload/v1735053424/pig_bhpjcl.jpg" weight="50" quantity={2} gender="Male" age="2" price="500 $"/>
+                            <ProductInBasket name="Vache" image="https://res.cloudinary.com/ddwgsvzlw/image/upload/v1735053424/pig_bhpjcl.jpg" weight="50" quantity={2} gender="Male" age="2" price="500 $"/> */}
 
                             <div id='btnSection' className='w-full h-20 flex flex-row items-center justify-between px-10'>
                                 <Link to={`/products`} className='bg-transparent w-auto h-12 text-[#658221] font-bold hover:cursor-pointer border-b-[3px] border-[#404A3D] hover:bg-[#9BA3AF] hover:shadow-lg shadow-black p-3'>Continuer le shopping</Link>
