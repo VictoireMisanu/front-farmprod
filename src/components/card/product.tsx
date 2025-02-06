@@ -11,15 +11,13 @@ export interface productProps{
     birthDate: Date, 
     lifeDuration: number,
     category: number,
-createdAt
-: Date,
-farm
-: number,
-updatedAt: Date,
-weight: number,
-quantity: number,
-age: number,
-gender: string,
+    createdAt: Date,
+    farm: number,
+    updatedAt: Date,
+    weight: number,
+    quantity: number,
+    age: number,
+    gender: string,
 }
 
 interface productProp{

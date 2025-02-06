@@ -25,19 +25,25 @@ function App() {
           <Route path="/signIn">
             <Route index element={<SignIn/>}/>
           </Route>
+
           <Route path="/products">
             <Route index element={<ClientProducts/>}/>
           </Route>
-          <Route path="/productDetails/:id" element={
-            <ProductDetails/>} />
-            <Route path="/basket" element={
-            <Basket/>} />
-            <Route path="/createFarm">
+          <Route path="/productDetails/:id" >
+            <Route index element={<ProductDetails/>}/>
+          </Route>
+          <Route path="/basket">
+            <Route index element={<Basket/>}/>
+          </Route>
+          
+          <Route path="/createFarm">
             <Route index element={<CreateFarm/>}/>
           </Route>
           <Route path="/signInFarm">
             <Route index element={<SignInFarm/>}/>
           </Route>
+
+          
           <Route path="/auth/callback" element={<AuthCallback />} />
         </Routes>
       
