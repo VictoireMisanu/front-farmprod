@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useMemo, useState } from "react"
 import Header from "../header/header"
 import SimpleLink from "../link&btn/simpleLink"
 import MiddleSection from "../middleSection/middleSection"
@@ -16,9 +16,18 @@ const Basket = () => {
     }
 
     const {data} = useStore()
+
+    const totalPrice = useMemo(() => {
+        return data.reduce((total: number, product: productProps) => {
+            return total + (Number(product.price) * product.quantity)
+        }, 0)
+    }, [data])
+
+    // Format price to 2 decimal places
+    const formattedTotalPrice = totalPrice.toFixed(2)
     return(
         <>
-            <Header className ="w-full h-20 bg-[#C7DDB5] shadow-md shadow-black/20 px-10 fixed">
+            <Header className ="w-full h-20 bg-[#C7DDB5] shadow-md shadow-black/20 px-10">
                 <nav className="w-full h-full flex flex-row justify-between items-center ">
                     <div id="part1" className="flex flex-row items-center gap-5">
                         <button onClick={toggleSideNav}><img src="/svg/burger.svg" alt="" /></button>
@@ -34,7 +43,8 @@ const Basket = () => {
                             <img src="/svg/basket.svg" alt="" className="w-10 h-10"/>
                             {data.length.toString()}
                         </div>
-                    </SimpleLink>                        <SimpleLink to="" className="flex items-center justify-center "><img src="/svg/user.svg" alt="" className="w-10 h-10"/></SimpleLink>
+                    </SimpleLink>                        
+                    <SimpleLink to="" className="flex items-center justify-center "><img src="/svg/user.svg" alt="" className="w-10 h-10"/></SimpleLink>
                     </div>
                 </nav>
             </Header>
@@ -46,17 +56,14 @@ const Basket = () => {
                             <h2 className="text-2xl text-[#404A3D] font-bold">Panier</h2>
                             <div id='price' className="flex items-center gap-2">
                                 <span className="text-gray-600">Prix total</span>
-                                <span className="bg-[#404A3D] px-2 py-1 rounded text-white">500$</span>
+                                <span className="bg-[#404A3D] px-2 py-1 rounded text-white">{formattedTotalPrice}$</span>
                             </div>
                         </div>
                         <div className="flex flex-col items-center">
                             {data?.map((product: productProps) => {
-                                return <ProductInBasket name={product.productName} id={product.productId.toString()} image={product.productImage} weight={product.weight.toString()} quantity={product.quantity} gender={product.gender} age={product.age.toString()} price={product.price.toString()}/>
+                                return <ProductInBasket name={product.productName} id={product.productId.toString()} image={product.productImage} weight={product.weight.toString()} quantity={product.quantity} gender={product.gender} age={product.age.toString()} price={product.price.toString()} descript={product.productDescript}/>
                             })}
                             
-                            {/* <ProductInBasket name="Vache" image="https://res.cloudinary.com/ddwgsvzlw/image/upload/v1735053424/pig_bhpjcl.jpg" weight="50" quantity={2} gender="Male" age="2" price="500 $"/>
-                            <ProductInBasket name="Vache" image="https://res.cloudinary.com/ddwgsvzlw/image/upload/v1735053424/pig_bhpjcl.jpg" weight="50" quantity={2} gender="Male" age="2" price="500 $"/>
-                            <ProductInBasket name="Vache" image="https://res.cloudinary.com/ddwgsvzlw/image/upload/v1735053424/pig_bhpjcl.jpg" weight="50" quantity={2} gender="Male" age="2" price="500 $"/> */}
 
                             <div id='btnSection' className='w-full h-20 flex flex-row items-center justify-between px-10'>
                                 <Link to={`/products`} className='bg-transparent w-auto h-12 text-[#658221] font-bold hover:cursor-pointer border-b-[3px] border-[#404A3D] hover:bg-[#9BA3AF] hover:shadow-lg shadow-black p-3'>Continuer le shopping</Link>

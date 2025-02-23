@@ -88,12 +88,6 @@ const ProductDetails = () => {
         setQuantity(prev => prev > 1 ? prev - 1 : 1);
     }
 
-    // const calculateLifespan = (birthDate: Date): number => {
-    //     const currentDate = new Date();
-    //     const differenceInMonths = (currentDate.getFullYear() - birthDate.getFullYear()) * 12 + 
-    //                               (currentDate.getMonth() - birthDate.getMonth());
-    //     return differenceInMonths;
-    // };
     
     const handleAddToCart = () => {
         if (!products || products.length === 0) {
@@ -164,9 +158,9 @@ const ProductDetails = () => {
                 </nav>
             </Header>
             <MiddleSection>
-                <div id="content" className="w-full flex flex-row">
+                <div id="content" className="w-full h-auto flex flex-row mb-20">
                     <SideNav className={`sidebar ${isOpen ? 'h-screen w-[20%] bg-[#3B4F3A] p-4 flex flex-col' : 'hidden'}`}/>
-                    <div id="mainSection" className={`sidebar ${isOpen ? 'h-screen w-[80%] flex flex-row justify-center gap-20 py-20' : 'w-[100%] h-screen flex flex-row justify-center gap-20 py-20'}`}>
+                    <div id="mainSection" className={`sidebar ${isOpen ? 'h-auto w-[80%] flex flex-row justify-center gap-20 py-20' : 'w-[100%] h-screen flex flex-row justify-center gap-20 py-20'}`}>
                         <div id="productImage" className="w-[30%] h-[90%]">
                             {products[0]?.productImage && (
                                 <img 
@@ -176,7 +170,7 @@ const ProductDetails = () => {
                                 />
                             )}
                         </div>
-                        <div id="details" className="bg-[#d8e4d5] p-6 rounded-lg max-w-md h-auto">
+                        <div id="details" className="bg-[#d8e4d5] p-6 rounded-lg w-md h-[35rem]">
                             <h2 className="text-2xl font-semibold text-[#4a4a4a] mb-4">
                                 {products[0]?.productName || 'Nom du produit non disponible'}
                             </h2>
@@ -186,6 +180,12 @@ const ProductDetails = () => {
                                     {products[0]?.price ? `${products[0].price}€` : 'Prix non disponible'}
                                 </span>
                             </div>
+                            <div className="block mb-6">
+                                <span className="text-black">
+                                  Peut vivre pendant <span className="bg-[#5b8350]/50 font-semibold rounded px-3 py-1">{products[0]?.lifeDuration ? `${products[0].lifeDuration}ans` : 'Durée de vie non disponible'}</span>
+                                </span>
+                            </div>
+                            
 
                             <div className="mb-6">
                                 <p className="text-[#4a4a4a] mb-2">Quantité</p>
@@ -221,7 +221,7 @@ const ProductDetails = () => {
                                     className="border border-[#4a4a4a] rounded px-4 py-2 bg-transparent text-[#4a4a4a] appearance-none"
                                 >
                                     <option value="">Choisissez le genre</option>
-                                    <option value="male">Mâle</option>
+                                    <option value="male" selected>Mâle</option>
                                     <option value="female">Femelle</option>
                                 </select>
 
@@ -231,12 +231,14 @@ const ProductDetails = () => {
                                     className="border border-[#4a4a4a] rounded px-4 py-2 bg-transparent text-[#4a4a4a] appearance-none"
                                 >
                                     <option value="">Choisissez l'âge</option>
-                                    <option value="young">Jeune</option>
-                                    <option value="adult">Adulte</option>
-                                    <option value="senior">Senior</option>
+                                    <option value="3" selected>Jeune : +- 3 ans</option>
+                                    <option value="7">Adulte : +- 7 ans</option>
+                                    <option value="5">Senior : +- 5 ans</option>
                                 </select>
                             </div>
-
+                            <p className="my-6 text-sm text-black font-semibold">
+                                {products[0]?.productDescript || 'Description non disponible'}
+                            </p>
                             <button
                                 onClick={handleAddToCart}
                                 className="w-full bg-[#5b8350] hover:bg-[#4a6b41] text-white py-3 rounded flex items-center justify-center gap-2"
@@ -255,15 +257,7 @@ const ProductDetails = () => {
                                 </svg>
                             </button>
 
-                            <p className="mt-6 text-sm text-[#4a4a4a]">
-                                {products[0]?.productDescript || 'Description non disponible'}
-                            </p>
-                            {products[0]?.birthDate && products[0]?.lifeDuration && (
-                                <div className="bg-black text-white text-wrap p-2 mt-4 rounded">
-                                    <p>Date de naissance : {new Date(products[0].birthDate).toLocaleDateString()}</p>
-                                    {/* <p>Durée de vie : {calculateLifespan(products[0].age)} ans</p> */}
-                                </div>
-                            )}
+                            
                         </div>
                     </div>
                 </div>

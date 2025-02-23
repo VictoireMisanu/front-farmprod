@@ -23,9 +23,10 @@ export interface ProductInBasketProp {
   age: string;
   price: string;
   id: string;
+  descript: string;
 }
 
-export default function ProductInBasket({name,image,quantity,weight,gender,age,price,id}: ProductInBasketProp){
+export default function ProductInBasket({name, image, quantity, weight, gender, age, price, id, descript}: ProductInBasketProp){
   const {removeData} = useStore()
   return (
     <div className="w-auto h-auto flex flex-row items-start gap-10 bg-[#C7DDB5] p-4 rounded-lg mb-8">
@@ -50,7 +51,7 @@ export default function ProductInBasket({name,image,quantity,weight,gender,age,p
 
               <div id='weight' className="flex items-center gap-2">
                 <span className="text-gray-600">Poids</span>
-                <span className="bg-gray-400 px-2 py-1 rounded text-white">{weight}</span>
+                <span className="bg-gray-400 px-2 py-1 rounded text-white">{weight} Kg</span>
               </div>
 
               <div id='gender' className="flex items-center gap-2">
@@ -60,15 +61,15 @@ export default function ProductInBasket({name,image,quantity,weight,gender,age,p
 
               <div id='age' className="flex items-center gap-2">
                 <span className="text-gray-600">Age</span>
-                <span className="bg-gray-400 px-2 py-1 rounded text-white">{age}</span>
+                <span className="bg-gray-400 px-2 py-1 rounded text-white">{age} ans</span>
               </div>
 
               <span id='price' className="bg-gray-400 px-2 py-1 rounded text-white ml-2">
-                {price}
+                {price}$
               </span>
             </div>
             <p id='descript' className="text-gray-600 text-sm">
-              It is a long established fact that a reader.
+              {descript}
             </p>
           </div>
 
