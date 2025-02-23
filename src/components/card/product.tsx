@@ -18,6 +18,8 @@ export interface productProps{
     quantity: number,
     age: number,
     gender: string,
+    userId?: number,
+    farmId?: number,
 }
 
 interface productProp{

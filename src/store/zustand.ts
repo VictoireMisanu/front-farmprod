@@ -4,6 +4,7 @@ import { productProps } from "../components/card/product";
 
 interface State {
   data: productProps[];
+  userId?: number;
   appendData: (newData: productProps) => void;
   removeData: (id: number) => void;
   reset: () => void;
@@ -16,8 +17,21 @@ const useStore = create<State>()(
   persist<State>(
     (set) => ({
       data: [],
-      appendData: (newData) => set((state) => ({ data: [...state.data, newData] })),
-      removeData: (id) => set((state) => ({ data: state.data.filter((item) => item.productId !== id) })),
+      appendData: (newData) => {
+        // Récupérer userId depuis localStorage
+        const users = JSON.parse(localStorage.getItem('user_info') || '{}');
+        const userId = users.id; // Assurez-vous que 'id' est la clé correcte
+    
+        // Ajouter le produit avec l'identifiant de l'utilisateur
+        const productWithUserId = { ...newData, userId }; // Inclure userId dans newData
+    
+        return set((state) => ({
+          data: [...state.data, productWithUserId] // Utiliser le produit avec userId
+        }));
+      },
+      removeData: (id) => set((state) => ({
+        data: state.data.filter((item) => item.productId !== id)
+      })),
       reset: () => set({ data: [] }),
     }),
     {
