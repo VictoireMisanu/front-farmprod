@@ -1,15 +1,16 @@
 import axios from 'axios';
+import { commandProps } from '../Pages/basket';
 
 const api = axios.create({
   baseURL: 'http://localhost:3333'
 });
 
 export const getProducts = async () => {
-  console.log('fff');
+  // console.log('fff');
   
   try {
     const response = await api.get('/');
-    console.log('derftgh', response.status);
+    // console.log('derftgh', response.status);
     
     return response.data;
   } catch (error) {
@@ -46,7 +47,6 @@ export const registerAccountInfo = async (formData:FormData, url: string) => {
     formData.append('user_picture', url.toString());
     formData.forEach((value, key) => console.log(key, value));
 
-    
     const response = await api.post('/signup', formData)
     return response
   } catch (error) {
@@ -64,5 +64,19 @@ export const authenticateUser = async (formData:FormData) => {
     console.error("Erreur lors de l'authentification", error);
     throw error;
     
+  }
+};
+
+export const createCommand = async (commands:commandProps) => {
+  try {
+    const response = await api.post('/command', commands, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    return response.data; // Retourner les données de la réponse
+  } catch (error) {
+    console.error('Erreur lors de la création de la commande:', error);
+    throw error;
   }
 };

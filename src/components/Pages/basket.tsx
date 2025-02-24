@@ -7,6 +7,16 @@ import ProductInBasket from "../card/productInBasket"
 import { Link } from "react-router-dom"
 import useStore from "../../store/zustand"
 import { productProps } from "../card/product"
+import { createCommand } from '../services/api';
+
+export interface commandProps {
+    command_date: Date;
+    global_price: string;
+    quantity: number;
+    command_num: string;
+    user: number; // Assurez-vous que le type correspond ici
+    product: number;
+  }
 
 const Basket = () => {
 
@@ -25,6 +35,44 @@ const Basket = () => {
 
     // Format price to 2 decimal places
     const formattedTotalPrice = totalPrice.toFixed(2)
+
+    const handleOrder = async () => {
+        const store = useStore.getState();
+        const { data } = store; // Récupérer les données du panier
+      
+        // Vérifier si le panier est vide
+        if (data.length === 0) {
+          console.error("Le panier est vide");
+          return;
+        }
+      
+        // Récupérer userId depuis localStorage
+        const users = JSON.parse(localStorage.getItem('user_info') || '{}');
+        const userId = users.id; // Assurez-vous que 'id' est la clé correcte
+      
+        // Préparer les commandes
+        const commands: commandProps[] = data.map((item) => ({
+          command_date: new Date(), // Date actuelle
+          global_price: item.price.toString(), // Convertir le prix en chaîne
+          quantity: data.length, // Quantité par défaut, ajustez si nécessaire
+          command_num: `CMD-${Date.now()}`, // Numéro de commande unique
+          user: userId,
+          product: item.productId,
+        }));
+      
+        try {
+          // Envoyer les données à votre API en utilisant createCommand
+          for (const command of commands) {
+            const result = await createCommand(command);
+            console.log('Commande créée avec succès:', result);
+          }
+          
+          // Optionnel : Réinitialiser le panier après la commande
+          store.reset();
+        } catch (error) {
+          console.error('Erreur:', error);
+        }
+      };
     return(
         <>
             <Header className ="w-full h-20 bg-[#C7DDB5] shadow-md shadow-black/20 px-10">
@@ -67,7 +115,7 @@ const Basket = () => {
 
                             <div id='btnSection' className='w-full h-20 flex flex-row items-center justify-between px-10'>
                                 <Link to={`/products`} className='bg-transparent w-auto h-12 text-[#658221] font-bold hover:cursor-pointer border-b-[3px] border-[#404A3D] hover:bg-[#9BA3AF] hover:shadow-lg shadow-black p-3'>Continuer le shopping</Link>
-                                <Link to={``} className='bg-[#658221] w-auto h-12 rounded-md text-white font-semibold hover:cursor-pointer hover:text-[#658221] hover:border-[#658221] border-2 hover:bg-transparent hover:shadow-lg shadow-black flex justify-center items-center p-2'>Passer au paiement</Link>
+                                <button onClick={handleOrder} className='bg-[#658221] w-auto h-12 rounded-md text-white font-semibold hover:cursor-pointer hover:text-[#658221] hover:border-[#658221] border-2 hover:bg-transparent hover:shadow-lg shadow-black flex justify-center items-center p-2'>Commander</button>
                             </div>
                         </div>
                     </div>
