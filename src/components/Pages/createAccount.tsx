@@ -186,13 +186,13 @@ const CreateAccount = () => {
           {error}
         </div>
       )}
-            <div id='header' className='w-full h-20 flex flex-row items-center justify-between'>
-                <Logo className="text-4xl text-[#404A3D] font-bold font-['Titan One']"/>
-                <div id='logInSection' className='w-auto flex flex-row items-center gap-10'>
-                    <p className='text-[#00A602] font-semibold'>Vous avez déjà un compte?</p>
-                    <Link to={`/signIn`} className="h-10 flex justify-center items-center text-md text-[#5B8C51] border-2 border-[#5B8C51]  font-normal bg-none p-2 rounded-lg hover:bg-[#5B8C51] hover:text-white">Sign In</Link>
-                </div>
-            </div>
+           <div id='header' className='w-full h-16 md:h-20 flex flex-row items-center justify-between'>
+    <Logo className="text-2xl md:text-4xl text-[#404A3D] font-bold font-['Titan One']"/>
+    <div id='logInSection' className='w-auto flex flex-row items-center gap-5 md:gap-10'>
+        <p className='text-sm md:text-base text-[#00A602] font-semibold'>Vous avez déjà un compte?</p>
+        <Link to={`/signIn`} className="h-8 md:h-10 flex justify-center items-center text-sm md:text-md text-[#5B8C51] border-2 border-[#5B8C51] font-normal bg-none p-1 md:p-2 rounded-lg hover:bg-[#5B8C51] hover:text-white">Sign In</Link>
+    </div>
+</div>
             <form onSubmit={onSubmit} className='bg-white flex flex-col justify-center items-center gap-10'>
                 <div id="title">
                     <p className="font-extrabold text-black leading-10 text-2xl mb-2">S'inscrire</p>

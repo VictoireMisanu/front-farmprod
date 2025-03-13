@@ -10,7 +10,10 @@ const Icon = ({ d, ...props }: React.SVGProps<SVGSVGElement> & { d: string }) =>
   </svg>
 )
 
-interface sideNavProps{className:string}
+interface sideNavProps{className:string, 
+    children?:React.ReactNode,
+    onClick?: () => void;
+}
 
 export default function SideNav({className}:sideNavProps) {
     const [isFarmersOpen, setIsFarmersOpen] = useState(false)

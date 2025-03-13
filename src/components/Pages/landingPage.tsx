@@ -124,6 +124,13 @@ const LandingPage: React.FC = () => {
                                 Fermiers
                             </Link>
                         </li>
+                        <li className="w-full text-center">
+                            <Link 
+                                to={`/signUp`} className="block px-4 py-2 hover:bg-green-500/30 transition-colors"
+                            >
+                                Compte
+                            </Link>
+                        </li>
                     </ul>
                 </div>
             </Header>
