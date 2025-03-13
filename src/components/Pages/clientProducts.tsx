@@ -97,33 +97,43 @@ const ClientProducts = () => {
                             <button className="text-[#EDDD5E] font-bold text-lg">Volaille</button>
                         </div>
                         <div id="categories" className="w-full">
-                        <section id="category" className="w-full px-4 py-8">
-                            <h2 className="text-2xl text-[#404A3D] font-bold mb-6">Grand bétail</h2>
-                            <div id="products" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                            {Category1.map((product:productProps)=>(
-                                
-                                <TrueProduct to={`/productDetails/${product.productId}`} className="bg-[#CCDCC3] p-4 rounded-lg flex flex-col" src={product.productImage} name={product.productName} descript={product.productDescript} price={`${product.price} $`} rating={3}/>
-                            ))}
-                            </div>    
-                        </section>
-                        <section id="category" className="w-full px-4 py-8">
-                            <h2 className="text-2xl text-[#404A3D] font-bold mb-6">Petit bétail</h2>
-                            <div id="products" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                            {Category2.map((product:productProps)=>(
-                                <TrueProduct to={`/productDetails/${product.productId}`} className="bg-[#CCDCC3] p-4 rounded-lg flex flex-col" src={product.productImage} name={product.productName} descript={product.productDescript} price={`${product.price} $`} rating={3.5}/>
-                            ))}
-                            </div>    
-                        </section>
-                        <section id="category" className="w-full px-4 py-8">
-                            <h2 className="text-2xl text-[#404A3D] font-bold mb-6">Volaille</h2>
-                            <div id="products" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                            {Category3.map((product:productProps)=>(
-                                <TrueProduct to={`/productDetails/${product.productId}`} className="bg-[#CCDCC3] p-4 rounded-lg flex flex-col" src={product.productImage} name={product.productName} descript={product.productDescript} price={`${product.price} $`}rating={4.5}/>
-                            ))}
-                            </div>    
-                        </section>
-                        <div>{JSON.stringify(users)}</div>
-                        <button className="border-2 border-black" onClick={handleDeconnection}>Deconnxion</button>
+                            <section id="category" className="w-full px-4 py-8">
+                                <h2 className="text-2xl text-[#404A3D] font-bold mb-6">Pour vous</h2>
+                                <div id="products" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                                    <TrueProduct to={``} className="bg-[#CCDCC3] p-4 rounded-lg flex flex-col" src={'https://res.cloudinary.com/ddwgsvzlw/image/upload/v1734886308/twoLapin_xcxvwm.jpg'} name={'Lapin'} descript={'Lapin domestique'} price={'25 $'} />
+                                    <TrueProduct to={``} className="bg-[#CCDCC3] p-4 rounded-lg flex flex-col" src={'https://res.cloudinary.com/ddwgsvzlw/image/upload/v1735054490/Cobaye4_ilgcbu.jpg'} name={'Cobaye'} descript={'Cobaye à poils lisses'} price={'15 $'} />
+                                    <TrueProduct to={``} className="bg-[#CCDCC3] p-4 rounded-lg flex flex-col" src={'https://res.cloudinary.com/ddwgsvzlw/image/upload/v1735211090/pigeon_hv9tos.jpg'} name={'Pigeon'} descript={'Pigeon biset'} price={'20 $'} />
+                                    <TrueProduct to={``} className="bg-[#CCDCC3] p-4 rounded-lg flex flex-col" src={'https://res.cloudinary.com/ddwgsvzlw/image/upload/v1735054489/Dindon1_xxqmc4.jpg'} name={'Dindon'} descript={'Dindon rouge'} price={'15 $'} />
+                                </div>
+
+                            </section>
+                            <section id="category" className="w-full px-4 py-8">
+                                <h2 className="text-2xl text-[#404A3D] font-bold mb-6">Grand bétail</h2>
+                                <div id="products" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                                {Category1.map((product:productProps)=>(
+                                    
+                                    <TrueProduct to={`/productDetails/${product.productId}`} className="bg-[#CCDCC3] p-4 rounded-lg flex flex-col" src={product.productImage} name={product.productName} descript={product.productDescript} price={`${product.price} $`}/>
+                                ))}
+                                </div>    
+                            </section>
+                            <section id="category" className="w-full px-4 py-8">
+                                <h2 className="text-2xl text-[#404A3D] font-bold mb-6">Petit bétail</h2>
+                                <div id="products" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                                {Category2.map((product:productProps)=>(
+                                    <TrueProduct to={`/productDetails/${product.productId}`} className="bg-[#CCDCC3] p-4 rounded-lg flex flex-col" src={product.productImage} name={product.productName} descript={product.productDescript} price={`${product.price} $`}/>
+                                ))}
+                                </div>    
+                            </section>
+                            <section id="category" className="w-full px-4 py-8">
+                                <h2 className="text-2xl text-[#404A3D] font-bold mb-6">Volaille</h2>
+                                <div id="products" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                                {Category3.map((product:productProps)=>(
+                                    <TrueProduct to={`/productDetails/${product.productId}`} className="bg-[#CCDCC3] p-4 rounded-lg flex flex-col" src={product.productImage} name={product.productName} descript={product.productDescript} price={`${product.price} $`}/>
+                                ))}
+                                </div>    
+                            </section>
+                            <div>{JSON.stringify(users)}</div>
+                            <button className="border-2 border-black" onClick={handleDeconnection}>Deconnxion</button>
 
                         </div>
                         
