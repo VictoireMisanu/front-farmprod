@@ -41,7 +41,11 @@ const LandingPage: React.FC = () => {
         fetchProducts();
     }, []);
 
-    if (loading) return <div className="text-center">Chargement...</div>;
+    if (loading) return (
+        <div className=" h-screen w-full bg-slate-300 flex justify-center items-center">
+            <img src="/logo/logoApp.png" alt="farmProd"  />
+        </div>
+    )
     if (error) return <div className="text-center text-red-500">{error}</div>;
 
     const someProducts = products.slice(0, 4)
