@@ -1,4 +1,4 @@
-import React from 'react'
+
 import Header from "../header/header"
 import SimpleLink from "../link&btn/simpleLink"
 import MiddleSection from "../middleSection/middleSection"
