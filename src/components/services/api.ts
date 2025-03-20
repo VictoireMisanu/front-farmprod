@@ -2,7 +2,7 @@ import axios from 'axios';
 import { commandProps } from '../Pages/basket';
 
 const api = axios.create({
-  // baseURL: 'http://localhost:3333'
+  // baseURL: 'http://127.0.0.1:3333'
   baseURL:'https://api-farmprod.onrender.com'
 });
 

@@ -177,7 +177,7 @@ const LandingPage: React.FC = () => {
                   <img src="/images/2roosters.png" alt="" className="w-full h-40 md:h-48 object-cover" />
                 </div>
               </div>
-              <div id="text" className="w-full lg:w-1/2 px-4 md:px-10 py-5 flex flex-col gap-10 lg:border-l-[1px] lg:border-black mt-8 lg:mt-0">
+              <div id="text" className="w-full lg:w-1/2 px-4 md:px-10 py-5 flex flex-col gap-10 lg:border-l-[1px] lg:border-black mt-8 lg:mt-0 lg:justify-center">
                 <div>
                   <p className="font-sans font-normal leading-7 md:leading-8 text-lg md:text-xl">
                     Nous sommes une plateforme numérique qui offre un espace propice
@@ -187,7 +187,7 @@ const LandingPage: React.FC = () => {
                 <SimpleLink 
                   id='learnMore' 
                   to={`/signUp`} 
-                  className='h-12 md:h-1/5 w-full md:w-40 p-3 rounded-xl text-md border-[#5B8C51] border-[3px] text-[#5B8C51] text-center font-semibold shadow-lg shadow-black/50 flex items-center justify-center hover:bg-[#5B8C51] hover:text-white hover:border-none'
+                  className='h-12 md:h-1/10 w-full md:w-40 p-3 rounded-xl text-md border-[#5B8C51] border-[3px] text-[#5B8C51] text-center font-semibold shadow-lg shadow-black/50 flex items-center justify-center hover:bg-[#5B8C51] hover:text-white hover:border-none'
                 >
                   En savoir plus
                 </SimpleLink>
