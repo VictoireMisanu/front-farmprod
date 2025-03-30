@@ -28,7 +28,7 @@ const SignIn = () => {
 
         await authenticateUser(formData).then((result)=>{
             //enregistrer les infos et le token
-            localStorage.setItem('auth_token', result.token);
+            localStorage.setItem('auth_token', result.token.token);
             localStorage.setItem('user_info', JSON.stringify(result.userInfo));
             console.log(result)
             alert("vous êtes connecté")

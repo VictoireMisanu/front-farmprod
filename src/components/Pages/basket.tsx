@@ -1,127 +1,164 @@
-import { useMemo, useState } from "react"
-import Header from "../header/header"
-import SimpleLink from "../link&btn/simpleLink"
-import MiddleSection from "../middleSection/middleSection"
-import SideNav from "../sideNav/sideNav"
-import ProductInBasket from "../card/productInBasket"
-import { Link } from "react-router-dom"
-import useStore from "../../store/zustand"
-import { productProps } from "../card/product"
-import { createCommand } from '../services/api';
+import { useMemo, useState } from "react";
+import Header from "../header/header";
+import SimpleLink from "../link&btn/simpleLink";
+import MiddleSection from "../middleSection/middleSection";
+import SideNav from "../sideNav/sideNav";
+import ProductInBasket from "../card/productInBasket";
+import { Link } from "react-router-dom";
+import useStore from "../../store/zustand";
+import { commandProps } from "../../store/zustand";  // Importer le type de commande
+import { productProps } from "../../components/card/product";
 
-export interface commandProps {
-    command_date: Date;
-    global_price: string;
-    quantity: number;
-    command_num: string;
-    user: number; // Assurez-vous que le type correspond ici
-    product: number;
-  }
+import { createCommand } from "../services/api";
 
 const Basket = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const toggleSideNav = () => {
+    setIsOpen(!isOpen);
+  };
 
-    const [isOpen, setIsOpen] = useState(false)
-    const toggleSideNav = () => {
-        setIsOpen(!isOpen);
+  const { data, setCommands } = useStore(); // Récupérer setCommands depuis le store
+
+  const totalPrice = useMemo(() => {
+    return data.reduce((total: number, product: productProps) => {
+      return total + (Number(product.price) * product.quantity);
+    }, 0);
+  }, [data]);
+
+  // Format price to 2 decimal places
+  const formattedTotalPrice = totalPrice.toFixed(2);
+
+  const handleOrder = async () => {
+    const store = useStore.getState();
+    const { data } = store;
+  
+    if (data.length === 0) {
+      console.error("Le panier est vide");
+      return;
     }
+  
+    const users = JSON.parse(localStorage.getItem("user_info") || "{}");
+    
+    const userId = users.user_id;
+  
+    const commands: commandProps[] = data.map((item) => ({
+      command_date: new Date(),
+      global_price: (Number(item.price) * item.quantity).toString(), // Prix total pour cet article
+      quantity: item.quantity,
+    //   command_num: `CMD-${Date.now()}-${Math.floor(Math.random() * 1000)}`, // Plus unique
+      user: userId,
+      product: item.productId,
+    }));
+  
+    try {
+      // Envoyer toutes les commandes en une seule requête
+      const result = await createCommand(commands);
+      console.log("Résultat de la commande:", result);
+  console.log(commands);
+  
+      setCommands(commands);
+      store.reset();
+    } catch (error) {
+      console.error("Erreur:", error);
+    }
+  };
 
-    const {data} = useStore()
+  return (
+    <>
+      <Header className="w-full h-20 bg-[#C7DDB5] shadow-md shadow-black/20 px-10">
+        <nav className="w-full h-full flex flex-row justify-between items-center">
+          <div id="part1" className="flex flex-row items-center gap-5">
+            <button onClick={toggleSideNav}>
+              <img src="/svg/burger.svg" alt="" />
+            </button>
+            <SimpleLink
+              to=""
+              className="bg-[#EDDD5E] flex items-center justify-center h-12 w-12 p-2 rounded-full"
+            >
+              <img src="/svg/arrow.svg" alt="" />
+            </SimpleLink>
+          </div>
+          <div
+            id="part2"
+            className="bg-white w-auto h-1/2 shadow-lg shadow-black/20 rounded-xl flex flex-row justify-between items-center px-2"
+          >
+            <label htmlFor="search">
+              <img src="/svg/search.svg" alt="" className="w-7 h-7" />
+            </label>
+            <input
+              type="search"
+              name="searchInput"
+              id="search"
+              className="w-2/3 outline-none"
+              placeholder="Rechercher"
+            />
+          </div>
+          <div id="part3" className="flex flex-row items-center gap-5">
+            <SimpleLink to={`/basket`} className="flex items-center justify-center pr-5 border-black border-r-[1px]">
+              <div>
+                <img src="/svg/basket.svg" alt="" className="w-10 h-10" />
+                {data.length.toString()}
+              </div>
+            </SimpleLink>
+            <SimpleLink to="" className="flex items-center justify-center">
+              <img src="/svg/user.svg" alt="" className="w-10 h-10" />
+            </SimpleLink>
+          </div>
+        </nav>
+      </Header>
 
-    const totalPrice = useMemo(() => {
-        return data.reduce((total: number, product: productProps) => {
-            return total + (Number(product.price) * product.quantity)
-        }, 0)
-    }, [data])
+      <MiddleSection>
+        <div id="content" className="w-full flex flex-row">
+          <SideNav className={`sidebar ${isOpen ? "h-full w-[20%] bg-[#3B4F3A] p-4 flex flex-col" : "hidden"}`} />
+          <div
+            id="mainSection"
+            className={`sidebar ${isOpen ? "w-[70%] flex flex-col justify-center gap-20" : "w-[100%] flex flex-col justify-center gap-20"}`}
+          >
+            <div className="w-full flex justify-between mt-10 px-10">
+              <h2 className="text-2xl text-[#404A3D] font-bold">Panier</h2>
+              <div id="price" className="flex items-center gap-2">
+                <span className="text-gray-600">Prix total</span>
+                <span className="bg-[#404A3D] px-2 py-1 rounded text-white">{formattedTotalPrice}$</span>
+              </div>
+            </div>
+            <div className="flex flex-col items-center">
+              {data?.map((product: productProps) => {
+                return (
+                  <ProductInBasket
+                    key={product.productId}
+                    name={product.productName}
+                    id={product.productId.toString()}
+                    image={product.productImage}
+                    weight={product.weight.toString()}
+                    quantity={product.quantity}
+                    gender={product.gender}
+                    age={product.age.toString()}
+                    price={product.price.toString()}
+                    descript={product.productDescript}
+                  />
+                );
+              })}
 
-    // Format price to 2 decimal places
-    const formattedTotalPrice = totalPrice.toFixed(2)
+              <div id="btnSection" className="w-full h-20 flex flex-row items-center justify-between px-10">
+                <Link
+                  to={`/products`}
+                  className="bg-transparent w-auto h-12 text-[#658221] font-bold hover:cursor-pointer border-b-[3px] border-[#404A3D] hover:bg-[#9BA3AF] hover:shadow-lg shadow-black p-3"
+                >
+                  Continuer le shopping
+                </Link>
+                <button
+                  onClick={handleOrder}
+                  className="bg-[#658221] w-auto h-12 rounded-md text-white font-semibold hover:cursor-pointer hover:text-[#658221] hover:border-[#658221] border-2 hover:bg-transparent hover:shadow-lg shadow-black flex justify-center items-center p-2"
+                >
+                  Commander
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </MiddleSection>
+    </>
+  );
+};
 
-    const handleOrder = async () => {
-        const store = useStore.getState();
-        const { data } = store; // Récupérer les données du panier
-      
-        // Vérifier si le panier est vide
-        if (data.length === 0) {
-          console.error("Le panier est vide");
-          return;
-        }
-      
-        // Récupérer userId depuis localStorage
-        const users = JSON.parse(localStorage.getItem('user_info') || '{}');
-        const userId = users.id; // Assurez-vous que 'id' est la clé correcte
-      
-        // Préparer les commandes
-        const commands: commandProps[] = data.map((item) => ({
-          command_date: new Date(), // Date actuelle
-          global_price: item.price.toString(), // Convertir le prix en chaîne
-          quantity: data.length, // Quantité par défaut, ajustez si nécessaire
-          command_num: `CMD-${Date.now()}`, // Numéro de commande unique
-          user: userId,
-          product: item.productId,
-        }));
-      
-        try {
-          // Envoyer les données à votre API en utilisant createCommand
-          for (const command of commands) {
-            const result = await createCommand(command);
-            console.log('Commande créée avec succès:', result);
-          }
-          
-          // Optionnel : Réinitialiser le panier après la commande
-          store.reset();
-        } catch (error) {
-          console.error('Erreur:', error);
-        }
-      };
-    return(
-        <>
-            <Header className ="w-full h-20 bg-[#C7DDB5] shadow-md shadow-black/20 px-10">
-                <nav className="w-full h-full flex flex-row justify-between items-center ">
-                    <div id="part1" className="flex flex-row items-center gap-5">
-                        <button onClick={toggleSideNav}><img src="/svg/burger.svg" alt="" /></button>
-                        <SimpleLink to="" className="bg-[#EDDD5E] flex items-center justify-center h-12 w-12 p-2 rounded-full"><img src="/svg/arrow.svg" alt="" /></SimpleLink>
-                    </div>
-                    <div id="part2" className="bg-white w-auto h-1/2 shadow-lg shadow-black/20 rounded-xl flex flex-row justify-between items-center px-2">
-                        <label htmlFor="search"><img src="/svg/search.svg" alt="" className="w-7 h-7"/></label>
-                        <input type="search" name="searchInput" id="search" className="w-2/3 outline-none" placeholder="Rechercher"/>
-                    </div>
-                    <div id="part3" className="flex flex-row items-center gap-5">
-                    <SimpleLink to={`/basket`} className="flex items-center justify-center pr-5 border-black border-r-[1px]">
-                        <div>
-                            <img src="/svg/basket.svg" alt="" className="w-10 h-10"/>
-                            {data.length.toString()}
-                        </div>
-                    </SimpleLink>                        
-                    <SimpleLink to="" className="flex items-center justify-center "><img src="/svg/user.svg" alt="" className="w-10 h-10"/></SimpleLink>
-                    </div>
-                </nav>
-            </Header>
-            <MiddleSection>
-                <div id="content" className="w-full flex flex-row">
-                    <SideNav className={`sidebar ${isOpen ? 'h-full w-[20%] bg-[#3B4F3A] p-4 flex flex-col' : 'hidden'}`}/>
-                    <div id="mainSection" className={`sidebar ${isOpen ? 'w-[70%] flex flex-col justify-center gap-20' : 'w-[100%] flex flex-col justify-center gap-20'}`}>
-                        <div className="w-full flex justify-between mt-10 px-10">
-                            <h2 className="text-2xl text-[#404A3D] font-bold">Panier</h2>
-                            <div id='price' className="flex items-center gap-2">
-                                <span className="text-gray-600">Prix total</span>
-                                <span className="bg-[#404A3D] px-2 py-1 rounded text-white">{formattedTotalPrice}$</span>
-                            </div>
-                        </div>
-                        <div className="flex flex-col items-center">
-                            {data?.map((product: productProps) => {
-                                return <ProductInBasket name={product.productName} id={product.productId.toString()} image={product.productImage} weight={product.weight.toString()} quantity={product.quantity} gender={product.gender} age={product.age.toString()} price={product.price.toString()} descript={product.productDescript}/>
-                            })}
-                            
-
-                            <div id='btnSection' className='w-full h-20 flex flex-row items-center justify-between px-10'>
-                                <Link to={`/products`} className='bg-transparent w-auto h-12 text-[#658221] font-bold hover:cursor-pointer border-b-[3px] border-[#404A3D] hover:bg-[#9BA3AF] hover:shadow-lg shadow-black p-3'>Continuer le shopping</Link>
-                                <button onClick={handleOrder} className='bg-[#658221] w-auto h-12 rounded-md text-white font-semibold hover:cursor-pointer hover:text-[#658221] hover:border-[#658221] border-2 hover:bg-transparent hover:shadow-lg shadow-black flex justify-center items-center p-2'>Commander</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </MiddleSection>
-        </>
-    )
-}
-export default Basket
+export default Basket;

@@ -9,6 +9,7 @@ import useStore from "../../store/zustand";
 
 export interface productProps {
     key?: string;
+    id: number;
     classname: string;
     productImage: string;
     productName: string;
@@ -102,7 +103,7 @@ const ProductDetails = () => {
             gender,
             age: Number(age)
         }
-
+        
         console.log("Adding to cart:", product);
         appendData(product);
     }

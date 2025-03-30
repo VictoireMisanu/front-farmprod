@@ -143,7 +143,10 @@ const ClientProducts = () => {
                                 ))}
                                 </div>    
                             </section>
-                            <div className="mt-8">{JSON.stringify(users)}</div>
+                            <div className="mt-8">
+                                <p>{JSON.stringify(users.user_name)}</p>
+                                <p>{JSON.stringify(users.user_email)}</p>
+                            </div>
                             <div className="flex justify-center mt-8">
                                 <button 
                                     className="px-6 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors" 
