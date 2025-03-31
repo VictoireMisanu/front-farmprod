@@ -5,55 +5,74 @@ import { productProps } from "../components/card/product";
 // Définir l'interface de l'état avec les commandes
 interface State {
   data: productProps[];
-  commands: commandProps[];  // Ajouter un tableau de commandes
+  commands: commandProps[];
   userId?: number;
   appendData: (newData: productProps) => void;
   removeData: (id: number) => void;
   reset: () => void;
-  setCommands: (commands: commandProps[]) => void; // Action pour mettre à jour les commandes
+  setCommands: (commands: commandProps[]) => void;
 }
 
-// Interface pour la commande (ajouter si nécessaire)
+// Interface pour la commande
 export interface commandProps {
   command_date: Date;
   global_price: string;
   quantity: number;
-  // command_num: string;
-  user: number; // Assurez-vous que le type correspond ici
+  user: number;
   product: number;
 }
 
-// Définir les options de persistance correctement
+// Définir les options de persistance
 type MyPersist = PersistOptions<State>;
 
 const useStore = create<State>()(
   persist<State>(
     (set) => ({
       data: [],
-      commands: [],  // Initialisation des commandes
+      commands: [],
+
       appendData: (newData) => {
-        // Récupérer userId depuis localStorage
-        const users = JSON.parse(localStorage.getItem('user_info') || '{}');
-        const userId = users.id; // Assurez-vous que 'id' est la clé correcte
+        const users = JSON.parse(localStorage.getItem("user_info") || "{}");
+        const userId = users.id;
 
-        // Ajouter le produit avec l'identifiant de l'utilisateur
-        const productWithUserId = { ...newData, userId }; // Inclure userId dans newData
+        set((state) => {
+          // Vérifier si le produit est déjà dans le panier
+          const existingProductIndex = state.data.findIndex(
+            (item) => item.productId === newData.productId
+          );
 
-        return set((state) => ({
-          data: [...state.data, productWithUserId] // Utiliser le produit avec userId
-        }));
+          console.log("Index du produit trouvé:", existingProductIndex);
+          
+          if (existingProductIndex !== -1) {
+            // Produit déjà dans le panier : mise à jour de la quantité
+            const updatedData = [...state.data];
+            updatedData[existingProductIndex] = {
+              ...updatedData[existingProductIndex],
+              quantity: updatedData[existingProductIndex].quantity + newData.quantity,
+            };
+
+            console.log("Quantité mise à jour :", updatedData[existingProductIndex]);
+            return { data: updatedData };
+          } else {
+            // Nouveau produit, on l'ajoute avec userId
+            const productWithUserId = { ...newData, userId };
+            console.log("Produit ajouté :", productWithUserId);
+            return { data: [...state.data, productWithUserId] };
+          }
+        });
       },
-      removeData: (id) => set((state) => ({
-        data: state.data.filter((item) => item.productId !== id)
-      })),
-      reset: () => set({ data: [] }),
-      
-      // Ajouter une action pour définir les commandes
-      setCommands: (commands) => set({ commands }),
 
+      removeData: (id) =>
+        set((state) => ({
+          data: state.data.filter((item) => item.productId !== id),
+        })),
+
+      reset: () => set({ data: [] }),
+
+      setCommands: (commands) => set({ commands }),
     }),
     {
-      name: 'basket-storage', // nom de la clé dans le localStorage
+      name: "basket-storage",
     } as MyPersist
   )
 );

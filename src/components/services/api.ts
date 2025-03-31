@@ -1,5 +1,5 @@
 import axios from 'axios';
-import useStore from '../../store/zustand';
+// import useStore from '../../store/zustand';
 import { commandProps } from '../../store/zustand';
 
 const api = axios.create({
@@ -43,12 +43,18 @@ export const getFarms = async () => {
 // Inscription d'un nouvel utilisateur
 export const registerAccountInfo = async (formData: FormData, url: string) => {
   try {
-    formData.append('user_picture', url.toString());
-    formData.forEach((value, key) => console.log(key, value)); // Juste pour déboguer
+    console.log(url);
+    
+    formData.append('user_picture', url);
+    // console.log(formData);
+    
+    // formData.forEach((value, key) => console.log(key, value)); // Juste pour déboguer
 
     const response = await api.post('/signup', formData);
+    alert('Compte crée avec succès')
     return response.data;
   } catch (error) {
+    alert('Erreur lors de la création du compte')
     console.error("Erreur lors de la création du compte", error);
     throw error;
   }
@@ -79,8 +85,10 @@ export const createCommand = async (newCommands: commandProps[]) => {
     });
 
     console.log("Commande créée avec succès:", response.data);
+    alert('votre commande a été éffectuée avec succès')
     return response.data;
   } catch (error) {
+    alert('votre commande a échoué')
     console.error('Erreur lors de la création de la commande:', error);
     throw error;
   }

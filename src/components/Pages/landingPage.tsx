@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import emailjs from '@emailjs/browser';
 import Footer from "../footer/footer"
 import Header from "../header/header"
@@ -11,7 +11,7 @@ import SectionTitle from '../title/sectionTitle';
 import Service from '../card/service';
 import { Product, productProps } from '../card/product';
 import { getProducts } from '../services/api';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const LandingPage: React.FC = () => {
     const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID
@@ -20,8 +20,13 @@ const LandingPage: React.FC = () => {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
-
+    const [showPopup, setShowPopup] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [showUserMenu, setShowUserMenu] = useState(false);
+
+    const [userName, setUserName] = useState('');
+    const [emailAddress, setEmailAddress] = useState('');
+    const [message, setMessage] = useState('');
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -39,7 +44,43 @@ const LandingPage: React.FC = () => {
         };
 
         fetchProducts();
+
+        const handleClickOutside = (event: MouseEvent) => {
+          if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+            setShowUserMenu(false);
+          }
+        };
+
+        document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+      
     }, []);
+
+    [userName, emailAddress, message];
+    
+    const users = JSON.parse(localStorage.getItem("user_info") || "{}");
+
+    const navigate = useNavigate();
+    const dropdownRef = useRef<HTMLDivElement>(null);
+
+
+    const isLoggedIn = Object.keys(users).length > 0;
+const handleUserIconClick = () => {
+  
+  if (!isLoggedIn) {
+      navigate('/signUp');
+      return;
+  }
+  setShowUserMenu(!showUserMenu);
+};
+
+const handleDeconnection = () => {
+  localStorage.removeItem('auth_token');
+  localStorage.removeItem('user_info');
+  setShowUserMenu(false);
+  navigate('/');
+};
+
 
     if (loading) return (
         <div className=" h-screen w-full bg-slate-300 flex justify-center items-center">
@@ -48,7 +89,7 @@ const LandingPage: React.FC = () => {
     )
     if (error) return <div className="text-center text-red-500">{error}</div>;
 
-    const someProducts = products.slice(0, 4)
+    const someProducts = products.slice(0, 4);
 
     const handleSendEmail = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
@@ -56,12 +97,19 @@ const LandingPage: React.FC = () => {
             .then(
                 (result) => {
                     console.log('Message envoyé avec succès', result.text);
+                    setShowPopup(true);
                 },
                 (error) => {
                     console.error('Erreur lors de l\'envoi du message', error.text);
                 }
             );
+
+      setUserName('');
+      setEmailAddress('');
+      setMessage('');
     }
+
+    
 
     return (
         <>
@@ -71,14 +119,36 @@ const LandingPage: React.FC = () => {
                     <SimpleLink to={`/`} className="text-sm md:text-md text-[#5B8C51] p-2 rounded-lg hover:bg-[#FEF3B8] font-normal" children='Acceuil' />
                     <SimpleLink to={`#`} className="text-sm md:text-md text-black font-normal bg-none p-2 rounded-lg hover:bg-[#FEF3B8] hover:text-[#5B8C51]" children='A propos' />
                     <SimpleLink to={`/products`} className="text-sm md:text-md text-black font-normal bg-none p-2 rounded-lg hover:bg-[#FEF3B8] hover:text-[#5B8C51]" children='Produits' />
-                    <SimpleLink to={`/createFarm`} className="text-sm md:text-md text-black font-normal bg-none p-2 rounded-lg hover:bg-[#FEF3B8] hover:text-[#5B8C51]" children='Fermiers' />
+                    <SimpleLink to={`/#`} className="text-sm md:text-md text-black font-normal bg-none p-2 rounded-lg hover:bg-[#FEF3B8] hover:text-[#5B8C51]" children='Fermiers' />
                 </nav>
                 <div id="btnSection" className="hidden md:flex h-full w-auto md:w-[22rem] flex-row items-center justify-center px-4 md:px-10 gap-4 md:gap-5">
                     <BtnIcon to={`/products`} className="w-2/3 h-1/2 bg-[#EDDD5E] rounded-2xl p-3 flex flex-row justify-around items-center hover:bg-[#FFC107] hover:shadow-lg shadow-black text-sm md:text-md text-black font-semibold">
                         <span>Commander</span>
                         <img src="/svg/basket.svg" alt="" />
                     </BtnIcon>
-                    <SimpleLink to={`/signUp`} className="border-l-[1px] border-black pl-5 flex items-center justify-center "><img src="/svg/user.svg" alt="" className="w-8 md:w-10 h-8 md:h-10" /></SimpleLink>
+                    <button 
+                                onClick={handleUserIconClick}
+                                className="flex items-center justify-center hover:opacity-80 transition-opacity"
+                            >
+                                <img src="/svg/user.svg" alt="" className="w-8 h-8 md:w-10 md:h-10"/>
+                            </button>
+                            {showUserMenu && isLoggedIn && (
+                                <div 
+                                    ref={dropdownRef}
+                                    className="absolute right-0 mt-2 w-64 bg-white rounded-lg shadow-lg py-2 z-50"
+                                >
+                                    <div className="px-4 py-3 border-b border-gray-200">
+                                        <p className="text-sm font-medium text-gray-900">{users.user_name}</p>
+                                        <p className="text-sm text-gray-500">{users.user_email}</p>
+                                    </div>
+                                    <button 
+                                        onClick={handleDeconnection}
+                                        className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-gray-100 transition-colors"
+                                    >
+                                        Déconnexion
+                                    </button>
+                                </div>
+                            )}
                 </div>
                 <button 
                     onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -225,6 +295,7 @@ const LandingPage: React.FC = () => {
             <div id="content" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 py-10 md:py-20">
               {someProducts.map((product: productProps) => (
                 <Product
+                  to={`/products`}
                   key={product.key}
                   classname="h-72 w-full drop-shadow-md shadow-black bg-white rounded-t-md flex flex-col gap-5"
                   productImage={product.productImage}
@@ -234,14 +305,14 @@ const LandingPage: React.FC = () => {
             </div>
             <div id="sectionbtn" className="flex justify-center md:justify-start py-6">
               <div id="learnMore" className="flex gap-2 items-center">
-                <a href="#" className="rounded-xl bg-[#404A3D] p-3 w-48 md:w-56 text-sm md:text-md text-[#FFC107] text-center font-normal shadow-lg shadow-black/50 hover:bg-[#4a5647] transition-colors">
+                <SimpleLink to={`/products`} className="rounded-xl bg-[#404A3D] p-3 w-48 md:w-56 text-sm md:text-md text-[#FFC107] text-center font-normal shadow-lg shadow-black/50 hover:bg-[#4a5647] transition-colors">
                   En savoir plus
-                </a>
-                <a href="#" className="rounded-full border-2 border-[#5B8C51] w-10 h-10 text-[#5B8C51] shadow-lg shadow-black/50 flex justify-center items-center hover:bg-[#5B8C51] hover:text-white transition-colors">
+                </SimpleLink>
+                <SimpleLink to={`/products`} className="rounded-full border-2 border-[#5B8C51] w-10 h-10 text-[#5B8C51] shadow-lg shadow-black/50 flex justify-center items-center hover:bg-[#5B8C51] hover:text-white transition-colors">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                     <path fill="currentColor" d="M14 16.94v-4H5.08l-.03-2.01H14V6.94l5 5Z" />
                   </svg>
-                </a>
+                </SimpleLink>
               </div>
             </div>
           </div>
@@ -283,7 +354,14 @@ const LandingPage: React.FC = () => {
                   </button>
                 </div>
               </form>
-
+              {showPopup && (
+                <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+                    <div className="bg-white p-6 rounded-md shadow-md">
+                        <h2 className="text-xl font-bold mb-4">Message envoyé avec succès</h2>
+                        <button className="bg-green-950 text-white px-4 py-2 rounded-md" onClick={() => setShowPopup(false)}>Fermer</button>
+                    </div>
+                </div>
+            )}
               <div id="contact" className="w-full lg:w-1/3 bg-[#404A3D] relative p-8 md:p-14">
                 <div className="absolute -left-5 -top-5 w-10 h-10 bg-[#FFC107]"></div>
                 <div className="absolute -right-5 bottom-5 w-10 h-10 bg-[#FFC107]"></div>

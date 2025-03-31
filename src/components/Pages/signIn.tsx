@@ -44,7 +44,7 @@ const SignIn = () => {
                 <Logo className="text-4xl text-[#404A3D] font-bold font-['Titan One']"/>
                 <div id='logInSection' className='w-auto flex flex-row items-center gap-10'>
                     <p className='text-[#00A602] font-semibold'>Vous n'avez pas de compte?</p>
-                    <Link to={`/signUp`} className="h-10 flex justify-center items-center text-md text-[#5B8C51] border-2 border-[#5B8C51]  font-normal bg-none p-2 rounded-lg hover:bg-[#5B8C51] hover:text-white">Sign Up</Link>
+                    <Link to={`/signUp`} className="h-8 w-20 md:h-10 flex justify-center items-center text-sm md:text-md text-[#5B8C51] border-2 border-[#5B8C51] font-normal bg-none p-1 md:p-2 rounded-lg hover:bg-[#5B8C51] hover:text-white">Sign Up</Link>
                 </div>
             </div>
             <form onSubmit={handleSubmit} className='bg-white flex flex-col justify-center items-center gap-10'>
@@ -61,7 +61,7 @@ const SignIn = () => {
                     </div>
                 </div>
                 <input className='bg-[#658221] w-1/2 h-12 rounded-md text-white font-bold hover:cursor-pointer hover:text-[#658221] hover:border-[#658221] border-2 hover:bg-transparent hover:shadow-lg shadow-black' type="submit" value="Se connecter" />
-                <div id='socialMedia' className='w-full h-32 flex flex-col gap-5 justify-center items-center'>
+                {/* <div id='socialMedia' className='w-full h-32 flex flex-col gap-5 justify-center items-center'>
                     <div className='w-1/2 h-auto flex flex-row gap-3 justify-center items-center'>
                         <hr className=' border-slate-700 w-1/2'/>
                         <span>Ou</span>
@@ -72,7 +72,7 @@ const SignIn = () => {
                         <Link to="#"><img src="/svg/facebook.svg" alt="Facebook" title='Créer un compte avec google' /></Link>
                         <Link to="#"><img src="/svg/apple.svg" alt="Apple" title='Créer un compte avec google' /></Link>
                     </div>
-                </div>
+                </div> */}
             </form>
 
         </div>
