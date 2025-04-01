@@ -3,8 +3,8 @@ import axios from 'axios';
 import { commandProps } from '../../store/zustand';
 
 const api = axios.create({
-  baseURL: 'http://127.0.0.1:3333'
-  // baseURL:'https://api-farmprod.onrender.com'
+  // baseURL: 'http://127.0.0.1:3333'
+  baseURL:'https://api-farmprod.onrender.com'
 });
 
 // Récupérer les produits
