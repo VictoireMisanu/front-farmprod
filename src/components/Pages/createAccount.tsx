@@ -185,70 +185,59 @@ const CreateAccount = () => {
   //     }
   //   };
   return (
-    <div id='' className='w-full h-screen flex flex-col py-5 px-10'>
-      {error && (
-        <div className="bg-red-50 text-red-500 p-3 rounded-md">
-          {error}
-        </div>
-      )}
-      <div id='header' className='w-full h-16 md:h-20 flex flex-row items-center justify-between'>
-        <Logo className="text-2xl md:text-4xl text-[#404A3D] font-bold font-['Titan One']" />
-        <div id='logInSection' className='w-auto flex flex-row items-center gap-5 md:gap-10'>
-          <p className='text-sm md:text-base text-[#00A602] font-semibold'>Vous avez déjà un compte?</p>
-          <Link to={`/signIn`} className="h-8 md:h-10 flex justify-center items-center text-sm md:text-md text-[#5B8C51] border-2 border-[#5B8C51] font-normal bg-none p-1 md:p-2 rounded-lg hover:bg-[#5B8C51] hover:text-white">Sign In</Link>
-        </div>
-      </div>
-      <form onSubmit={onSubmit} className='bg-white flex flex-col justify-center items-center gap-10'>
-        <div id="title">
-          <p className="font-extrabold text-black leading-10 text-2xl mb-2">S'inscrire</p>
-        </div>
-        <div id='middleSection' className='w-3/4 h-auto flex flex-col items-center gap-5'>
-          <div id='profilePic' className="h-32 w-32 rounded-full border-[1px] border-slate-800 flex flex-col justify-center items-center">
-            <input className="w-full h-full hover:cursor-pointer opacity-0" type="file" accept=".jpeg, .png, .jpg" title='Photo de profil' id="user_picture" onChange={handleFileChange} name='user_picture' />
-            {imagePreview && (<img id='imgPreview' src={imagePreview} alt="" className=' -mt-10 w-full h-full rounded-full' />)}
-          </div>
-          <div id='user_name' className='w-1/2 h-7 flex justify-items-center'>
-            <input className='bg-transparent border-b-2 border-b-[#658221] w-full h-full p-5 outline-none' placeholder='Prenom et nom' type="text" name='user_name' id='user_name' />
-          </div>
-          <div id='emailAddress' className='w-1/2 h-7 flex justify-items-center rounded-md'>
-            <input className='bg-transparent border-b-2 border-[#658221] w-full h-full p-5 outline-none' placeholder='Adresse email' type="email" name='user_email' id='user_email' />
-          </div>
-          <div id='user_password' className='w-1/2 h-7 flex justify-items-center rounded-md'>
-            <input className='bg-transparent border-b-2 border-[#658221] w-full h-full p-5 outline-none' placeholder='Mot de passe' type="password" name='user_password' />
-          </div>
-          <div id='user_address' className='w-1/2 h-7 flex justify-items-center rounded-md'>
-            <input className='bg-transparent border-b-2 border-[#658221] w-full h-full p-5 outline-none' placeholder='Adresse' type="text" name='user_address' />
-          </div>
-        </div>
-        <button
-          type="submit"
-          disabled={isUploading}
-          className='bg-[#658221] w-1/2 h-12 rounded-md text-white font-bold hover:cursor-pointer hover:text-[#658221] hover:border-[#658221] border-2 hover:bg-transparent hover:shadow-lg shadow-black disabled:bg-green-600'
-        >
-          {isUploading ? (
-            <>
-              <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-              Enregistrement en cours
-            </>
-          ) : (
-            'Enregistrement'
-          )}
-        </button>
-        {/* <div id='socialMedia' className='w-full h-32 flex flex-col gap-5 justify-center items-center'>
-          <div className='w-1/2 h-auto flex flex-row gap-3 justify-center items-center'>
-            <hr className=' border-slate-700 w-1/2' />
-            <span>Ou</span>
-            <hr className='border-slate-700 w-1/2' />
-          </div>
-          <div id='socialMedia' className='w-1/2 h-auto flex flex-row items-center justify-center gap-8'>
-            <Link to="#"><img src="/svg/google.svg" alt="Google" title='Créer un compte avec google' /></Link>
-            <Link to="#"><img src="/svg/facebook.svg" alt="Google" title='Créer un compte avec google' /></Link>
-            <Link to="#"><img src="/svg/apple.svg" alt="Google" title='Créer un compte avec google' /></Link>
-          </div>
-        </div> */}
-      </form>
-
+<div id='' className='w-full h-screen flex flex-col py-5 px-5 md:px-10'>
+  {error && (
+    <div className="bg-red-50 text-red-500 p-3 rounded-md text-sm md:text-base">
+      {error}
     </div>
+  )}
+  <div id='header' className='w-full h-16 md:h-20 flex flex-row items-center justify-between'>
+    <Logo className="text-xl md:text-4xl text-[#404A3D] font-bold font-['Titan One']" />
+    <div id='logInSection' className='w-auto flex flex-row items-center gap-3 md:gap-10'>
+      <p className='text-xs md:text-base text-[#00A602] font-semibold'>Vous avez déjà un compte?</p>
+      <Link to={`/signIn`} className="h-8 md:h-10 flex justify-center items-center text-xs md:text-sm text-[#5B8C51] border-2 border-[#5B8C51] font-normal bg-none px-2 md:px-4 rounded-lg hover:bg-[#5B8C51] hover:text-white">
+        Sign In
+      </Link>
+    </div>
+  </div>
+  <form onSubmit={onSubmit} className='bg-white flex flex-col justify-center items-center gap-5 md:gap-10'>
+    <div id="title">
+      <p className="font-extrabold text-black leading-10 text-xl md:text-2xl mb-2">S'inscrire</p>
+    </div>
+    <div id='middleSection' className='w-full md:w-3/4 h-auto flex flex-col items-center gap-5'>
+      <div id='profilePic' className="h-24 w-24 md:h-32 md:w-32 rounded-full border-[1px] border-slate-800 flex flex-col justify-center items-center">
+        <input className="w-full h-full hover:cursor-pointer opacity-0" type="file" accept=".jpeg, .png, .jpg" title='Photo de profil' id="user_picture" onChange={handleFileChange} name='user_picture' />
+        {imagePreview && (<img id='imgPreview' src={imagePreview} alt="" className='w-full h-full rounded-full' />)}
+      </div>
+      <div id='user_name' className='w-full md:w-1/2 h-7 flex justify-items-center'>
+        <input className='bg-transparent border-b-2 border-b-[#658221] w-full h-full p-2 md:p-5 outline-none' placeholder='Prenom et nom' type="text" name='user_name' id='user_name' />
+      </div>
+      <div id='emailAddress' className='w-full md:w-1/2 h-7 flex justify-items-center rounded-md'>
+        <input className='bg-transparent border-b-2 border-[#658221] w-full h-full p-2 md:p-5 outline-none' placeholder='Adresse email' type="email" name='user_email' id='user_email' />
+      </div>
+      <div id='user_password' className='w-full md:w-1/2 h-7 flex justify-items-center rounded-md'>
+        <input className='bg-transparent border-b-2 border-[#658221] w-full h-full p-2 md:p-5 outline-none' placeholder='Mot de passe' type="password" name='user_password' />
+      </div>
+      <div id='user_address' className='w-full md:w-1/2 h-7 flex justify-items-center rounded-md'>
+        <input className='bg-transparent border-b-2 border-[#658221] w-full h-full p-2 md:p-5 outline-none' placeholder='Adresse' type="text" name='user_address' />
+      </div>
+    </div>
+    <button
+      type="submit"
+      disabled={isUploading}
+      className='bg-[#658221] w-full md:w-1/2 h-10 md:h-12 rounded-md text-white font-bold hover:cursor-pointer hover:text-[#658221] hover:border-[#658221] border-2 hover:bg-transparent hover:shadow-lg shadow-black disabled:bg-green-600'
+    >
+      {isUploading ? (
+        <>
+          <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+          Enregistrement en cours
+        </>
+      ) : (
+        'Enregistrement'
+      )}
+    </button>
+  </form>
+</div>
 
   )
 }
